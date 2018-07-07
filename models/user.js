@@ -4,7 +4,7 @@ const bcrypt 			= require('bcrypt');//para encriptar algo, en caso de contraseñ
 const bcrypt_p 			= require('bcrypt-promise');//promesas para encriptacion
 const jwt           	= require('jsonwebtoken');//manejo de token
 
-// const Roles          	= require('../models').Roles;
+ const Rols          	= require('../models').Rols;
 
 module.exports = (sequelize, DataTypes) => {
   	var User = sequelize.define('User', {
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   	});
 
   	User.associate = function(models){
-  		User.belongsToMany(models.Rol,{foreignKey:'user_id',through:{model:models.UserRol}});
+  		User.belongsToMany(models.Rol,{through:'UserRols'});
   		User.hasMany(models.Operacion);
   	};
 
@@ -49,8 +49,19 @@ module.exports = (sequelize, DataTypes) => {
 	};
 
 	User.prototype.toWeb = function (pw) {
+		//let id = this.id;
+		//let mail = this.email;
+		//let rol = this.Rols[0].descripcion;
 	    let json = this.toJSON();
+	    /*let rols = [];
+	    for (let i in this.Rols) {
+        let rol = Rols[i];
+        let trampas_info = trampa.toWeb();
+
+        trampas_json.push(trampas_info);
+    }*/
 	    return json;
+	    //return {id,mail,rol};
 	};
 
   	return User;

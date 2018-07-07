@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     descripcion: DataTypes.STRING
   }, {});
   Rol.associate = function(models) {
-    Rol.belongsToMany(models.User,{foreignKey:'rol_id',through:{model:models.UserRol}});
+    Rol.belongsToMany(models.User,{through:'UserRols'});
   };
 
     Rol.prototype.toWeb = function (pw) {

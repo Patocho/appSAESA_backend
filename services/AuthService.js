@@ -55,8 +55,8 @@ const authUser = async function(userInfo){//returns token
     let user;
     if(validator.isEmail(unique_key)){
         auth_info.method='email';
-
-        [err, user] = await to(User.findOne({where:{email:unique_key},include:[{model:Rol, through: {attributes: []} }]}));
+        //[err, user] = await to(User.findOne({where:{email:unique_key},include:[{model:Rol, through: {attributes: []} }]}));
+        [err, user] = await to(User.findOne({where:{email:unique_key}}));
         console.log(err, user, unique_key);
         if(err) TE(err.message);
 
