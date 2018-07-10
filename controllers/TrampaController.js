@@ -14,7 +14,7 @@ const getAllForSe = async function(req, res){
         let trampa = trampas[i];
         let trampas_info = trampa.toWeb();
 
-        trampas_json.push(trampas_info);
+        trampas_json.push({id:trampas_info.id, cod:trampas_info.codigo_trampa,tipo:trampas_info.tipo});
     }
 
     return ReS(res, {trampas: trampas_json});
