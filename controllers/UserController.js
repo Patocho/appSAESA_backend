@@ -50,7 +50,7 @@ const login = async function(req, res){
         //let roles = rol[i];
         roles_json.push({id:rol[i].id,descripcion:rol[i].descripcion});
     }
-    let user1 ={id:user.id , email:user.email};
+    let user1 ={id:user.id};
 
     
     /*
