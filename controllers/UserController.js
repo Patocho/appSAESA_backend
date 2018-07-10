@@ -70,6 +70,7 @@ const login = async function(req, res){
     */
 
 
+
     if(err) TE(err.message);
 
     return ReS(res, {token:user.getJWT(), dato:user1, roles:roles_json});
