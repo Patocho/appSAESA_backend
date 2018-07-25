@@ -12,12 +12,12 @@ const create = async function(req, res){
         let cont = 0;
         for(let i in body.trampas){
             [err, trampa] = await to(Trampa.findOne({where:{codigo_trampa:body.trampas[i].codigo_trampa}}));
-            if (trampa = null){
+            if (trampa != null){
                 cont = cont +1;
             }
         }
         if(cont > 0){
-            return ReE(res, 'Codio de trampa ya existente')
+            return ReE(res, 'Codigo de trampa ya existente')
         } 
         else{
             for(let i in body.trampas){
