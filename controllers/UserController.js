@@ -23,15 +23,6 @@ const create = async function(req, res){
 
 module.exports.create = create;
 
-/*const login = async function(req, res){
-    const body = req.body;
-    let err, user, rol;
-
-    [err, user] = await to(authService.authUser(req.body));
-    if(err) return ReE(res, err, 422);
-
-    return ReS(res, {token:user.getJWT(), user:user.toWeb()});
-}*/
 const login = async function(req, res){
     const body = req.body;
     let err, user, rol;
@@ -51,25 +42,6 @@ const login = async function(req, res){
         roles_json.push({id:rol[i].id,descripcion:rol[i].descripcion});
     }
     let user1 ={id:user.id};
-
-    
-    /*
-        [err, rol] = await to(Rol.findAll({
-        include:[{
-            model:User, through: {attributes: ['descripcion'], where:{UserId:user.id}} }],
-    }));
-    [err, rol] = await to(User.findAll({
-        include : [ {
-            model: Rol,
-            through: {
-                attributes: ['id','descripcion'],
-                where: {UserId : user.id}
-            }
-        }]}));
-   
-    */
-
-
 
     if(err) TE(err.message);
 

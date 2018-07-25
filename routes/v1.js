@@ -6,6 +6,7 @@ const passport      	= require('passport');
 const path              = require('path');
 
 const UserController = require('./../controllers/UserController');
+const RolController = require('./../controllers/RolController');
 const SubestacionController = require('./../controllers/SubestacionController');
 const TrampaController = require('./../controllers/TrampaController');
 const OtController = require('./../controllers/OtController');
@@ -24,5 +25,8 @@ router.get('/subestacions',SubestacionController.getAll);
 router.get('/ots/:numero_ot',OtController.getOt);
 
 router.get('/trampas/:se_id',TrampaController.getAllForSe);
+router.post('/creartrampas',TrampaController.create);
+
+router.post('/rols', RolController.create);
 
 module.exports = router;
