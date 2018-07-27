@@ -12,7 +12,7 @@ const getAll = async function(req, res){
         let subestacion = subestacions[i];
         let subestacions_info = subestacion.toWeb();
 
-        subestacions_json.push(subestacions_info);
+        subestacions_json.push({id:subestacions_info.id, cod_se:subestacions_info.cod_se, nombre:subestacions_info.nombre_se});
     }
 
     return ReS(res, {subestacions: subestacions_json});

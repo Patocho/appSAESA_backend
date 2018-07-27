@@ -1,4 +1,4 @@
-const UserRols = require('../models').UserRols;
+const Rol = require('../models').Rol;
 
 const create = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
@@ -18,10 +18,3 @@ const create = async function(req, res){
 }
 
 module.exports.create = create;
-//get all for a unique ID
-const getRolesForUser = async function(id){
-    let err,roles;
-    [err, roles] = await to(UserRols.findAll({where:{UserId:id}}));
-    return roles;
-}
-module.exports.getRolesForUser = getRolesForUser;
