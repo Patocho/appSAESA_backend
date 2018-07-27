@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   Subestacion.associate = function(models) {
     Subestacion.hasMany(models.Ot);
     Subestacion.hasMany(models.Trampa);
+    Subestacion.hasMany(models.Equipo);
   };
 
   Subestacion.prototype.toWeb = function (pw) {
