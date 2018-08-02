@@ -7,6 +7,7 @@ const create = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
 
+    //console.log(body);
     if(!body.unique_key && !body.email){
         return ReE(res, 'Por favor, ingresa un email para registrar');
     } else if(!body.password){
