@@ -19,6 +19,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/users', UserController.create);
 router.post('/users/login',UserController.login);
+router.get('/inspectores/:rol',UserController.inspectores);
 
 router.get('/subestacions',SubestacionController.getAll);
 
