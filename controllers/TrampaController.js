@@ -4,10 +4,6 @@ const create = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
 
-    //console.log("                                                                 ");
-    //console.log(req);
-    //console.log("                                                                 ");
-    //console.log(body);
     if(!body.trampas){
         return ReE(res, 'Lista de trampas vacia');
     } 

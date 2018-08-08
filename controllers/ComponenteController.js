@@ -24,7 +24,7 @@ const getAllForSe = async function(req, res){
 
     for(let i in componentes1){
         for(let j in componentes1[i]){
-            resultado.push({id:componentes1[i][j].id});
+            resultado.push({id:componentes1[i][j].id, nombre:componentes1[i][j].nombre_comp, polo1:componentes1[i][j].poloa_comp,polo2:componentes1[i][j].polob_comp,polo3:componentes1[i][j].poloc_comp});
         }
     }
     return ReS(res, {componentes: resultado});
