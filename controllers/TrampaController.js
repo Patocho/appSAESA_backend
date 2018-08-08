@@ -3,7 +3,7 @@ const Trampa = require('../models').Trampa;
 const create = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
-    console.log(body.trampas);
+
     if(!body.trampas){
         return ReE(res, 'Lista de trampas vacia');
     } 
