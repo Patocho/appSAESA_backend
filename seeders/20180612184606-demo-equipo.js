@@ -6,20 +6,20 @@ module.exports = {
     {
       cod_eq: '100001',
       nombre_eq: '59bt1',
-      ubic_tec_eq: 'TX-SE-016',
-      SubestacionId:1,
+      ubic_tec_eq: 'TX-SE-021',
+      SubestacionId:3,
   },
       {
       cod_eq: '100002',
       nombre_eq: '59bt2',
-      ubic_tec_eq: 'TX-SE-016',
-      SubestacionId:1,
+      ubic_tec_eq: 'TX-SE-021',
+      SubestacionId:3,
   },
       {
       cod_eq: '100003',
       nombre_eq: '59bt3',
-      ubic_tec_eq: 'TX-SE-016',
-      SubestacionId:1,
+      ubic_tec_eq: 'TX-SE-021',
+      SubestacionId:3,
   },
   ],{});
   },
