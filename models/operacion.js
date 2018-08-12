@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     Operacion.belongsTo(models.Ot);
     Operacion.hasOne(models.Otra_tarea);
     Operacion.hasMany(models.Registro_estado);
+    Operacion.hasMany(models.Img_tareas);
   };
     Operacion.prototype.toWeb = function (pw) {
     let json = this.toJSON();

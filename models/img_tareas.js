@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   	recurso: DataTypes.TEXT('long')
   }, {});
   Img_tareas.associate = function(models) {
-    // associations can be defined here
+  	Img_tareas.belongsTo(models.Operacion);
   };
   return Img_tareas;
 };

@@ -14,6 +14,9 @@ module.exports = {
       corte_pasto_: {
         type: Sequelize.STRING
       },
+      nebulizacion: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
