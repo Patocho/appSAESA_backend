@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Trampa.associate = function(models) {
     Trampa.belongsTo(models.Subestacion);
+    Trampa.hasMany(models.Registro_estado);
   };
 
   Trampa.prototype.toWeb = function (pw) {
