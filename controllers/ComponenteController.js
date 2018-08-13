@@ -18,18 +18,18 @@ const getAllForSe = async function(req, res){
             where:{EquipoId:equipo[i].id},
             include:[{model:Equipo}]
         }));
-        console.log("                                      ");
-        console.log(cons_comp);
-        componentes1.push(cons_comp);
+        console.log("                         ");
+        console.log({nombre:equipo[i].nombre_eq, componentes:cons_comp});
+        componentes1.push({nombre:equipo[i].nombre_eq, componentes:cons_comp});
     }
-    let resultado =[];
+    //let resultado =[];
 
-    for(let i in componentes1){
+/*    for(let i in componentes1){
         for(let j in componentes1[i]){
             resultado.push({id:componentes1[i][j].id, nombre:componentes1[i][j].nombre_comp,polo1:componentes1[i][j].poloa_comp,polo2:componentes1[i][j].polob_comp,polo3:componentes1[i][j].poloc_comp,equipo: componentes1[i][j].Equipo});
         }
-    }
-    return ReS(res, {componentes: resultado});
+    }*/
+    return ReS(res, {equipos: componentes1});
 
 }
 module.exports.getAllForSe = getAllForSe;
