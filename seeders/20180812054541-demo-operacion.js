@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Operacions',[
+    /*return queryInterface.bulkInsert('Operacions',[
     {
       pt_operacion : 1233445,
       fechahora_inicio: '2018-08-12T05:51',
@@ -10,10 +10,10 @@ module.exports = {
       UserId: 1,
       OtId: 1
     },
-    ],{});
+    ],{});*/
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Operacions', null, {});
+   // return queryInterface.bulkDelete('Operacions', null, {});
   }
 };
