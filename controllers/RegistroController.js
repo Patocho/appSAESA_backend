@@ -51,3 +51,26 @@ const registro = async function(req, res){
 }
 
 module.exports.registro = registro;
+
+const registrotermo = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+
+    numero_ot = body.ot;
+    [err, ots] = await to(Ot.findOne({where:{numero_ot: numero_ot}}));
+    OtId = ots.id;
+
+    const op ={
+        pt_operacion:body.pt,
+        fechahora_inicio: body.fecha_ini,
+        fechahora_fin: body.fecha_fin,
+        UserId: body.inspector,
+        OtId: OtId
+    };
+
+    [err, reg] = await to(Operacion.create(op));
+    
+    return ReS(res,201);
+}
+
+module.exports.registrotermo = registrotermo;
