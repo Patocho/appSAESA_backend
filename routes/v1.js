@@ -12,6 +12,7 @@ const TrampaController = require('./../controllers/TrampaController');
 const OtController = require('./../controllers/OtController');
 const EquipoController = require('./../controllers/EquipoController');
 const ComponenteController = require('./../controllers/ComponenteController');
+const RegistroController = require('./../controllers/RegistroController');
 
 require('./../middleware/passport')(passport)
 /* GET home page. */
@@ -35,5 +36,7 @@ router.post('/rols', RolController.create);
 router.get('/equipos/:se_id',EquipoController.getAllForSe);
 
 router.get('/componentes/:se_id',ComponenteController.getAllForSe);
+
+router.post('/registro',RegistroController.registro);
 
 module.exports = router;

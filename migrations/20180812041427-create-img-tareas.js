@@ -1,20 +1,15 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Mascota', {
+    return queryInterface.createTable('Img_tareas', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      nombre:{
-        allowNull: false,
-        type:Sequelize.TEXT
-      },
-      raza:{
-        allowNull: false,
-        type:Sequelize.TEXT
+      recurso: {
+        type: Sequelize.LONG
       },
       createdAt: {
         allowNull: false,
@@ -27,6 +22,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Mascota');
+    return queryInterface.dropTable('Img_tareas');
   }
 };

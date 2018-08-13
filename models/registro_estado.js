@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Registro_estado.associate = function(models) {
     Registro_estado.belongsTo(models.Operacion);
+    Registro_estado.belongsTo(models.Trampa);
     Registro_estado.hasMany(models.Img_control);
   };
 
