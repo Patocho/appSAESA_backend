@@ -51,3 +51,15 @@ const getAllForSe = async function(req, res){
 
 }
 module.exports.getAllForSe = getAllForSe;
+
+const remove = async function(req, res){
+    let trampa, err;
+    body = req.body;
+    let idt = body.id;
+
+    [err, trampa] = await to(Trampa.destroy(where:{id:idt}));
+    if(err) return ReE(res, 'Un error se ha producido al intentar eliminar una trampa');
+
+    return ReS(res, {message:'Trampa eliminada'}, 204); 
+}
+module.exports.remove = remove;
