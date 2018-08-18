@@ -30,6 +30,7 @@ router.get('/ots/:numero_ot',OtController.getOt);
 
 router.get('/trampas/:se_id',TrampaController.getAllForSe);
 router.post('/creartrampas',TrampaController.create);
+router.post('/borrarTrampa',TrampaController.remove);
 
 router.post('/rols', RolController.create);
 
