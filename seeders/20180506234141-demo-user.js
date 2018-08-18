@@ -5,11 +5,15 @@ module.exports = {
     return queryInterface.bulkInsert('Users',[
     {
       email:"patricio@gmail.com",
-      password:"$2a$10$5wEqAYn23mrMIZdVERBlt.jzS1XFT.QLDjDIOkJJ2ik8yzzyvAkrm"
+      password:"$2a$10$5wEqAYn23mrMIZdVERBlt.jzS1XFT.QLDjDIOkJJ2ik8yzzyvAkrm",
+createdAt: new Date(),
+updatedAt: new Date()
     },
     {
       email:"joseluis@gmail.com",
-      password:"$2a$10$5wEqAYn23mrMIZdVERBlt.jzS1XFT.QLDjDIOkJJ2ik8yzzyvAkrm"
+      password:"$2a$10$5wEqAYn23mrMIZdVERBlt.jzS1XFT.QLDjDIOkJJ2ik8yzzyvAkrm",
+createdAt: new Date(),
+updatedAt: new Date()
     },
     ],{});
   },

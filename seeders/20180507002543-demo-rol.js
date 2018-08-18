@@ -5,12 +5,18 @@ module.exports = {
     return queryInterface.bulkInsert('Rols',[
     {
       descripcion:"Administrador",
+createdAt: new Date(),
+updatedAt: new Date()
     },
     {
       descripcion:"Control de Plagas",
+createdAt: new Date(),
+updatedAt: new Date()
     },
     {
       descripcion:"Termografia",
+createdAt: new Date(),
+updatedAt: new Date()
     },
 
     ],{});
