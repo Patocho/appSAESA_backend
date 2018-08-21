@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     poloa_comp: DataTypes.STRING,
     polob_comp: DataTypes.STRING,
     poloc_comp: DataTypes.STRING
-  }, {});
+  }, {paranoid:true});
   Componente.associate = function(models) {
     Componente.belongsTo(models.Equipo);
   };

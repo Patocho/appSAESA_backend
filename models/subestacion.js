@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     nombre_se: DataTypes.STRING,
     lat_se: DataTypes.FLOAT,
     long_se: DataTypes.FLOAT
-  }, {});
+  }, {paranoid:true});
   Subestacion.associate = function(models) {
     Subestacion.hasMany(models.Ot);
     Subestacion.hasMany(models.Trampa);

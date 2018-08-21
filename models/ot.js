@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     numero_ot: DataTypes.INTEGER,
     fecha_ot: DataTypes.DATE,
     trabajo: DataTypes.STRING
-  }, {});
+  }, {paranoid:true});
   Ot.associate = function(models) {
     Ot.hasMany(models.Operacion);
     Ot.belongsTo(models.Subestacion);

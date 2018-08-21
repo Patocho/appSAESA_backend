@@ -36,9 +36,16 @@ const getAllForSe = async function(req, res){
     let err, trampas;
     se_id = req.params.se_id;
 
-    [err, trampas] = await to(Trampa.findAll({where:{SubestacionId: se_id}}));
+    [err, trampas] = await to(Trampa.findAll({
+        include:[{
+            model:Subestacion,
+            paranoid:true,
+            required:true,
+        }],
+        where:{SubestacionId: se_id,}
+    }));
     if (err) return ReE(res, err, 422);
-
+    
     let trampas_json = [];
     for (let i in trampas) {
         let trampa = trampas[i];

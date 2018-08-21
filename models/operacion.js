@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     pt_operacion: DataTypes.INTEGER,
     fechahora_inicio: DataTypes.DATE,
     fechahora_fin: DataTypes.DATE
-  }, {});
+  }, {paranoid:true});
   Operacion.associate = function(models) {
     Operacion.belongsTo(models.User);
     Operacion.belongsTo(models.Ot);

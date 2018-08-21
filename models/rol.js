@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   var Rol = sequelize.define('Rol', {
     descripcion: DataTypes.STRING
-  }, {});
+  }, {paranoid:true});
   Rol.associate = function(models) {
     Rol.belongsToMany(models.User,{through:'UserRols'});
   };
