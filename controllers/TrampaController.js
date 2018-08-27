@@ -1,4 +1,5 @@
 const Trampa = require('../models').Trampa;
+const Subestacion = require('../models').Subestacion;
 
 const create = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
