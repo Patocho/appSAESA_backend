@@ -31,6 +31,7 @@ const registro = async function(req, res){
         desmalezado:body.otras_tareas.desmalezado,
         corte_pasto_:body.otras_tareas.corte_pasto,
         nebulizacion:body.otras_tareas.nebulizacion,
+        obs_tarea:body.otras_tareas.obs_tarea,
         OperacionId: IdRegisto
     };
     [err, otras] = await to(Otra_tarea.create(otras_tareas));
@@ -40,7 +41,7 @@ const registro = async function(req, res){
         let delTrampa
         [err,delTrampa] = await to(Trampa.destroy({where:{id:trampDelete}}));
     }
-    
+
     for(let i in body.trampas){
         const tramp = {
             cod_trampa:body.trampas[i].cod_trampa,

@@ -25,6 +25,7 @@ router.post('/users/login',UserController.login);
 router.get('/inspectores/:rol',UserController.inspectores);
 
 router.get('/subestacions',SubestacionController.getAll);
+router.post('/borrarSE',SubestacionController.remove);
 
 router.get('/ots/:numero_ot',OtController.getOt);
 

@@ -19,3 +19,15 @@ const getAll = async function(req, res){
 
 }
 module.exports.getAll = getAll;
+
+const remove = async function(req, res){
+    let subestacion, err;
+    body = req.body;
+    let idse = body.id;
+
+    [err, trampa] = await to(Subestacion.destroy({where:{id:idse}}));
+    if(err) return ReE(res, 'Un error se ha producido al intentar eliminar una Subestacion');
+
+    return ReS(res, {message:'Subestacion eliminada'}, 204); 
+}
+module.exports.remove = remove;

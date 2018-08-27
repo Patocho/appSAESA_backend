@@ -42,10 +42,11 @@ const getAllForSe = async function(req, res){
             paranoid:true,
             required:true,
         }],
+        order:[['codigo_trampa','ASC']],
         where:{SubestacionId: se_id,}
     }));
     if (err) return ReE(res, err, 422);
-    
+
     let trampas_json = [];
     for (let i in trampas) {
         let trampa = trampas[i];

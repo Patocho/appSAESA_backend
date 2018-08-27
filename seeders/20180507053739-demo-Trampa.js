@@ -82,6 +82,76 @@ createdAt: new Date(),
 updatedAt: new Date()
 
     },
+    {
+      codigo_trampa: '00009',
+      SubestacionId: 1,
+      tipo:'principal',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+        {
+      codigo_trampa: '00010',
+      SubestacionId: 1,
+      tipo:'principal',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+        {
+      codigo_trampa: '00010A',
+      SubestacionId: 1,
+      tipo:'suplementaria',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+    {
+      codigo_trampa: '00011',
+      SubestacionId: 1,
+      tipo:'principal',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+        {
+      codigo_trampa: '00011A',
+      SubestacionId: 1,
+      tipo:'suplementaria',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+        {
+      codigo_trampa: '00011B',
+      SubestacionId: 1,
+      tipo:'suplementaria',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+        {
+      codigo_trampa: '00012',
+      SubestacionId: 1,
+      tipo:'principal',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+        {
+      codigo_trampa: '00012A',
+      SubestacionId: 1,
+      tipo:'suplementaria',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+        {
+      codigo_trampa: '00013',
+      SubestacionId: 1,
+      tipo:'principal',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
+        {
+      codigo_trampa: '00013A',
+      SubestacionId: 1,
+      tipo:'suplementaria',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },
     ],{});
   },
 
