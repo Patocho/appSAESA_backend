@@ -7,6 +7,8 @@ const Ot =require('../models').Ot;
 const Otra_tarea = require('../models').Otra_tarea;
 const Trampa = require('../models').Trampa;
 const Registro_estado = require('../models').Registro_estado;
+const Img_tareas = require('../models').Img_tareas;
+const Img_control = require('../models').Img_control;
 
 
 const registro = async function(req, res){
@@ -34,6 +36,15 @@ const registro = async function(req, res){
         obs_tarea:body.otras_tareas.obs_tarea,
         OperacionId: IdRegisto
     };
+
+    for(let z in body.otras_tareas.img){
+        const reg_img_ot={
+            recurso:body.otras_tareas.img[z],
+            OperacionId:IdRegisto
+        };
+        [err,regImg] = await to(Img_tareas.create(reg_img_ot));
+    }
+
     [err, otras] = await to(Otra_tarea.create(otras_tareas));
     
     for (let x in body.eliminarTrampas){
