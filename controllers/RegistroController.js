@@ -38,6 +38,7 @@ const registro = async function(req, res){
     };
 
     for(let z in body.otras_tareas.img){
+        console.log("entro a for de img");
         const reg_img_ot={
             recurso:body.otras_tareas.img[z],
             OperacionId:IdRegisto
