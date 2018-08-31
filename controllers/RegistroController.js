@@ -38,10 +38,10 @@ const registro = async function(req, res){
     };
 
     console.log("antes de for de img");
-    for(let z in body.otras_tareas.img){
+    for(let z in body.otras_tareas.imagenes){
         console.log("entro a for de img");
         const reg_img_ot={
-            recurso:body.otras_tareas.img[z].src,
+            recurso:body.otras_tareas.imagenes[z].recurso,
             OperacionId:IdRegisto,
         };
         [err,regImg] = await to(Img_tareas.create(reg_img_ot));
