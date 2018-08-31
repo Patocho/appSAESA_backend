@@ -14,7 +14,7 @@ const Img_control = require('../models').Img_control;
 const registro = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
-    console.log(body);
+    //console.log(body);
     numero_ot = body.ot;
     [err, ots] = await to(Ot.findOne({where:{numero_ot: numero_ot}}));
     OtId = ots.id;
