@@ -14,7 +14,7 @@ const Img_control = require('../models').Img_control;
 const registro = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
-    console.log(body);
+
     numero_ot = body.ot;
     [err, ots] = await to(Ot.findOne({where:{numero_ot: numero_ot}}));
     OtId = ots.id;
@@ -37,6 +37,15 @@ const registro = async function(req, res){
         OperacionId: IdRegisto
     };
 
+    console.log("antes de for de img");
+    for(let z in body.otras_tareas.img){
+        console.log("entro a for de img");
+        const reg_img_ot={
+            recurso:body.otras_tareas.img[z],
+            OperacionId:IdRegisto
+        };
+        [err,regImg] = await to(Img_tareas.create(reg_img_ot));
+    }
 
     [err, otras] = await to(Otra_tarea.create(otras_tareas));
     
