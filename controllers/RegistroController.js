@@ -61,22 +61,23 @@ const registro = async function(req, res){
             obs_registro:body.trampas[i].obs,
             OperacionId:IdRegisto,
             TrampaId:body.trampas[i].id,
-        }
+        };
         let reg_trampa;
-            [err, reg_trampa] = await to(Registro_estado.create(tramp));
-            console.log("creo registro estado");
-            IdEstado =reg_trampa.id;
-            console.log("id registro estado: "+IdEstado);
+        [err, reg_trampa] = await to(Registro_estado.create(tramp));
+        console.log("creo registro estado");
+        IdEstado =reg_trampa.id;
+        console.log("id registro estado: "+IdEstado);
 
-            for(let c in body.trampas.imagenes){
-                const img_trp ={
-                    recurso: body.trampas.imagenes[c].recurso,
-                    RegistroEstadoId: IdEstado,
-                }
-                console.log("registro imagen trampa");
-                [err,re_img_cont] = await to (Img_control.create(img_trp));
-            }
+        for(let c in body.trampas[i].imagenes){
+            console.log("entro a imagenes trampas")
+            const img_trp ={
+                recurso: body.trampas.imagenes[c].recurso,
+                RegistroEstadoId: IdEstado,
+            };
+            console.log("registro imagen trampa");
+            [err,re_img_cont] = await to (Img_control.create(img_trp));
         }
+    }
 
     return ReS(res,201);
 }
