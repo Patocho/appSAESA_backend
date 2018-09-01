@@ -38,11 +38,9 @@ const registro = async function(req, res){
         OperacionId: IdRegisto
     };
 
-    console.log("antes de for de img");
-    for(let z in body.img_otras_tareas){
-        console.log("entro a for de img");
+    for(let z in body.otras_tareas.imagenes){
         const reg_img_ot={
-            recurso:body.img_otras_tareas[z].recurso,
+            recurso:body.otras_tareas.imagenes[z].recurso,
             OperacionId:IdRegisto,
         };
         [err,regImg] = await to(Img_tareas.create(reg_img_ot));
@@ -66,6 +64,15 @@ const registro = async function(req, res){
         }
         let reg_trampa;
             [err, reg_trampa] = await to(Registro_estado.create(tramp));
+            IdEstado =reg_trampa.id;
+
+            for(let c in body.trampas.imagenes){
+                const img_trp ={
+                    recurso: body.trampas.imagenes[c].recurso,
+                    RegistroEstadoId: IdEstado,
+                }
+                [err,re_img_cont] = await to (Img_control.create(img_trp));
+            }
         }
 
     return ReS(res,201);
