@@ -71,7 +71,7 @@ const registro = async function(req, res){
         for(let c in body.trampas[i].imagenes){
             console.log("entro a imagenes trampas")
             const img_trp ={
-                recurso: body.trampas.imagenes[c].recurso,
+                recurso: body.trampas[i].imagenes[c].recurso,
                 RegistroEstadoId: IdEstado,
             };
             console.log("registro imagen trampa");
