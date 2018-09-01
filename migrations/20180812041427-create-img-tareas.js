@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       recurso: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT('long')
       },
       createdAt: {
         allowNull: false,
