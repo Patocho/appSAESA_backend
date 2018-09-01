@@ -14,7 +14,7 @@ const Img_control = require('../models').Img_control;
 const registro = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
-    console.log(body);
+    //console.log(body);
     //cambios en metodo
     numero_ot = body.ot;
     [err, ots] = await to(Ot.findOne({where:{numero_ot: numero_ot}}));
@@ -52,7 +52,7 @@ const registro = async function(req, res){
     
     for (let x in body.eliminarTrampas){
         const trampDelete = body.eliminarTrampas[x].id;
-        let delTrampa
+        let delTrampa;
         [err,delTrampa] = await to(Trampa.destroy({where:{id:trampDelete}}));
     }
 
