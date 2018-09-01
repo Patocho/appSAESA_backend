@@ -1,7 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Img_tareas = sequelize.define('Img_tareas', {
-  	recurso: DataTypes.TEXT
+  	recurso: DataTypes.TEXT('long')
   }, {paranoid:true});
   Img_tareas.associate = function(models) {
   	Img_tareas.belongsTo(models.Operacion);
