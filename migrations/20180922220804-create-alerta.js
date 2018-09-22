@@ -14,6 +14,9 @@ module.exports = {
       hanta: {
         type: Sequelize.STRING
       },
+      obs_operacion: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

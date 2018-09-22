@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   var Operacion = sequelize.define('Operacion', {
     pt_operacion: DataTypes.INTEGER,
     fechahora_inicio: DataTypes.DATE,
-    fechahora_fin: DataTypes.DATE
+    fechahora_fin: DataTypes.DATE,
+    obs_operacion: DataTypes.STRING
   }, {paranoid:true});
   Operacion.associate = function(models) {
     Operacion.belongsTo(models.User);
