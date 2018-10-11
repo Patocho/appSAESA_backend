@@ -125,7 +125,7 @@ const registroOperacion = async function(req, res){
 
     return ReS(res, {id_op:IdRegisto}, 201);
 }
-module.exports.registro = registroOperacion;
+module.exports.registroOperacion = registroOperacion;
 
 
 const registrotermo = async function(req, res){
