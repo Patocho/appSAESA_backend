@@ -40,5 +40,6 @@ router.get('/equipos/:se_id',EquipoController.getAllForSe);
 router.get('/componentes/:se_id',ComponenteController.getAllForSe);
 
 router.post('/registro/operacion',RegistroController.registroOperacion);
+router.post('/registro/estado',RegistroController.registroEstado);
 
 module.exports = router;

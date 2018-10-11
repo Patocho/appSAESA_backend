@@ -95,6 +95,7 @@ const registroOperacion = async function(req, res){
         pt_operacion:body.pt,
         fechahora_inicio: body.fecha_ini,
         fechahora_fin: body.fecha_fin,
+        obs_operacion: body.obs_operacion,
         UserId: body.inspector,
         OtId: OtId
     };
@@ -127,6 +128,14 @@ const registroOperacion = async function(req, res){
 }
 module.exports.registroOperacion = registroOperacion;
 
+const registroEstado = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    
+
+    return ReS(res, {id_op:IdRegisto}, 201);
+}
+module.exports.registroEstado = registroEstado;
 
 const registrotermo = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
