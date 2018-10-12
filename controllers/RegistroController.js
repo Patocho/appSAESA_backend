@@ -131,9 +131,25 @@ module.exports.registroOperacion = registroOperacion;
 const registroEstado = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
-    
+    IdRegisto = body.id_op;
+    console.log("=======================================");
+    console.log("entre a metodo registroEstado");
+    let arrayId= [];
 
-    return ReS(res, {id_op:IdRegisto}, 201);
+    for(let i in body.trampas){
+        const tramp = {
+            cod_trampa:body.trampas[i].cod_trampa,
+            estado_registro:body.trampas[i].estado,
+            obs_registro:body.trampas[i].obs,
+            OperacionId:IdRegisto,
+            TrampaId:body.trampas[i].id,
+        };
+        let reg_trampa;
+        [err, reg_trampa] = await to(Registro_estado.create(tramp));
+        arrayId.push(reg_trampa.id);
+    }
+
+    return ReS(res, {arrayId:arrayId}, 201);
 }
 module.exports.registroEstado = registroEstado;
 
