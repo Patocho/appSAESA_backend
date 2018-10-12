@@ -132,8 +132,6 @@ const registroEstado = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
     IdRegisto = body.id_op;
-    console.log("=======================================");
-    console.log("entre a metodo registroEstado");
     let arrayId= [];
 
     for(let i in body.trampas){
@@ -152,6 +150,20 @@ const registroEstado = async function(req, res){
     return ReS(res, {arrayId:arrayId}, 201);
 }
 module.exports.registroEstado = registroEstado;
+
+const registroImgTrp = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    img_trp ={
+        RegistroEstadoId : body.idRegEstado,
+        recurso: body.recurso
+    }
+    [err,regImgTrp] = await to (Img_control.create(img_trp));
+    if (err) return ReE(res, err, 422);
+    
+    return ReS(res, {arrayId:arrayId}, 201);
+}
+module.exports.registroImgTrp = registroImgTrp;
 
 const registrotermo = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
