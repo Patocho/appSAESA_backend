@@ -102,7 +102,7 @@ const registroOperacion = async function(req, res){
         UserId: body.inspector,
         OtId: OtId
     };
-
+    console.log("==========AAAAA=============");
     let reg;
     [err, reg] = await to(Operacion.create(op));
     if (err) return ReE(res, err, 422);
