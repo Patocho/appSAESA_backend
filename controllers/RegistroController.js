@@ -87,6 +87,9 @@ module.exports.registro = registro;
 const registroOperacion = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
+    console.log("============================");
+    console.log(body);
+    console.log("==============================");
     numero_ot = body.ot;
     [err, ots] = await to(Ot.findOne({where:{numero_ot: numero_ot}}));
     OtId = ots.id;
