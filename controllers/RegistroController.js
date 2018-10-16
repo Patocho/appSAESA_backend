@@ -100,6 +100,7 @@ const registroOperacion = async function(req, res){
         OtId: OtId
     };
 
+    let reg;
     [err, reg] = await to(Operacion.create(op));
     IdRegisto = reg.id;
 
