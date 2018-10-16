@@ -167,7 +167,7 @@ const registroImgTrp = async function(req, res){
     [err,regImgTrp] = await to (Img_control.create(img_trp));
     if (err) return ReE(res, err, 422);
     
-    return ReS(res, msg:"Registro exitoso!", 201);
+    return ReS(res, {msg:"Registro exitoso!"}, 201);
 }
 module.exports.registroImgTrp = registroImgTrp;
 
