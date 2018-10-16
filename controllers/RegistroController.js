@@ -105,6 +105,7 @@ const registroOperacion = async function(req, res){
 
     let reg;
     [err, reg] = await to(Operacion.create(op));
+    if (err) return ReE(res, err, 422);
     IdRegisto = reg.id;
 
     const alert = {
