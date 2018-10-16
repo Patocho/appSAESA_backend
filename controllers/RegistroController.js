@@ -163,6 +163,7 @@ const registroImgTrp = async function(req, res){
         RegistroEstadoId : body.idRegEstado,
         recurso: body.recurso
     }
+    let regImgTrp;
     [err,regImgTrp] = await to (Img_control.create(img_trp));
     if (err) return ReE(res, err, 422);
     
