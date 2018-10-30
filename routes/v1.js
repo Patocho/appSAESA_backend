@@ -42,5 +42,6 @@ router.get('/componentes/:se_id',ComponenteController.getAllForSe);
 router.post('/registro/operacion',RegistroController.registroOperacion);
 router.post('/registro/estado',RegistroController.registroEstado);
 router.post('/registro/imgtrp',RegistroController.registroImgTrp);
+router.post('/registro/imgot',RegistroController.registroImgOt);
 
 module.exports = router;
