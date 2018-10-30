@@ -99,6 +99,8 @@ const registroOperacion = async function(req, res){
         fechahora_inicio: body.fecha_ini,
         fechahora_fin: body.fecha_fin,
         obs_operacion: body.obs_operacion,
+        tr_ret:body.tr_ret,
+        tr_inst:body.tr_inst,
         UserId: body.inspector,
         OtId: OtId
     };
@@ -170,6 +172,23 @@ const registroImgTrp = async function(req, res){
     return ReS(res, {msg:"Registro exitoso!"}, 201);
 }
 module.exports.registroImgTrp = registroImgTrp;
+
+const registroImgOt = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    IdRegisto = body.id_op;
+
+    img_ot ={
+        OperacionId : IdRegisto,
+        recurso: body.recurso
+    }
+    let regImgOt;
+    [err,regImgOt] = await to (Img_tareas.create(img_ot));
+    if (err) return ReE(res, err, 422);
+    
+    return ReS(res, {msg:"Registro exitoso!"}, 201);
+}
+module.exports.registroImgOt = registroImgOt;
 
 const registrotermo = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
