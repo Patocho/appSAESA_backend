@@ -104,7 +104,7 @@ module.exports.registroImgTrp = registroImgTrp;
 const registroImgOt = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
-    IdRegisto = body.id_op;
+    IdRegisto = body.OperacionId;
 
     img_ot ={
         OperacionId : IdRegisto,
