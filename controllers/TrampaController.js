@@ -76,20 +76,19 @@ module.exports.remove = remove;
 const crearTrampaSE = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     body = req.body;
-    console.log("ASDASDSADASDA");
-    console.log(body);
+
     idSe = body.se_id;
     cant = body.cantidad;
-
-    console.log(idSe);
-    console.log(cant);
 
     let trp;
     [err,trp] = await to (Trampa.findAll({
         where:{
             tipo:'principal',
-            SubestacionId: idSe
         }
+        include:[{
+            paranoid:true,
+            required:true,
+        }]
     }));
 
     console.log(trp);
