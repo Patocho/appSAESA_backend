@@ -72,3 +72,30 @@ const remove = async function(req, res){
     return ReS(res, {message:'Trampa eliminada'}, 204); 
 }
 module.exports.remove = remove;
+
+const crearTrampaSE = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    body = req.body;
+
+    idSe = body.id_se;
+    cant = body.cantidad;
+
+    [err,trp] = await to (Trampa.findAll({
+        where:{tipo:'principal',
+        SubestacionId:idSe},
+        include:{paranoid:true,
+            required:true},
+        order:[['codigo_trampa','ASC']]
+    }));
+
+    let trampas_json = [];
+    for (let i in trp) {
+        let trampa = trp[i];
+        let trampas_info = trampa.toWeb();
+
+        trampas_json.push({id:trampas_info.id, cod:trampas_info.codigo_trampa,tipo:trampas_info.tipo});
+    }
+
+    return ReS(res, {trampas: trampas_json});
+}
+module.exports.crearTrampaSE=crearTrampaSE;
