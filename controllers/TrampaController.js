@@ -96,7 +96,7 @@ const crearTrampaSE = async function(req, res){
         trampas_json.push({id:trampas_info.id, cod:trampas_info.codigo_trampa,tipo:trampas_info.tipo});
     }*/
 
-    for (let i = 1; i<=trp.count; i++) {
+    for (let i = 1; i<=cant; i++) {
         function PadLeft(value, length) {
             return (value.toString().length < length) ? PadLeft("0" + value, length) : 
             value;
