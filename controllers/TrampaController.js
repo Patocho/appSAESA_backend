@@ -85,7 +85,7 @@ const crearTrampaSE = async function(req, res){
         where:{
             tipo:'principal',
         },
-        paranoid:true
+        paranoid:false
     }));
 
     console.log(trp);
