@@ -88,6 +88,8 @@ const crearTrampaSE = async function(req, res){
         order:[['codigo_trampa','ASC']]
     }));
 
+    console.log(trp);
+
     let trampas_json = [];
     for (let i in trp) {
         let trampa = trp[i];
