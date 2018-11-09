@@ -77,12 +77,13 @@ const crearTrampaSE = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     body = req.body;
 
+    console.log(body);
     idSe = body.id_se;
     cant = body.cantidad;
 
     console.log(idSe);
-    console.log(cantidad);
-    
+    console.log(cant);
+
     let trp;
     [err,trp] = await to (Trampa.findAll({
         where:{
