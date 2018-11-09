@@ -84,7 +84,7 @@ const crearTrampaSE = async function(req, res){
     [err,trp] = await to (Trampa.findAll({
         where:{
             tipo:'principal',
-        }
+        },
         include:[{
             paranoid:true,
             required:true,
