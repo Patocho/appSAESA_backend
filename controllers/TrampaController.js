@@ -81,23 +81,21 @@ const crearTrampaSE = async function(req, res){
     cant = body.cantidad;
 
     let trp;
-    [err,trp] = await to (Trampa.findAll({
+    [err,trp] = await to (Trampa.findAndCountAll({
         where:{
             tipo:'principal',
-        },
-        paranoid:false
+        }
     }));
 
-    console.log(trp);
 
-    let trampas_json = [];
+    /*let trampas_json = [];
     for (let i in trp) {
         let trampa = trp[i];
         let trampas_info = trampa.toWeb();
 
         trampas_json.push({id:trampas_info.id, cod:trampas_info.codigo_trampa,tipo:trampas_info.tipo});
-    }
+    }*/
 
-    return ReS(res, {trampas: trampas_json});
+    return ReS(res, {trampas: trp});
 }
 module.exports.crearTrampaSE=crearTrampaSE;
