@@ -96,6 +96,20 @@ const crearTrampaSE = async function(req, res){
         trampas_json.push({id:trampas_info.id, cod:trampas_info.codigo_trampa,tipo:trampas_info.tipo});
     }*/
 
-    return ReS(res, {trampas: trp});
+    for (let i = 1; i<=trp.count; i++) {
+        function PadLeft(value, length) {
+            return (value.toString().length < length) ? PadLeft("0" + value, length) : 
+            value;
+        };
+        codigo_trampa =PadLeft(trp.count + i,5);
+        newTrp ={
+            codigo_trampa:codigo_trampa,
+            tipo:'principal',
+            SubestacionId: idSe
+        };
+
+        [err, trampa] = await to(Trampa.create(newTrp));
+    }
+    return ReS(res, {message:'Trampas creadas satisfactoriamente'}, 201);
 }
 module.exports.crearTrampaSE=crearTrampaSE;
