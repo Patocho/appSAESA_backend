@@ -87,7 +87,6 @@ const crearTrampaSE = async function(req, res){
         },
         include:[{
             paranoid:true,
-            required:true,
         }]
     }));
 
