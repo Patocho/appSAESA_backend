@@ -76,8 +76,10 @@ module.exports.remove = remove;
 const crearTrampaSE = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     body = req.body;
-
+    console.log("SADASDASD");
     console.log(body);
+    //prueba
+
     idSe = body.id_se;
     cant = body.cantidad;
 
