@@ -80,11 +80,14 @@ const crearTrampaSE = async function(req, res){
     idSe = body.id_se;
     cant = body.cantidad;
 
+    console.log(idSe);
+    console.log(cantidad);
+    
     let trp;
     [err,trp] = await to (Trampa.findAll({
         where:{
             tipo:'principal',
-            SubestacionId:idSe
+            SubestacionId: idSe
         }
     }));
 
