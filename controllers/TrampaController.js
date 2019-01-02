@@ -82,6 +82,7 @@ const crearTrampaSE = async function(req, res){
 
     console.log("######################");
     console.let(body);
+    console.log("#################");
 
     let trp;
     [err,trp] = await to (Trampa.findAndCountAll({
