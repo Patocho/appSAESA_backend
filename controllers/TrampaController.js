@@ -77,7 +77,7 @@ const crearTrampaSE = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     body = req.body;
 
-    idSe = body.se_id;
+    idSe = body.id_se;
     cant = body.cantidad;
 
     console.log("######################");
