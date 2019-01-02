@@ -81,7 +81,7 @@ const crearTrampaSE = async function(req, res){
     cant = body.cantidad;
 
     console.log("######################");
-    console.let(body);
+    console.log(body);
     console.log("#################");
 
     let trp;
