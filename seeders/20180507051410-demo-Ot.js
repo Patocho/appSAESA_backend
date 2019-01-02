@@ -21,6 +21,15 @@ createdAt: new Date(),
 updatedAt: new Date()
 
     },
+    {
+      numero_ot: 1004,
+      fecha_ot: '2018-04-15 15:19:06',
+      trabajo: 'Control de Plagas',
+      SubestacionId: 4,
+createdAt: new Date(),
+updatedAt: new Date()
+
+    },
 
     ],{});
   },
