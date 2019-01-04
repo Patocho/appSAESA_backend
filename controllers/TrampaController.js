@@ -1,6 +1,8 @@
 const Trampa = require('../models').Trampa;
 const Subestacion = require('../models').Subestacion;
 
+
+//
 const create = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
@@ -31,7 +33,9 @@ const create = async function(req, res){
     }
 }
 module.exports.create = create;
-//get all for a unique ID
+
+
+//metodo para obtener todas las trampas de una subestacion, recibe como parametro id de subestacion
 const getAllForSe = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, trampas;
@@ -61,6 +65,8 @@ const getAllForSe = async function(req, res){
 }
 module.exports.getAllForSe = getAllForSe;
 
+
+//metodo para eliminar trampas, metodo recibe id de trampa a eliminar
 const remove = async function(req, res){
     let trampa, err;
     body = req.body;
@@ -73,6 +79,8 @@ const remove = async function(req, res){
 }
 module.exports.remove = remove;
 
+
+//metodo para crear trampas cuando una subestacion no tiene trampas creadas para cargar
 const crearTrampaSE = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     body = req.body;
@@ -80,25 +88,12 @@ const crearTrampaSE = async function(req, res){
     idSe = body.id_se;
     cant = body.cantidad;
 
-    console.log("######################");
-    console.log(body);
-    console.log("#################");
-
     let trp;
     [err,trp] = await to (Trampa.findAndCountAll({
         where:{
             tipo:'principal',
         }
     }));
-
-
-    /*let trampas_json = [];
-    for (let i in trp) {
-        let trampa = trp[i];
-        let trampas_info = trampa.toWeb();
-
-        trampas_json.push({id:trampas_info.id, cod:trampas_info.codigo_trampa,tipo:trampas_info.tipo});
-    }*/
 
     for (let i = 1; i<=cant; i++) {
         function PadLeft(value, length) {
