@@ -79,7 +79,7 @@ const obtenerUsuarios = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, usuarios;
 
-    [err, usuarios] = await to(Subestacion.findAll());
+    [err, usuarios] = await to(User.findAll());
     if (err) return ReE(res, err, 422);
 
     let usuarios_json = [];
