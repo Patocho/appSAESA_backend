@@ -23,6 +23,7 @@ router.get('/', function(req, res, next) {
 router.post('/users', UserController.create);
 router.post('/users/login',UserController.login);
 router.get('/inspectores/:rol',UserController.inspectores);
+router.get('/users',UserController.obtenerUsuarios);
 
 router.get('/subestacions',SubestacionController.getAll);
 router.post('/borrarSE',SubestacionController.remove);

@@ -74,3 +74,23 @@ const inspectores = async function(req, res){
     return ReS(res, {users:user_json});
 }
 module.exports.inspectores = inspectores;
+
+const obtenerUsuarios = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let err, usuarios;
+
+    [err, usuarios] = await to(Subestacion.findAll());
+    if (err) return ReE(res, err, 422);
+
+    let usuarios_json = [];
+    for (let i in usuarios) {
+        let usuario = usuarios[i];
+        let usuarios_info = usuario.toWeb();
+
+        usuarios_json.push({id:usuarios_info.id, email:usuarios_info.email});
+    }
+
+    return ReS(res, {usuarios: usuarios_json});
+
+}
+module.exports.obtenerUsuarios = obtenerUsuarios;
