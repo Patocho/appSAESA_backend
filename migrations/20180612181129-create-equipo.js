@@ -24,6 +24,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      posicion: {
+        allowNull: false,
+        type: Sequelize.STRING
       }
     });
   },
