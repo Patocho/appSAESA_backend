@@ -108,6 +108,7 @@ const verDatos = async function(req, res){
                 id:user_id,
             },
         }]}));
+    console.log(rol);
     let roles_json = [];
     for (let i in rol) {
         //let roles = rol[i];
