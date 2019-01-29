@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     tipo: DataTypes.STRING
   }, {paranoid:true});
   Img_term.associate = function(models) {
-    Img_tareas.belongsTo(models.Operacion);
+    Img_term.belongsTo(models.Operacion);
   };
   return Img_term;
 };
