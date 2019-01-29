@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     cod_eq: DataTypes.STRING,
     nombre_eq: DataTypes.STRING,
     ubic_tec_eq: DataTypes.STRING
+    posicion: DataTypes.STRING
   }, {paranoid:true});
   Equipo.associate = function(models) {
   	Equipo.belongsTo(models.Subestacion);
