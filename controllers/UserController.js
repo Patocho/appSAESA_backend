@@ -97,10 +97,10 @@ const obtenerUsuarios = async function(req, res){
 module.exports.obtenerUsuarios = obtenerUsuarios;
 
 const verDatos = async function(req, res){
-    //no se esta ejecutando!!!!!!!!!!!!1
     res.setHeader('Content-Type', 'application/json');
     let err, usuario, rol, ots;
-    user_id = req.params.id;
+    const body = req.body;
+    user_id = body.id;
 
     console.log("#############");
     console.log(user_id);
