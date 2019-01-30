@@ -13,6 +13,7 @@ const OtController = require('./../controllers/OtController');
 const EquipoController = require('./../controllers/EquipoController');
 const ComponenteController = require('./../controllers/ComponenteController');
 const RegistroController = require('./../controllers/RegistroController');
+const ImgtermController = require('./../controllers/Img_termController');
 
 require('./../middleware/passport')(passport)
 /* GET home page. */
