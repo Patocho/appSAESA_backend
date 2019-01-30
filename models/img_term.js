@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {paranoid:true});
   Img_term.associate = function(models) {
     Img_term.belongsTo(models.Operacion);
-    Img_term.belongsTo(models.Componentes);
+    Img_term.belongsTo(models.Componente);
   };
   return Img_term;
 };
