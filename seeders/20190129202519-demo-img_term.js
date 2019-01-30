@@ -18,6 +18,6 @@ updatedAt: new Date()
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('UserRols', null, {});
+    return queryInterface.bulkDelete('Img_term', null, {});
   }
 };

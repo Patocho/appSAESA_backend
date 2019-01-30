@@ -26,6 +26,24 @@ module.exports = {
       y3: {
         type: Sequelize.INTEGER
       },
+      x4: {
+        type: Sequelize.INTEGER
+      },
+      y4: {
+        type: Sequelize.INTEGER
+      },
+      x5: {
+        type: Sequelize.INTEGER
+      },
+      y5: {
+        type: Sequelize.INTEGER
+      },
+      x6: {
+        type: Sequelize.INTEGER
+      },
+      y6: {
+        type: Sequelize.INTEGER
+      },
       tem1: {
         type: Sequelize.FLOAT
       },
