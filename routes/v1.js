@@ -46,4 +46,6 @@ router.post('/registro/estado',RegistroController.registroEstado);
 router.post('/registro/imgtrp',RegistroController.registroImgTrp);
 router.post('/registro/imgot',RegistroController.registroImgOt);
 
+router.get('/imgterm/:situacion',Img_termController.getImage);
+
 module.exports = router;

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {paranoid:true});
   Componente.associate = function(models) {
     Componente.belongsTo(models.Equipo);
+    Componente.hasMany(models.Img_term);
   };
   Componente.prototype.toWeb = function (pw) {
     let json = this.toJSON();

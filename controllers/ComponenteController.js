@@ -18,8 +18,6 @@ const getAllForSe = async function(req, res){
             where:{EquipoId:equipo[i].id},
             include:[{model:Equipo}]
         }));
-        console.log("                         ");
-        console.log({nombre:equipo[i].nombre_eq, componentes:cons_comp});
         componentes1.push({nombre:equipo[i].nombre_eq, componentes:cons_comp});
     }
     //let resultado =[];

@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     Operacion.hasOne(models.Otra_tarea);
     Operacion.hasMany(models.Registro_estado);
     Operacion.hasMany(models.Img_tareas);
+    Operacion.hasMany(models.Img_term);
   };
     Operacion.prototype.toWeb = function (pw) {
     let json = this.toJSON();
