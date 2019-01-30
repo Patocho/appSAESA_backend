@@ -25,10 +25,11 @@ router.post('/users', UserController.create);
 router.post('/users/login',UserController.login);
 router.get('/inspectores/:rol',UserController.inspectores);
 router.get('/users',UserController.obtenerUsuarios);
-router.post('/ver_datos',UserController.verDatos);
+router.post('/users/ver_datos',UserController.verDatos);
 
 router.get('/subestacions',SubestacionController.getAll);
 router.post('/borrarSE',SubestacionController.remove);
+router.post('/subestacion/ver_datos',SubestacionController.verDatos);
 
 router.get('/ots/:numero_ot',OtController.getOt);
 
