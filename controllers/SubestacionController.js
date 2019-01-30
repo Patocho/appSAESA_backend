@@ -31,3 +31,14 @@ const remove = async function(req, res){
     return ReS(res, {message:'Subestacion eliminada'}, 204); 
 }
 module.exports.remove = remove;
+
+const verDatos = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let err, usuario, rol, ots;
+    const body = req.body;
+    user_id = body.id;
+
+    console.log("ASDASDASDASD")
+
+}
+module.exports.verDatos = verDatos;
