@@ -2,6 +2,7 @@ const User = require('../models').User;
 const Rol = require('../models').Rol;
 const authService = require('./../services/AuthService');
 const Roles = require('../models').UserRols;
+const Ot =require('../models').Ot;
 
 const create = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
@@ -94,3 +95,28 @@ const obtenerUsuarios = async function(req, res){
 
 }
 module.exports.obtenerUsuarios = obtenerUsuarios;
+
+const verDatos = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let err, usuario, rol, ots;
+    const body = req.body;
+    user_id = body.id;
+
+    [err, rol] = await to(Rol.findAll({
+        include : [ {
+            model: User,
+            where: {
+                id:user_id,
+            },
+        }]}));
+    console.log(rol);
+    let roles_json = [];
+    for (let i in rol) {
+        //let roles = rol[i];
+        roles_json.push({id:rol[i].id,descripcion:rol[i].descripcion});
+    }
+
+    return ReS(res, {datos: roles_json});
+
+}
+module.exports.verDatos = verDatos;
