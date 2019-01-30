@@ -102,9 +102,6 @@ const verDatos = async function(req, res){
     const body = req.body;
     user_id = body.id;
 
-    console.log("#############");
-    console.log(user_id);
-    console.log("#############");
     [err, rol] = await to(Rol.findAll({
         include : [ {
             model: User,
