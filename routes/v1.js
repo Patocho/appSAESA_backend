@@ -14,6 +14,7 @@ const EquipoController = require('./../controllers/EquipoController');
 const ComponenteController = require('./../controllers/ComponenteController');
 const RegistroController = require('./../controllers/RegistroController');
 const Img_termController = require('./../controllers/Img_termController');
+const Temp_termController = require('./../controllers/Temp_termController');
 
 require('./../middleware/passport')(passport)
 /* GET home page. */
@@ -49,5 +50,7 @@ router.post('/registro/imgtrp',RegistroController.registroImgTrp);
 router.post('/registro/imgot',RegistroController.registroImgOt);
 
 router.get('/imgterm/:situacion',Img_termController.getImage);
+
+router.get('/tempterm/:img_id',Temp_termController.getAllForPtos);
 
 module.exports = router;

@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     delta12: DataTypes.FLOAT,
     delta23: DataTypes.FLOAT,
     delta31: DataTypes.FLOAT
-  }, {});
+  }, {paranoid:true});
   Temp_term.associate = function(models) {
-    // associations can be defined here
+    Temp_term.belongsTo(models.Img_term);
   };
   return Temp_term;
 };
