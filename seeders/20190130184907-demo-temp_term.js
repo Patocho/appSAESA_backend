@@ -24,6 +24,6 @@ updatedAt: new Date()
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Temp_term', null, {});
+    return queryInterface.bulkDelete('Temp_terms', null, {});
   }
 };
