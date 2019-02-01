@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     Operacion.belongsTo(models.User);
     Operacion.belongsTo(models.Ot);
     Operacion.hasOne(models.Otra_tarea);
+    Operacion.hasOne(models.Alerta);
     Operacion.hasMany(models.Registro_estado);
     Operacion.hasMany(models.Img_tareas);
     Operacion.hasMany(models.Img_term);
