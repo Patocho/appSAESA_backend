@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Temp_term',[
+    return queryInterface.bulkInsert('Temp_terms',[
     {
     x1: 63,
     y1: 49,
