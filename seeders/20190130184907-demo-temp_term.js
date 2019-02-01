@@ -17,7 +17,8 @@ module.exports = {
     x6: 601,
     y6: 375,
 createdAt: new Date(),
-updatedAt: new Date()
+updatedAt: new Date(),
+ImgTermId:1
 
     }
     ],{});
