@@ -66,7 +66,7 @@ const verDatos = async function(req, res){
                 OtId: {[Op.ne]:Ot.OtId}
             },
         }],
-        where:{id:ssee_id}
+        where:{SubestacionId:ssee_id}
 
     }));
 
