@@ -31,6 +31,6 @@ const crearOt = async function(req, res){
     if (err) return ReE(res, err, 422);
 
     console.log("ASDASDASDSAD");
-    //return ReS(res, {msg:"Registro exitoso!"}, 201);
+    //return ReS(res, {message:'Ot creada satisfactoriamente'}, 201);
 }
 module.exports.crearOt = crearOt;
