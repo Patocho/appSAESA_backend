@@ -30,7 +30,6 @@ const crearOt = async function(req, res){
     [err, nueva_ot] = await to(Ot.create(ot));
     if (err) return ReE(res, err, 422);
 
-    console.log("ASDASDASDSAD");
     return ReS(res, {message:'Ot creada satisfactoriamente'}, 201);
 }
 module.exports.crearOt = crearOt;

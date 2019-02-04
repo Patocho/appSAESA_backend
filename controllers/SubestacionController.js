@@ -38,7 +38,7 @@ module.exports.remove = remove;
 
 const verDatos = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    let err, usuario, rol, ots, ssee, subestacion;
+    let err, usuario, rol, ots, ssee, subestacion, dato;
     const body = req.body;
     ssee_id = body.id;
 
@@ -46,6 +46,15 @@ const verDatos = async function(req, res){
     [err, subestacion] = await to(Subestacion.findOne({where:{id:ssee_id}}));
     if(err) return ReE(res, 'Subestación NO encontrada');
 
+    dato = {
+        subestacion : {
+            idse : subestacion.id,
+            cod_se : subestacion.cod_se,
+            nombre_se: subestacion.nombre_se,
+        }
+    }
+
+    return ReS(res, {dato: dato}, 201);
     //ots asociadas a SSEE
     //[err, ots] = await to(Subestacion.destroy({where:{id:idse}}));
 
