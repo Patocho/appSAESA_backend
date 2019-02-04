@@ -19,7 +19,7 @@ const create = async function(req, res){
         [err, user] = await to(authService.createUser(body));
 
         if(err) return ReE(res, err, 422);
-        return ReS(res, {message:'Usuario creado satisfactoriamente', user:user.toWeb(), token:user.getJWT()}, 201);
+        return ReS(res, {msg:'Usuario creado satisfactoriamente', user:user.toWeb(), token:user.getJWT()}, 201);
     }
 }
 
