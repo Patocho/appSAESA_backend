@@ -2,7 +2,8 @@ const Subestacion = require('../models').Subestacion;
 const Operacion = require('../models').Operacion;
 const Ot =require('../models').Ot;
 const Trampa = require('../models').Trampa;
-const Op = require('../node_modules/sequelize').Op;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 
 const getAll = async function(req, res){
@@ -64,7 +65,7 @@ const verDatos = async function(req, res){
             attributes:['id'],
             paranoid:true,
             required:true,
-            where:{OtId !: Ot.id}
+            where:{OtId:{$ne:Ot.id}}
         }],
         where:{SubestacionId:ssee_id}
 
