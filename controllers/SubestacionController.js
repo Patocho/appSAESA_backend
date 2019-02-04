@@ -54,7 +54,7 @@ const verDatos = async function(req, res){
         }
     }
 
-    return ReS(res, {dato: dato}, 201);
+    return ReS(res, {dato}, 201);
     //ots asociadas a SSEE
     //[err, ots] = await to(Subestacion.destroy({where:{id:idse}}));
 
