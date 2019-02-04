@@ -64,7 +64,7 @@ const verDatos = async function(req, res){
             required:true,
             where:{[Op.ne]:Ot.OtId},
         }],
-        where:{id:idse}
+        where:{id:ssee_id}
 
     }));
 
