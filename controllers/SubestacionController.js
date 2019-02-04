@@ -63,6 +63,7 @@ const verDatos = async function(req, res){
             paranoid:true,
             required:true,
         }],
+        attributes: ['id','numero_ot','fecha_ot','trabajo'],
         where:{SubestacionId:ssee_id}
 
     }));
