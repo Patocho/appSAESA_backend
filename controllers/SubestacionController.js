@@ -46,14 +46,16 @@ const verDatos = async function(req, res){
     [err, subestacion] = await to(Subestacion.findOne({where:{id:ssee_id}}));
     if(err) return ReE(res, 'Subestación NO encontrada');
 
-    dato = {
+    dato ={}
+
+    se = {
         subestacion : {
-            idse : subestacion.id,
+            id : subestacion.id,
             cod_se : subestacion.cod_se,
             nombre_se: subestacion.nombre_se,
         }
     }
-
+    dato.push(se);
     return ReS(res, {dato}, 201);
     //ots asociadas a SSEE
     //[err, ots] = await to(Subestacion.destroy({where:{id:idse}}));
