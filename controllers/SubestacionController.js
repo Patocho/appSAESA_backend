@@ -70,9 +70,17 @@ const verDatos = async function(req, res){
         where:{SubestacionId:ssee_id}
 
     }));
+
+    datos_ot =[];
+
+    for (let i in ots){
+        let ot = ots[i];
+        let ot_info = ot.toWeb();
+        datos_ot.push(ot_info);
+    }
     console.log("#################################");
-    console.log(ots);
+    console.log(datos_ot);
     console.log("#################################");
-    return ReS(res, {ots}, 201);
+    return ReS(res, {datos_ot}, 201);
 }
 module.exports.verDatos = verDatos;
