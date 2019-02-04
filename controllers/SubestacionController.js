@@ -64,8 +64,8 @@ const verDatos = async function(req, res){
             model:Operacion,
             attributes:['id'],
             paranoid:true,
-            required:false,
-            where:{id:null}
+            required:true,
+            //where:{id:null}
         }],
         where:{SubestacionId:ssee_id}
 
@@ -76,6 +76,7 @@ const verDatos = async function(req, res){
     for (let i in ots){
         let ot = ots[i];
         let ot_info = ot.toWeb();
+        console.log(ot_info);
         datos_ot.push(ot_info);
     }
     console.log("#################################");
