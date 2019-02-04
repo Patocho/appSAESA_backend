@@ -66,7 +66,9 @@ const verDatos = async function(req, res){
         where:{SubestacionId:ssee_id}
 
     }));
-
+    console.log("#################################");
+    console.log(ots);
+    console.log("#################################");
     return ReS(res, {ots}, 201);
 }
 module.exports.verDatos = verDatos;
