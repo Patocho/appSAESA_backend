@@ -14,3 +14,22 @@ const getOt = async function(req, res){
 
 }
 module.exports.getOt = getOt;
+
+const crearOt = async function(req, res){
+	res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+
+    const ot = {
+    	numero_ot: body.numero_ot,
+      	fecha_ot: body.fecha_ot,
+      	trabajo: body.trabajo,
+      	SubestacionId: body.se_id,
+    };
+
+    let nueva_ot;
+    [err, nueva_ot] = await to(Ot.create(op));
+    if (err) return ReE(res, err, 422);
+
+    return ReS(res, {messege:"Ot creada satisfactoriamente"}, 201);
+}
+module.exports.crearOt = crearOt;
