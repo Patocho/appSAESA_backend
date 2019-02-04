@@ -2,7 +2,7 @@ const Subestacion = require('../models').Subestacion;
 const Operacion = require('../models').Operacion;
 const Ot =require('../models').Ot;
 const Trampa = require('../models').Trampa;
-const Op = Sequelize.Op;
+const Op = require(Sequelize.Op);
 
 
 const getAll = async function(req, res){
