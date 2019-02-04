@@ -1,4 +1,8 @@
 const Subestacion = require('../models').Subestacion;
+const Operacion = require('../models').Operacion;
+const Ot =require('../models').Ot;
+const Trampa = require('../models').Trampa;
+
 
 const getAll = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
@@ -34,11 +38,16 @@ module.exports.remove = remove;
 
 const verDatos = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    let err, usuario, rol, ots;
+    let err, usuario, rol, ots, ssee, subestacion;
     const body = req.body;
-    user_id = body.id;
+    ssee_id = body.id;
 
-    console.log("ASDASDASDASD")
+    //datos SSEE solicitada
+    [err, subestacion] = await to(Subestacion.findOne({where:{id:ssee_id}}));
+    if(err) return ReE(res, 'Subestación NO encontrada');
+
+    //ots asociadas a SSEE
+    //[err, ots] = await to(Subestacion.destroy({where:{id:idse}}));
 
 }
 module.exports.verDatos = verDatos;
