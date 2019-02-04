@@ -33,6 +33,7 @@ router.post('/borrarSE',SubestacionController.remove);
 router.post('/subestacion/ver_datos',SubestacionController.verDatos);
 
 router.get('/ots/:numero_ot',OtController.getOt);
+router.post('/ots/crear', OtController.CrearOt);
 
 router.get('/trampas/:se_id',TrampaController.getAllForSe);
 router.post('/creartrampas',TrampaController.create);
