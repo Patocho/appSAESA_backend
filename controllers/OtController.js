@@ -27,9 +27,9 @@ const crearOt = async function(req, res){
     };
 
     let nueva_ot;
-    [err, nueva_ot] = await to(Ot.create(op));
+    [err, nueva_ot] = await to(Ot.create(ot));
     if (err) return ReE(res, err, 422);
 
-    return ReS(res, {messege:'Ot creada satisfactoriamente'}, 201);
+    return ReS(res, {msg:"Registro exitoso!"}, 201);
 }
 module.exports.crearOt = crearOt;

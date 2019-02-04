@@ -114,7 +114,7 @@ const registroImgOt = async function(req, res){
     [err,regImgOt] = await to (Img_tareas.create(img_ot));
     if (err) return ReE(res, err, 422);
     
-    return ReS(res, {msg:"Registro exitoso!"});
+    return ReS(res, {msg:"Registro exitoso!"}, 201);
 }
 module.exports.registroImgOt = registroImgOt;
 
