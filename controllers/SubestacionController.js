@@ -62,7 +62,7 @@ const verDatos = async function(req, res){
         raw: true,
         include:[{
             model:Operacion,
-            attributes:{['id']},
+            attributes:['id'],
             paranoid:true,
             required:true,
         }],
