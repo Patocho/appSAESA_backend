@@ -64,8 +64,8 @@ const verDatos = async function(req, res){
             model:Operacion,
             attributes:['id'],
             paranoid:true,
-            required:true,
-            where:{OtId:{$ne: id}}
+            required:false,
+            //where:{OtId:{$ne: id}}
         }],
         where:{SubestacionId:ssee_id}
 
