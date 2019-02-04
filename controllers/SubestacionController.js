@@ -2,6 +2,7 @@ const Subestacion = require('../models').Subestacion;
 const Operacion = require('../models').Operacion;
 const Ot =require('../models').Ot;
 const Trampa = require('../models').Trampa;
+const Op = Sequelize.Op;
 
 
 const getAll = async function(req, res){
@@ -46,7 +47,6 @@ const verDatos = async function(req, res){
     [err, subestacion] = await to(Subestacion.findOne({where:{id:ssee_id}}));
     if(err) return ReE(res, 'Subestación NO encontrada');
 
-    dato =[];
 
     se = {
         subestacion : {
@@ -55,10 +55,19 @@ const verDatos = async function(req, res){
             nombre_se: subestacion.nombre_se,
         }
     }
-    dato.push(se);
-    return ReS(res, {dato}, 201);
+    
     //ots asociadas a SSEE
-    //[err, ots] = await to(Subestacion.destroy({where:{id:idse}}));
+    [err, ots] = await to(Ot.findAll({
+        include:[{
+            model:Operacion,
+            paranoid:true,
+            required:true,
+            where:{[Op.ne]:Ot.OtId},
+        }],
+        where:{id:idse}
 
+    }));
+
+    return ReS(res, {ots}, 201);
 }
 module.exports.verDatos = verDatos;
