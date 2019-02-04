@@ -58,12 +58,13 @@ const verDatos = async function(req, res){
     
     //ots asociadas a SSEE
     [err, ots] = await to(Ot.findAll({
+        attributes: ['id','numero_ot','fecha_ot','trabajo'],
+        raw: true,
         include:[{
             model:Operacion,
             paranoid:true,
             required:true,
         }],
-        attributes: ['id','numero_ot','fecha_ot','trabajo'],
         where:{SubestacionId:ssee_id}
 
     }));
