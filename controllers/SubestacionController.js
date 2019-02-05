@@ -63,9 +63,8 @@ const verDatos = async function(req, res){
     [err, subestacion] = await to(Subestacion.findOne({where:{id:ssee_id}}));
     if(err) return ReE(res, 'Subestación NO encontrada');
 
-    if(subestacion =null){
-        return ReE(res, 'Subestación NO encontrada');
-    }
+    console.log(JSON.stringify(subestacion));
+    
     let datos_ot =[];
     //let sql = 
     
