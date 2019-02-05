@@ -77,10 +77,12 @@ const verDatos = async function(req, res){
                 SubestacionId:ot.SubestacionId
             }
 
-            datos_ot.push(ot_json);
+            datos_ot.push(JSON.stringify(ot_json));
+            console.log("#########");
+            console.log(datos_ot[a]);
         }
     });
-
+    console.log("#######");
     console.log(datos_ot);
     dato = {
         subestacion : {
