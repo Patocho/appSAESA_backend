@@ -81,9 +81,9 @@ const verDatos = async function(req, res){
             });
         }
     }
-    .catch( (err) => {
-        if(err) return ReE(res, 'Subestación NO encontrada');
-    })));
+    .catch(function(err){if(err) return ReE(res, 'Subestación NO encontrada');})
+    
+    ));
 
     if(err) return ReE(res, 'Subestación NO encontrada');
 
