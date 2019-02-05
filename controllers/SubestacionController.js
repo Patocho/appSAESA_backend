@@ -72,11 +72,11 @@ const verDatos = async function(req, res){
 
             console.log(ot.id);
             datos_ot.push({id:ot.id});
-            console.log("#########");
+            console.log("#########AAAAAAA");
             console.log(datos_ot[a]);
         }
     });
-    console.log("#######");
+    console.log("#######BBBBBB");
     console.log(datos_ot);
     dato = {
         subestacion : {
