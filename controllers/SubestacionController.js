@@ -80,6 +80,8 @@ const verDatos = async function(req, res){
             datos_ot.push(JSON.stringify(ot_json));
         }
     });
+
+    console.log(datos_ot);
     dato = {
         subestacion : {
             id : subestacion.id,
