@@ -78,7 +78,7 @@ const verDatos = async function(req, res){
                 trabajo:ot.trabajo,
                 SubestacionId:ot.SubestacionId
             }
-            console.log(ot_json);
+            console.log(ot_json.toJSON());
             console.log("#####################");
 
             datos_ot.push({
