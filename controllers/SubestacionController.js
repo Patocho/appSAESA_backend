@@ -2,7 +2,7 @@ const Subestacion = require('../models').Subestacion;
 const Operacion = require('../models').Operacion;
 const Ot =require('../models').Ot;
 const Trampa = require('../models').Trampa;
-const Sequelize = require('sequelize');
+const Sequelize = require('../node_modules/sequelize');
 const sequelize = new Sequelize('testsaesa', 'root', 'patoxox132100');
 const Op = Sequelize.Op;
 
