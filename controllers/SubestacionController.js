@@ -69,8 +69,6 @@ const verDatos = async function(req, res){
         for(let a in ots){
             //console.log(ots[a].id);
             let ot = ots[a];
-            console.log(ot);
-            console.log("#####################");
             let ot_json = {
                 id: ot.id,
                 numero_ot:ot.numero_ot,
@@ -78,19 +76,8 @@ const verDatos = async function(req, res){
                 trabajo:ot.trabajo,
                 SubestacionId:ot.SubestacionId
             }
-           
-            console.log(JSON.stringify(ot_json));
-            console.log("#####################");
 
-            datos_ot.push({
-                id: ot.id,
-                numero_ot:ot.numero_ot,
-                fecha_ot:ot.fecha_ot,
-                trabajo:ot.trabajo,
-                SubestacionId:ot.SubestacionId
-            });
-
-
+            datos_ot.push(JSON.stringify(ot_json));
         }
     });
     dato = {
