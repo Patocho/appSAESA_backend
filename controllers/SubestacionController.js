@@ -71,7 +71,6 @@ const verDatos = async function(req, res){
             //console.log(ots[a].id);
             let ot = ots[a];
 
-            console.log(ot.id);
             datos_ot.push({
                 id: ot.id,
                 numero_ot:ot.numero_ot,
