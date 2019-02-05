@@ -70,6 +70,7 @@ const verDatos = async function(req, res){
             //console.log(ots[a].id);
             let ot = JSON.stringify(ots[a]);
 
+            console.log(ot.id);
             datos_ot.push({id:ot.id});
             console.log("#########");
             console.log(datos_ot[a]);
