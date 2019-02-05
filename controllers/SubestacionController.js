@@ -3,7 +3,7 @@ const Operacion = require('../models').Operacion;
 const Ot =require('../models').Ot;
 const Trampa = require('../models').Trampa;
 const Sequelize = require('sequelize');
-var Sequelize = new Sequelize('testsaesa', 'root', 'patoxox132100');
+var sequelize = new Sequelize('testsaesa', 'root', 'patoxox132100');
 const Op = Sequelize.Op;
 
 
@@ -72,7 +72,7 @@ const verDatos = async function(req, res){
 
     }));*/
 
-    Sequelize.query('SELECT * FROM Ots', ots).then(function(ots){
+    sequelize.query('SELECT * FROM Ots', ots).then(function(ots){
         console.log(ots);
     });
 
