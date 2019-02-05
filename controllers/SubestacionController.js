@@ -81,10 +81,13 @@ const verDatos = async function(req, res){
             });
         }
     })
-     .catch(function(err){if(err) return ReE(res, 'Subestación NO encontrada');})
+
+     .catch(Sequelize.UniqueConstraintError => {
+        return ReE(res, 'Subestación NO encontrada');
+     })
      );
 
-    if(err) return ReE(res, 'Subestación NO encontrada');
+    
 
     dato = {
         subestacion : {
