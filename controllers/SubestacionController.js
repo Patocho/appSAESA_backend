@@ -58,7 +58,7 @@ const verDatos = async function(req, res){
     }
     
     //ots asociadas a SSEE
-    [err, ots] = await to(Ot.findAll({
+    /*[err, ots] = await to(Ot.findAll({
         attributes: ['id','numero_ot','fecha_ot','trabajo'],
         include:[{
             model:Operacion,
@@ -69,7 +69,11 @@ const verDatos = async function(req, res){
         }],
         where:{SubestacionId:ssee_id}
 
-    }));
+    }));*/
+
+    Sequelize.query('SELECT * FROM Ots', ots).then(function(ots){
+        console.log(ots);
+    });
 
     datos_ot =[];
 
