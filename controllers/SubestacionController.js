@@ -1,9 +1,10 @@
+require('dotenv').config();
 const Subestacion = require('../models').Subestacion;
 const Operacion = require('../models').Operacion;
 const Ot =require('../models').Ot;
 const Trampa = require('../models').Trampa;
 const Sequelize = require('../node_modules/sequelize');
-const sequelize = new Sequelize('testsaesa', 'root', 'patoxox132100', {
+const sequelize = new Sequelize(process.env.LOCAL_DATABASE, process.env.LOCAL_USERNAME, process.env.LOCAL_PASSWORD, {
   host: '127.0.0.1',
   dialect: 'mysql',
 
@@ -71,28 +72,17 @@ const verDatos = async function(req, res){
         }
     }
     
-    //ots asociadas a SSEE
-    /*[err, ots] = await to(Ot.findAll({
-        attributes: ['id','numero_ot','fecha_ot','trabajo'],
-        include:[{
-            model:Operacion,
-            attributes:['id'],
-            paranoid:true,
-            required:true,
-            //where:{id:null}
-        }],
-        where:{SubestacionId:ssee_id}
-
-    }));*/
-
+    datos_ot =[];
     let sql = "SELECT `Ot`.`id`, `Ot`.`numero_ot`, `Ot`.`fecha_ot`, `Ot`.`trabajo`, `Ot`.`createdAt`, `Ot`.`updatedAt`, `Ot`.`deletedAt`, `Ot`.`SubestacionId` FROM `Ots` AS `Ot` INNER JOIN `Operacions` AS `Operacions` ON `Ot`.`id` != `Operacions`.`OtId` AND (`Operacions`.`deletedAt` > '2019-02-04 19:38:26' OR `Operacions`.`deletedAt` IS NULL) WHERE ((`Ot`.`deletedAt` > '2019-02-04 19:38:26' OR `Ot`.`deletedAt` IS NULL) AND `Ot`.`SubestacionId` = '4')"
     sequelize.query(sql, { type: sequelize.QueryTypes.SELECT}).then(function(ots){
         for(let a in ots){
-            console.log(ots[a]);
+            //console.log(ots[a]);
+
+
         }
     });
 
-    datos_ot =[];
+    
     return ReS(res, {datos_ot}, 201);
 }
 module.exports.verDatos = verDatos;
