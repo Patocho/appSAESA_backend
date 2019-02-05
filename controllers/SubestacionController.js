@@ -55,7 +55,7 @@ module.exports.remove = remove;
 
 const verDatos = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    let err, usuario, rol, ots, ssee, subestacion, dato;
+    let err, usuario, rol, ots, ssee, subestacion, dato, algo;
     const body = req.body;
     ssee_id = body.id;
 
