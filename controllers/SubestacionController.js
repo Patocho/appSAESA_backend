@@ -63,15 +63,6 @@ const verDatos = async function(req, res){
     [err, subestacion] = await to(Subestacion.findOne({where:{id:ssee_id}}));
     if(err) return ReE(res, 'Subestación NO encontrada');
 
-
-    se = {
-        subestacion : {
-            id : subestacion.id,
-            cod_se : subestacion.cod_se,
-            nombre_se: subestacion.nombre_se,
-        }
-    }
-    
     datos_ot =[];
     let sql = "SELECT `Ot`.`id`, `Ot`.`numero_ot`, `Ot`.`fecha_ot`, `Ot`.`trabajo`, `Ot`.`createdAt`, `Ot`.`updatedAt`, `Ot`.`deletedAt`, `Ot`.`SubestacionId` FROM `Ots` AS `Ot` INNER JOIN `Operacions` AS `Operacions` ON `Ot`.`id` != `Operacions`.`OtId` AND (`Operacions`.`deletedAt` > '2019-02-04 19:38:26' OR `Operacions`.`deletedAt` IS NULL) WHERE ((`Ot`.`deletedAt` > '2019-02-04 19:38:26' OR `Ot`.`deletedAt` IS NULL) AND `Ot`.`SubestacionId` = '4')"
     sequelize.query(sql, { type: sequelize.QueryTypes.SELECT}).then(function(ots){
@@ -87,8 +78,15 @@ const verDatos = async function(req, res){
             datos_ot.push(ot);
         }
     });
-
+    se = {
+        subestacion : {
+            id : subestacion.id,
+            cod_se : subestacion.cod_se,
+            nombre_se: subestacion.nombre_se,
+        },
+        ots:{datos_ot},
+    }
     
-    return ReS(res, {dato:{se, datos_ot}}, 201);
+    return ReS(res, {dato:{se}}, 201);
 }
 module.exports.verDatos = verDatos;
