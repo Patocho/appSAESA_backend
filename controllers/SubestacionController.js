@@ -68,17 +68,19 @@ const verDatos = async function(req, res){
     sequelize.query(sql, { type: sequelize.QueryTypes.SELECT}).then(function(ots){
         for(let a in ots){
             //console.log(ots[a].id);
-            let ot ={
-                id: ots[a].id,
-                numero_ot:ots[a].numero_ot,
-                fecha_ot:ots[a].fecha_ot,
-                trabajo:ots[a].trabajo,
-                SubestacionId:ots[a].SubestacionId
-            }
-            datos_ot.push(ot);
+            let aux = ots[a];
+            let ot = aux.toWeb();
+
+            datos_ot.push({
+                id: ot.id,
+                numero_ot:ot.numero_ot,
+                fecha_ot:ot.fecha_ot,
+                trabajo:ot.trabajo,
+                SubestacionId:ot.SubestacionId
+            });
         }
     });
-    se = {
+    dato = {
         subestacion : {
             id : subestacion.id,
             cod_se : subestacion.cod_se,
@@ -87,6 +89,6 @@ const verDatos = async function(req, res){
         ots:{datos_ot},
     }
     
-    return ReS(res, {dato:{se}}, 201);
+    return ReS(res, {dato}, 201);
 }
 module.exports.verDatos = verDatos;
