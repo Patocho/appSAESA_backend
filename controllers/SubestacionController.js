@@ -72,20 +72,22 @@ const verDatos = async function(req, res){
             let ot = ots[a];
 
             console.log(ot.id);
-            datos_ot.push({id:ot.id});
-            console.log("#########AAAAAAA");
-            console.log(datos_ot[a]);
+            datos_ot.push({
+                id: ot.id,
+                numero_ot:ot.numero_ot,
+                fecha_ot:ot.fecha_ot,
+                trabajo:ot.trabajo,
+                SubestacionId:ot.SubestacionId
+            });
         }
     }));
-    console.log("#######BBBBBB");
-    console.log(datos_ot);
     dato = {
         subestacion : {
             id : subestacion.id,
             cod_se : subestacion.cod_se,
             nombre_se: subestacion.nombre_se,
         },
-        ots:{datos_ot},
+        datos_ot,
     }
     
     return ReS(res, {dato}, 201);
