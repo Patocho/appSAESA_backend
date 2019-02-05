@@ -89,6 +89,6 @@ const verDatos = async function(req, res){
     });
 
     
-    return ReS(res, {dato:{subestacion:se, ots:datos_ot}}, 201);
+    return ReS(res, {dato:{se, datos_ot}}, 201);
 }
 module.exports.verDatos = verDatos;
