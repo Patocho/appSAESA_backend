@@ -116,7 +116,7 @@ const verDatos = async function(req, res){
         roles_json.push({id:rol[i].id,descripcion:rol[i].descripcion});
     }
 
-    return ReS(res, {datos: roles_json});
+    return ReS(res, {id_user:user_id, datos: roles_json});
 
 }
 module.exports.verDatos = verDatos;
