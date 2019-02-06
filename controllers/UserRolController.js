@@ -38,5 +38,6 @@ const quitarRol = async function(req, res){
     if(err) return ReE(res, 'ERROR');
 
     console.log(userrol);
+    return ReS(res, {message:'Rol eliminado exitosamente'}, 201);
 }
 module.exports.quitarRol = quitarRol;
