@@ -54,7 +54,9 @@ const asignarRol = async function (req, res){
     ur = {
         RolId: id_rol,
         UserId: id_user,
-    }
+    };
+
+    console.log(ur);
 
     [err, userrol] = await to (UserRols.create(ur));
     if(err) return ReE(res, 'Error al asignar un Rol');
