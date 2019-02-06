@@ -25,3 +25,13 @@ const getRolesForUser = async function(id){
     return roles;
 }
 module.exports.getRolesForUser = getRolesForUser;
+
+const quitarRol = async function(id_user, id_rol){
+    let err, userrol;
+
+    [err, userrol] = await to (UserRols.findOne({where:{UserId: id_user, RolId: id_rol}}));
+    if(err) return ReE(res, 'ERROR');
+
+    console.log(userrol);
+}
+module.exports.quitarRol = quitarRol;
