@@ -44,9 +44,9 @@ module.exports.quitarRol = quitarRol;
 const asignarRol = async function (req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
-    let err, userrol, id_user, id_rol;
+    let err, userrol, id_user, id_rol, ur;
 
-    let ur = {
+    ur = {
         RolId: id_rol,
         UserId: id_user
     }
