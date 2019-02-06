@@ -37,7 +37,6 @@ const quitarRol = async function(req, res){
     [err, userrol] = await to (UserRols.destroy({where:{UserId: id_user, RolId: id_rol}}));
     if(err) return ReE(res, 'ERROR');
 
-    console.log(userrol);
-    return ReS(res, {message:'Rol eliminado exitosamente'}, 201);
+    return ReS(res, {message:'Trampa eliminada'}, 204);
 }
 module.exports.quitarRol = quitarRol;
