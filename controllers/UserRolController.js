@@ -31,6 +31,8 @@ const quitarRol = async function(req, res){
     const body = req.body;
     let err, userrol, id_user, id_rol;
 
+    console.log(body);
+    console.log("############");
     id_user=body.id_user;
     id_rol=body.id_rol;
 
