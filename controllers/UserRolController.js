@@ -31,14 +31,10 @@ const quitarRol = async function(req, res){
     const body = req.body;
     let err, userrol, id_user, id_rol;
 
-    console.log(body);
-    console.log("############");
     id_user=body.id_user;
     id_rol=body.id_rol;
 
-    console.log(id_user);
-
-    [err, userrol] = await to (UserRols.findOne({where:{UserId: id_user, RolId: id_rol}}));
+    [err, userrol] = await to (UserRols.destroy({where:{UserId: id_user, RolId: id_rol}}));
     if(err) return ReE(res, 'ERROR');
 
     console.log(userrol);
