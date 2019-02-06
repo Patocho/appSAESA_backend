@@ -40,3 +40,20 @@ const quitarRol = async function(req, res){
     return ReS(res, {message:'Rol Eliminado de Usuario'}, 201);
 }
 module.exports.quitarRol = quitarRol;
+
+cons asignarRol = async function (req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    let err, userrol, id_user, id_rol;
+
+    let ur = {
+        RolId: id_rol,
+        UserId: id_user
+    }
+
+    [err, userrol] = await to (UserRols.create(ur));
+    if(err) return ReE(res, 'Error al asignar un Rol');
+
+    return ReS(res, {message: "Rol asignado satisfactoriamente"}, 201);
+}
+module.exports.asignarRol = asignarRol;
