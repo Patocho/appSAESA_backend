@@ -15,6 +15,7 @@ const ComponenteController = require('./../controllers/ComponenteController');
 const RegistroController = require('./../controllers/RegistroController');
 const Img_termController = require('./../controllers/Img_termController');
 const Temp_TermController = require('./../controllers/Temp_TermController');
+const UserRolController = require('./../controllers/UserRolController');
 
 require('./../middleware/passport')(passport)
 /* GET home page. */
@@ -41,6 +42,8 @@ router.post('/creartrampasse',TrampaController.crearTrampaSE);
 router.post('/borrarTrampa',TrampaController.remove);
 
 router.post('/rols', RolController.create);
+
+router.post('users/quitar_rol',UserRolController.quitarRol);
 
 router.get('/equipos/:se_id',EquipoController.getAllForSe);
 
