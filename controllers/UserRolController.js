@@ -46,9 +46,12 @@ const asignarRol = async function (req, res){
     const body = req.body;
     let err, userrol, id_user, id_rol, ur;
 
+    id_user=body.id_user;
+    id_rol=body.id_rol;
+    
     ur = {
         RolId: id_rol,
-        UserId: id_user
+        UserId: id_user,
     }
 
     [err, userrol] = await to (UserRols.create(ur));
