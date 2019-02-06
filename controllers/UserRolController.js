@@ -27,7 +27,12 @@ const getRolesForUser = async function(id){
 module.exports.getRolesForUser = getRolesForUser;
 
 const quitarRol = async function(id_user, id_rol){
-    let err, userrol;
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    let err, userrol, id_user, id_rol;
+
+    id_user=body.id_user;
+    id_rol=body.id_rol;
 
     [err, userrol] = await to (UserRols.findOne({where:{UserId: id_user, RolId: id_rol}}));
     if(err) return ReE(res, 'ERROR');
