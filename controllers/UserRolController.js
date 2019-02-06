@@ -26,7 +26,7 @@ const getRolesForUser = async function(id){
 }
 module.exports.getRolesForUser = getRolesForUser;
 
-const quitarRol = async function(id_user, id_rol){
+const quitarRol = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
     let err, userrol, id_user, id_rol;
