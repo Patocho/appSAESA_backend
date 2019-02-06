@@ -43,7 +43,7 @@ router.post('/borrarTrampa',TrampaController.remove);
 
 router.post('/rols', RolController.create);
 
-router.post('users/quitar_rol',UserRolController.quitarRol);
+router.post('/users/quitar_rol',UserRolController.quitarRol);
 
 router.get('/equipos/:se_id',EquipoController.getAllForSe);
 
