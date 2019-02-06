@@ -100,6 +100,7 @@ const verDatos = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, usuario, rol, ots;
     const body = req.body;
+    console.log(body);
     user_id = body.id;
 
     [err, rol] = await to(Rol.findAll({
@@ -109,7 +110,7 @@ const verDatos = async function(req, res){
                 id:user_id,
             },
         }]}));
-    console.log(rol);
+    //console.log(rol);
     let roles_json = [];
     for (let i in rol) {
         //let roles = rol[i];
