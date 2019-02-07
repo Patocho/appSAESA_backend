@@ -28,8 +28,6 @@ const listaRoles = async function(req, res){
     [err, roles] = await to(Rol.findAll());
     if(err) return ReE(res, 'Error al consultar lista de roles');
 
-    console.log(roles);
-
     return ReS(res, {message: roles }, 201);
 
 }
