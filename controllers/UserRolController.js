@@ -64,7 +64,7 @@ const asignarRol = async function (req, res){
     if(err) return ReE(res, 'Error al buscar usuario y rol');
 
     if(userrol != null){
-        [err, userrol] = await to (UserRols.Upsert({deletedAt :null},
+        [err, userrol] = await to (UserRols.update({deletedAt :null},
             {where:{
                 UserId:id_user,
                 RolId: id_rol
