@@ -18,3 +18,20 @@ const create = async function(req, res){
 }
 
 module.exports.create = create;
+
+const listaRoles = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+
+    let err, roles;
+
+    [err, roles] = await to(Rol.findAll());
+    if(err) return ReE(res, 'Error al consultar lista de roles');
+
+    console.log(roles);
+
+    return ReS(res, {message: roles }, 201);
+
+}
+
+module.exports.listaRoles = listaRoles;

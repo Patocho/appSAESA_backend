@@ -42,6 +42,7 @@ router.post('/creartrampasse',TrampaController.crearTrampaSE);
 router.post('/borrarTrampa',TrampaController.remove);
 
 router.post('/rols', RolController.create);
+router.get('/rols/lista', RolController.listaRoles);
 
 router.post('/users/quitar_rol',UserRolController.quitarRol);
 router.post('/users/asignar_rol',UserRolController.asignarRol);
