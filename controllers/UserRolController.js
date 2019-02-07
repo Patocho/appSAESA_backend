@@ -68,7 +68,8 @@ const asignarRol = async function (req, res){
             {where:{
                 UserId:id_user,
                 RolId: id_rol
-            }
+            },
+            paranoid:false
         }));
         if(err) return ReE(res, 'Error al asignar un Rol(ya creado)');
     }
