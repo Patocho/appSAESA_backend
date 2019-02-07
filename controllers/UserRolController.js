@@ -54,8 +54,29 @@ const asignarRol = async function (req, res){
         UserId: id_user,
     };
 
-    [err, userrol] = await to (UserRols.create(ur));
-    if(err) return ReE(res, 'Error al asignar un Rol');
+    [err, userrol] =await to(UserRols.findOne({
+        where:{
+            UserId:id_user,
+            RolId: id_rol
+        },
+        paranoid:false
+    }));
+    if(err) return ReE(res, 'Error al buscar usuario y rol');
+
+    if(userrol != null){
+        [err, userrol] = await to (UserRols.Upsert({deletedAt :null},
+            {where:{
+                UserId:id_user,
+                RolId: id_rol
+            }
+        }));
+        if(err) return ReE(res, 'Error al asignar un Rol(ya creado)');
+    }
+    else{
+        [err, userrol] = await to (UserRols.create(ur));
+        if(err) return ReE(res, 'Error al asignar un Rol');
+    }
+
 
     return ReS(res, {message: "Rol asignado satisfactoriamente"}, 201);
 }
