@@ -117,7 +117,7 @@ const verDatos = async function(req, res){
     }));
     if(err) return ReE(res, 'Error Fatal');
 
-    console.log(contador_img.toJSON());
+    console.log(JSON.stringify(contador_img));
     
     //return ReS(res, {dato}, 201);
 }
