@@ -116,7 +116,11 @@ const verDatos = async function(req, res){
     if(err) return ReE(res, 'Error Fatal');
 
     console.log("### PASE ###");
-    console.log(JSON.parse(JSON.stringify(contador_img)));
+    
+    for (let x in contador_img){
+        console.log(contador_img[x].id);
+    }
+
     console.log("### FIN ###");
 
     
