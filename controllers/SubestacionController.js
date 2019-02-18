@@ -112,16 +112,12 @@ const verDatos = async function(req, res){
                 where:{SubestacionId: 4 }
             }],
         }],
-
-
     }));
     if(err) return ReE(res, 'Error Fatal');
 
     console.log("### PASE ###");
-
-    for(let a in contador_img){
-        console.log("ASDSADASSAD");
-    };
+    console.log(JSON.stringify(contador_img));
+    console.log("### FIN ###");
 
     
     
