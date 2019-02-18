@@ -103,10 +103,12 @@ const verDatos = async function(req, res){
         attributes: ['id'],
         include:[{
             model:Registro_estado,
+            attributes: [],
             paranoid: true,
             required: true,
             include:[{
                 model:Trampa,
+                attributes: [],
                 paranoid: true,
                 required: true,
                 where:{SubestacionId: 4 }
@@ -116,7 +118,7 @@ const verDatos = async function(req, res){
     if(err) return ReE(res, 'Error Fatal');
 
     console.log("### PASE ###");
-    
+
     for (let x in contador_img){
         console.log(contador_img[x].id);
     }
