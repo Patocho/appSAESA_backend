@@ -109,8 +109,8 @@ const verDatos = async function(req, res){
                 model:Trampa,
                 paranoid: true,
                 required: true,
+                where:{SubestacionId: 4 }
             }],
-            where:{SubestacionId: 4 }
         }],
 
 
