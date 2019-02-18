@@ -77,7 +77,7 @@ const verDatos = async function(req, res){
         return ReE(res, 'Subestación NO encontrada');
     }
 
-    [err, contador_img] = await to (Img_control.count({
+    [err, contador_img] = await to (Img_control.findAndCountAll({
         attributes: ['id'],
         include:[{
             model:Registro_estado,
@@ -101,9 +101,7 @@ const verDatos = async function(req, res){
 
     console.log("### PASE ###");
 
-    for (let x in contador_img){
-        console.log(contador_img[x].id);
-    }
+    console.log(JSON.stringify(contador_img));
     console.log("### FIN ###");
 
 
