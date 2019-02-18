@@ -117,9 +117,11 @@ const verDatos = async function(req, res){
     }));
     if(err) return ReE(res, 'Error Fatal');
 
+    console.log("### PASE ###");
+
     for(let a in contador_img){
         console.log("ASDSADASSAD");
-    }
+    };
 
     
     
