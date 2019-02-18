@@ -1,10 +1,17 @@
 require('dotenv').config();
 const Subestacion = require('../models').Subestacion;
+const User = require('../models').User;
+const Rol = require('../models').Rol;
 const Operacion = require('../models').Operacion;
+const authService = require('./../services/AuthService');
+const Roles = require('../models').UserRols;
 const Ot =require('../models').Ot;
+const Otra_tarea = require('../models').Otra_tarea;
 const Trampa = require('../models').Trampa;
-const Img_control = require('../models').Img_control;
 const Registro_estado = require('../models').Registro_estado;
+const Img_tareas = require('../models').Img_tareas;
+const Img_control = require('../models').Img_control;
+const Alerta = require('../models').Alerta;
 
 const Sequelize = require('../node_modules/sequelize');
 const sequelize = new Sequelize(process.env.LOCAL_DATABASE, process.env.LOCAL_USERNAME, process.env.LOCAL_PASSWORD, {
@@ -70,6 +77,38 @@ const verDatos = async function(req, res){
         return ReE(res, 'Subestación NO encontrada');
     }
 
+    [err, contador_img] = await to (Img_control.findAll({
+        attributes: ['id'],
+        include:[{
+            model:Registro_estado,
+            attributes: [],
+            paranoid: true,
+            required: true,
+            include:[{
+                model:Trampa,
+                attributes: [],
+                paranoid: true,
+                required: true,
+                where:{SubestacionId: 4 }
+            }],
+        }],
+    }));
+    if(err) return ReE(res, 'Error Fatal');
+
+    if(contador_img == null){
+        return ReE(res, '#####################NUUULOOOOOOOOOOO##############');
+    }
+
+
+
+    console.log("### PASE ###");
+
+    for (let x in contador_img){
+        console.log(contador_img[x].id);
+    }
+    console.log("### FIN ###");
+
+
     let datos_ot =[];
     //let sql = 
     
@@ -99,31 +138,8 @@ const verDatos = async function(req, res){
         datos_ot,
     }
 
-    [err, contador_img] = await to (Img_control.findAll({
-        attributes: ['id'],
-        include:[{
-            model:Registro_estado,
-            attributes: [],
-            paranoid: true,
-            required: true,
-            include:[{
-                model:Trampa,
-                attributes: [],
-                paranoid: true,
-                required: true,
-                where:{SubestacionId: 4 }
-            }],
-        }],
-    }));
-    if(err) return ReE(res, 'Error Fatal');
+    
 
-    console.log("### PASE ###");
-
-    for (let x in contador_img){
-        console.log(contador_img[x].id);
-    }
-
-    console.log("### FIN ###");
 
     
     
