@@ -77,7 +77,7 @@ const verDatos = async function(req, res){
         return ReE(res, 'Subestación NO encontrada');
     }
 
-    [err, contador_img] = await to (Img_control.findAll({
+    [err, contador_img] = await to (Img_control.count({
         attributes: ['id'],
         include:[{
             model:Registro_estado,
@@ -98,8 +98,6 @@ const verDatos = async function(req, res){
     if(contador_img == null){
         return ReE(res, '#####################NUUULOOOOOOOOOOO##############');
     }
-
-
 
     console.log("### PASE ###");
 
