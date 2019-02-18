@@ -101,7 +101,7 @@ const verDatos = async function(req, res){
 
     console.log(JSON.stringify(contador_img));
     console.log("### FIN ###");
-
+    let cantImg1 = contador_img.count
 
     let datos_ot =[];
     //let sql = 
@@ -130,7 +130,7 @@ const verDatos = async function(req, res){
             nombre_se: subestacion.nombre_se,
         },
         datos_ot,
-        cantImg: contador_img.count,
+        cantImg: cantImg1,
     }
 
     
@@ -138,6 +138,6 @@ const verDatos = async function(req, res){
 
     
     
-    //return ReS(res, {dato}, 201);
+    return ReS(res, {dato}, 201);
 }
 module.exports.verDatos = verDatos;
