@@ -3,6 +3,9 @@ const Subestacion = require('../models').Subestacion;
 const Operacion = require('../models').Operacion;
 const Ot =require('../models').Ot;
 const Trampa = require('../models').Trampa;
+const Img_control = require('../models').Img_control;
+const Registro_estado = require('../models').Registro_estado;
+
 const Sequelize = require('../node_modules/sequelize');
 const sequelize = new Sequelize(process.env.LOCAL_DATABASE, process.env.LOCAL_USERNAME, process.env.LOCAL_PASSWORD, {
   host: '127.0.0.1',
@@ -55,7 +58,7 @@ module.exports.remove = remove;
 
 const verDatos = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    let err, usuario, rol, ots, ssee, subestacion, dato, algo;
+    let err, usuario, rol, ots, ssee, subestacion, dato, algo, contador_img;
     const body = req.body;
     ssee_id = body.id;
 
@@ -95,7 +98,27 @@ const verDatos = async function(req, res){
         },
         datos_ot,
     }
+
+    [err, contador_img] = await to (Img_control.findAll({
+        attributes: ['id'],
+        include:[{
+            model:Registro_estado,
+            paranoid: true,
+            required: true,
+            include:[{
+                model:Trampa,
+                paranoid: true,
+                required: true,
+            }],
+            where:{SubestacionId: 4 }
+        }],
+
+
+    }));
+    if(err) return ReE(res, 'Error Fatal');
+
+    console.log(contador_img);
     
-    return ReS(res, {dato}, 201);
+    //return ReS(res, {dato}, 201);
 }
 module.exports.verDatos = verDatos;
