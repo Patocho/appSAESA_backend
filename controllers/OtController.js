@@ -28,10 +28,18 @@ const crearOt = async function(req, res){
       	SubestacionId: body.SubestacionId,
     };
 
-    let nueva_ot;
-    [err, nueva_ot] = await to(Ot.create(ot));
-    if (err) return ReE(res, err, 422);
+    [err, ots] = await to(Ot.findOne({where:{numero_ot: body.numero_ot}}));
 
-    return ReS(res, {message:'Ot creada satisfactoriamente'}, 201);
+    if (ots == null){
+        let nueva_ot;
+        [err, nueva_ot] = await to(Ot.create(ot));
+        if (err) return ReE(res, err, 422);
+
+        return ReS(res, {message:'Ot creada satisfactoriamente'}, 201);
+    }
+    else{
+        return ReE(res, "OT número: " + body.numero_ot + " ya existe");
+    }
+    
 }
 module.exports.crearOt = crearOt;
