@@ -7,8 +7,8 @@ const getOt = async function(req, res){
     numero_ot = req.params.numero_ot;
 
     [err, ots] = await to(Ot.findOne({where:{numero_ot: numero_ot}}));
-    
-    console.log(ot);
+
+    console.log(ots);
     if (err) return ReE(res, err, 422);
     if(!ots) return ReE(res, "OT no encontrada: "+numero_ot);
 
