@@ -7,6 +7,8 @@ const getOt = async function(req, res){
     numero_ot = req.params.numero_ot;
 
     [err, ots] = await to(Ot.findOne({where:{numero_ot: numero_ot}}));
+    
+    console.log(ot);
     if (err) return ReE(res, err, 422);
     if(!ots) return ReE(res, "OT no encontrada: "+numero_ot);
 
@@ -26,8 +28,6 @@ const crearOt = async function(req, res){
       	SubestacionId: body.SubestacionId,
     };
 
-    console.log(ot);
-    
     let nueva_ot;
     [err, nueva_ot] = await to(Ot.create(ot));
     if (err) return ReE(res, err, 422);
