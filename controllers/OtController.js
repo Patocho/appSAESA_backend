@@ -26,6 +26,8 @@ const crearOt = async function(req, res){
       	SubestacionId: body.SubestacionId,
     };
 
+    console.log(ot);
+    
     let nueva_ot;
     [err, nueva_ot] = await to(Ot.create(ot));
     if (err) return ReE(res, err, 422);
