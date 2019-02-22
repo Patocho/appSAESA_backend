@@ -40,6 +40,7 @@ router.get('/trampas/:se_id',TrampaController.getAllForSe);
 router.post('/creartrampas',TrampaController.create);
 router.post('/creartrampasse',TrampaController.crearTrampaSE);
 router.post('/borrarTrampa',TrampaController.remove);
+router.post('/registr/nuevas_trampas', TrampaController.nuevasTrampas);
 
 router.post('/rols', RolController.create);
 router.get('/rols/lista', RolController.listaRoles);

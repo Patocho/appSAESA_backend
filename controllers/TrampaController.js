@@ -112,3 +112,39 @@ const crearTrampaSE = async function(req, res){
     return ReS(res, {message:'Trampas creadas satisfactoriamente'}, 201);
 }
 module.exports.crearTrampaSE=crearTrampaSE;
+
+
+//metodo para creas las trampas suplemetarias que se agreguen en la aplicacion móvil, 
+//retorna arreglo de id de las trampas creadas
+const nuevasTrampas = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    let arrayId = [];
+
+    if(!body.trampas){
+        return ReE(res, 'Lista de trampas vacia');
+    } 
+    else{
+        let err, trampas;
+        let cont = 0;
+        for(let i in body.trampas){
+            [err, trampa] = await to(Trampa.findOne({where:{codigo_trampa:body.trampas[i].codigo_trampa}}));
+            if (trampa != null){
+                cont = cont +1;
+            }
+        }
+        if(cont > 0){
+            return ReE(res, 'Codigo de trampa ya existente')
+        } 
+        else{
+            for(let i in body.trampas){
+                [err, trampa] = await to(Trampa.create(body.trampas[i]));
+                arrayId.push(trampa.id);
+            }
+            if(err) return ReE(res, err, 422);
+        }
+
+        return ReS(res, {arrayId:arrayId}, 201);
+    }
+}
+module.exports.nuevasTrampas=nuevasTrampas;
