@@ -23,42 +23,42 @@ router.get('/', function(req, res, next) {
   res.json({status:"success", message:"Parcel Pending API", data:{"version_number":"v1.0.0"}})
 });
 
-router.post('/users', UserController.create);
+router.post('/users',passport.authenticate('jwt', {session:false}),  UserController.create);
 router.post('/users/login',UserController.login);
-router.get('/inspectores/:rol',UserController.inspectores);
+router.get('/inspectores/:rol',passport.authenticate('jwt', {session:false}),  UserController.inspectores);
 router.get('/users', passport.authenticate('jwt', {session:false}), UserController.obtenerUsuarios);
-router.post('/users/ver_datos',UserController.verDatos);
+router.post('/users/ver_datos',passport.authenticate('jwt', {session:false}),  UserController.verDatos);
 
-router.get('/subestacions',SubestacionController.getAll);
-router.post('/borrarSE',SubestacionController.remove);
-router.post('/subestacion/ver_datos',SubestacionController.verDatos);
+router.get('/subestacions',passport.authenticate('jwt', {session:false}),  SubestacionController.getAll);
+router.post('/borrarSE',passport.authenticate('jwt', {session:false}),  SubestacionController.remove);
+router.post('/subestacion/ver_datos',passport.authenticate('jwt', {session:false}),  SubestacionController.verDatos);
 
-router.get('/ots/:numero_ot',OtController.getOt);
-router.post('/nueva_ot',OtController.crearOt);
+router.get('/ots/:numero_ot',passport.authenticate('jwt', {session:false}),  OtController.getOt);
+router.post('/nueva_ot',passport.authenticate('jwt', {session:false}),  OtController.crearOt);
 
-router.get('/trampas/:se_id',TrampaController.getAllForSe);
-router.post('/creartrampas',TrampaController.create);
-router.post('/creartrampasse',TrampaController.crearTrampaSE);
-router.post('/borrarTrampa',TrampaController.remove);
-router.post('/registr/nuevas_trampas', TrampaController.nuevasTrampas);
+router.get('/trampas/:se_id',passport.authenticate('jwt', {session:false}),  TrampaController.getAllForSe);
+router.post('/creartrampas',passport.authenticate('jwt', {session:false}), TrampaController.create);
+router.post('/creartrampasse',passport.authenticate('jwt', {session:false}), TrampaController.crearTrampaSE);
+router.post('/borrarTrampa',passport.authenticate('jwt', {session:false}), TrampaController.remove);
+router.post('/registr/nuevas_trampas',passport.authenticate('jwt', {session:false}), TrampaController.nuevasTrampas);
 
-router.post('/rols', RolController.create);
-router.get('/rols/lista', RolController.listaRoles);
+router.post('/rols',passport.authenticate('jwt', {session:false}), RolController.create);
+router.get('/rols/lista',passport.authenticate('jwt', {session:false}), RolController.listaRoles);
 
-router.post('/users/quitar_rol',UserRolController.quitarRol);
-router.post('/users/asignar_rol',UserRolController.asignarRol);
+router.post('/users/quitar_rol',passport.authenticate('jwt', {session:false}), UserRolController.quitarRol);
+router.post('/users/asignar_rol',passport.authenticate('jwt', {session:false}), UserRolController.asignarRol);
 
-router.get('/equipos/:se_id',EquipoController.getAllForSe);
+router.get('/equipos/:se_id',passport.authenticate('jwt', {session:false}), EquipoController.getAllForSe);
 
-router.get('/componentes/:se_id',ComponenteController.getAllForSe);
+router.get('/componentes/:se_id',passport.authenticate('jwt', {session:false}), ComponenteController.getAllForSe);
 
-router.post('/registro/operacion',RegistroController.registroOperacion);
-router.post('/registro/estado',RegistroController.registroEstado);
-router.post('/registro/imgtrp',RegistroController.registroImgTrp);
-router.post('/registro/imgot',RegistroController.registroImgOt);
+router.post('/registro/operacion',passport.authenticate('jwt', {session:false}), RegistroController.registroOperacion);
+router.post('/registro/estado',passport.authenticate('jwt', {session:false}), RegistroController.registroEstado);
+router.post('/registro/imgtrp',passport.authenticate('jwt', {session:false}), RegistroController.registroImgTrp);
+router.post('/registro/imgot',passport.authenticate('jwt', {session:false}), RegistroController.registroImgOt);
 
-router.get('/imgterm/:situacion',Img_termController.getImage);
+router.get('/imgterm/:situacion',passport.authenticate('jwt', {session:false}), Img_termController.getImage);
 
-router.get('/tempterm/:img_id',Temp_TermController.getAllForPtos);
+router.get('/tempterm/:img_id',passport.authenticate('jwt', {session:false}), Temp_TermController.getAllForPtos);
 
 module.exports = router;
