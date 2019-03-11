@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 router.post('/users', UserController.create);
 router.post('/users/login',UserController.login);
 router.get('/inspectores/:rol',UserController.inspectores);
-router.get('/users',UserController.obtenerUsuarios);
+router.get('/users', passport.authenticate('jwt', {session:false}), UserController.obtenerUsuarios);
 router.post('/users/ver_datos',UserController.verDatos);
 
 router.get('/subestacions',SubestacionController.getAll);
