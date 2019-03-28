@@ -4,8 +4,10 @@ const getImage = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, image;
     situacion = req.params.situacion;
-
+    console.log(situacion);
+    console.log("############");
     [err, image] = await to(Img_term.findAll({where:{situacion: situacion}}));
+    console.log(image);
     if (err) return ReE(res, err, 422);
 
     let image_json = [];
