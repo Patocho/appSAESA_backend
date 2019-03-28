@@ -40,7 +40,7 @@ router.get('/trampas/:se_id',passport.authenticate('jwt', {session:false}),  Tra
 router.post('/creartrampas',passport.authenticate('jwt', {session:false}), TrampaController.create);
 router.post('/creartrampasse',passport.authenticate('jwt', {session:false}), TrampaController.crearTrampaSE);
 router.post('/borrarTrampa',passport.authenticate('jwt', {session:false}), TrampaController.remove);
-router.post('/registr/nuevas_trampas',passport.authenticate('jwt', {session:false}), TrampaController.nuevasTrampas);
+router.post('/registro/nuevas_trampas',passport.authenticate('jwt', {session:false}), TrampaController.nuevasTrampas);
 
 router.post('/rols',passport.authenticate('jwt', {session:false}), RolController.create);
 router.get('/rols/lista',passport.authenticate('jwt', {session:false}), RolController.listaRoles);
