@@ -6,7 +6,9 @@ const getImage = async function(req, res){
     situacion = req.params.situacion;
     console.log(situacion);
     console.log("############");
-    [err, image] = await to(Img_term.findAll({where:{situacion: situacion}}));
+    [err, image] = await to(Img_term.findAll({
+        attributes: ['id'],
+        where:{situacion: situacion}}));
     console.log(image);
     if (err) return ReE(res, err, 422);
 
