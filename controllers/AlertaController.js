@@ -1,4 +1,5 @@
 const Alerta = require('../models').Alerta;
+const Subestacion = require('../models').Subestacion;
 
 
 const ObtenerTodas = async function(req, res){
