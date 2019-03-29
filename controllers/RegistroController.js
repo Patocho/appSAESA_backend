@@ -40,7 +40,8 @@ const registroOperacion = async function(req, res){
 
     const alert = {
         alerta:body.alerta,
-        hanta:body.hanta
+        hanta:body.hanta,
+        OperacionId: IdRegisto
     };
     [err,al] = await to(Alerta.create(alert));
 
@@ -77,7 +78,7 @@ const registroEstado = async function(req, res){
             OperacionId:IdRegisto,
             TrampaId:body.trampas[i].id,
         };
-        
+
         let reg_trampa;
         [err, reg_trampa] = await to(Registro_estado.create(tramp));
         arrayId.push(reg_trampa.id);
