@@ -129,6 +129,7 @@ const nuevasTrampas = async function(req, res){
         let cont = 0;
         for(let i in body.trampas){
             [err, trampa] = await to(Trampa.findOne({where:{codigo_trampa:body.trampas[i].codigo_trampa}}));
+            if(err) return ReE(res, err, "Error al buscar trampa");
             if (trampa != null){
                 cont = cont +1;
             }
