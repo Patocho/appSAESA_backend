@@ -1,5 +1,6 @@
 const Alerta = require('../models').Alerta;
 const Subestacion = require('../models').Subestacion;
+const Operacion = require('../models').Operacion;
 
 
 const ObtenerTodas = async function(req, res){
@@ -8,7 +9,7 @@ const ObtenerTodas = async function(req, res){
 
     [err, alertas] = await to(Alerta.findAll({
         include:[{
-            model:Subestacion,
+            model:Operacion,
             paranoid:true,
             required:true,
         }],
