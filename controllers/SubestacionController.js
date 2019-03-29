@@ -35,7 +35,7 @@ const getAll = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, subestacions;
 
-    [err, subestacions] = await to(Subestacion.findAll());
+    [err, subestacions] = await to(Subestacion.findAll({order:[['nombre_se','ASC']]}));
     if (err) return ReE(res, err, 422);
 
     let subestacions_json = [];
