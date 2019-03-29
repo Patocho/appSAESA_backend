@@ -77,8 +77,7 @@ const registroEstado = async function(req, res){
             OperacionId:IdRegisto,
             TrampaId:body.trampas[i].id,
         };
-
-        console.log(tramp);
+        
         let reg_trampa;
         [err, reg_trampa] = await to(Registro_estado.create(tramp));
         arrayId.push(reg_trampa.id);
