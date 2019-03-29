@@ -97,10 +97,6 @@ const verDatos = async function(req, res){
         return ReE(res, '#####################NUUULOOOOOOOOOOO##############');
     }
 
-    console.log("### PASE ###");
-
-    console.log(JSON.stringify(contador_img));
-    console.log("### FIN ###");
     let cantImg1 = contador_img.count
 
     let datos_ot =[];
