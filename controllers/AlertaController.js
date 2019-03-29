@@ -1,6 +1,7 @@
 const Alerta = require('../models').Alerta;
 const Subestacion = require('../models').Subestacion;
 const Operacion = require('../models').Operacion;
+const Ot = require('../models').Ot;
 
 
 const ObtenerTodas = async function(req, res){
@@ -13,9 +14,14 @@ const ObtenerTodas = async function(req, res){
             paranoid:true,
             required:true,
             include:[{
-                model:Subestacion,
+                model:Ot,
                 paranoid:true,
                 required:true,
+                include:[{
+                    model:Subestacion,
+                    paranoid:true,
+                    required:true,
+                }]
             }]
         }],
         where:{estado: null},
