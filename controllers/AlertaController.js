@@ -1,6 +1,6 @@
 const Alerta = require('../models').Alerta;
 
-//get all for a unique ID
+
 const ObtenerTodas = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, alertas;
