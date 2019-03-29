@@ -5,7 +5,7 @@ const ObtenerTodas = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, alertas;
 
-    [err, alertas] = await to(Alerta.findAll({where:{estado: se_id}}));
+    [err, alertas] = await to(Alerta.findAll({where:{estado: null}}));
     if (err) return ReE(res, err, 422);
 
     let alertas_json = [];
