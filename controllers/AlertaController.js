@@ -12,6 +12,11 @@ const ObtenerTodas = async function(req, res){
             model:Operacion,
             paranoid:true,
             required:true,
+            include:[{
+                model:Subestacion,
+                paranoid:true,
+                required:true,
+            }]
         }],
         where:{estado: null},
     }));
