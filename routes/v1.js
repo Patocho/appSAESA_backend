@@ -61,4 +61,6 @@ router.get('/imgterm/:situacion',passport.authenticate('jwt', {session:false}), 
 
 router.get('/tempterm/:img_id',passport.authenticate('jwt', {session:false}), Temp_TermController.getAllForPtos);
 
+router.get('/alertas/todas', passport.authenticate('jwt', {session:false}), Temp_TermController.ObtenerTodas);
+
 module.exports = router;
