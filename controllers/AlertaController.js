@@ -31,7 +31,16 @@ const ObtenerTodas = async function(req, res){
     let alertas_json = [];
     for (let i in alertas) {
         let alerta = alertas[i];
-        let alertas_info = alerta.toJSON();
+        //let alertas_info = alerta.toJSON();
+        let alerta_info = {
+            id:alerta.id,
+            alerta:alerta.alerta,
+            hanta:alerta.hanta,
+            OperacionId:alerta.OperacionId,
+            fecha:alerta.Operacion.Ot.fecha_ot,
+            trabajo:alerta.Operacion.Ot.trabajo,
+            subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
+        }
 
         alertas_json.push(alertas_info);
     }
