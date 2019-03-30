@@ -32,7 +32,7 @@ const ObtenerTodas = async function(req, res){
     for (let i in alertas) {
         let alerta = alertas[i];
         //let alertas_info = alerta.toJSON();
-        let alerta_info = {
+        let alertas_info = {
             id:alerta.id,
             alerta:alerta.alerta,
             hanta:alerta.hanta,
@@ -45,7 +45,7 @@ const ObtenerTodas = async function(req, res){
         alertas_json.push(alertas_info);
     }
 
-    return ReS(res, {alertas: alerta_json});
+    return ReS(res, {alertas: alertas_json});
 
 }
 module.exports.ObtenerTodas = ObtenerTodas;
