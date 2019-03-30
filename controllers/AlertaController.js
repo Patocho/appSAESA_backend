@@ -45,7 +45,7 @@ const ObtenerTodas = async function(req, res){
         alertas_json.push(alertas_info);
     }
 
-    return ReS(res, {alertas: alertas_json});
+    return ReS(res, {alertas: alerta_json});
 
 }
 module.exports.ObtenerTodas = ObtenerTodas;
