@@ -67,5 +67,6 @@ router.get('/alertas/todas', passport.authenticate('jwt', {session:false}), Aler
 router.post('/alertas/vista', passport.authenticate('jwt', {session:false}), AlertaController.AlertaVista);
 
 router.post('/operacion/se', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaSubestacion);
+router.post('/operacion/todas', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaTodas);
 
 module.exports = router;
