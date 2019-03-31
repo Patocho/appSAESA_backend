@@ -17,6 +17,7 @@ const Img_termController = require('./../controllers/Img_termController');
 const Temp_TermController = require('./../controllers/Temp_TermController');
 const UserRolController = require('./../controllers/UserRolController');
 const AlertaController = require('./../controllers/AlertaController');
+const OperacionController = require('./../controllers/OperacionController');
 
 require('./../middleware/passport')(passport)
 /* GET home page. */
@@ -64,5 +65,7 @@ router.get('/tempterm/:img_id',passport.authenticate('jwt', {session:false}), Te
 
 router.get('/alertas/todas', passport.authenticate('jwt', {session:false}), AlertaController.ObtenerTodas);
 router.post('/alertas/vista', passport.authenticate('jwt', {session:false}), AlertaController.AlertaVista);
+
+router.post('/alertas/se', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaSubestacion);
 
 module.exports = router;
