@@ -49,3 +49,20 @@ const ObtenerTodas = async function(req, res){
 
 }
 module.exports.ObtenerTodas = ObtenerTodas;
+
+
+const AlertaVista = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    let err, alerta;
+
+    id = body.id;
+
+    [err,alerta] = await to (Alerta.update({estado:'visto'},{
+        where:{id:id}
+    }));
+    if(err) return ReE(res, 'Error marcar como "Visto"');
+
+    return ReS(res, {msg:"Marcado como Visto exitosamente"}, 201);
+}
+module.exports.AlertaVista = AlertaVista;
