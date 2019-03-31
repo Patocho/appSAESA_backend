@@ -66,6 +66,6 @@ router.get('/tempterm/:img_id',passport.authenticate('jwt', {session:false}), Te
 router.get('/alertas/todas', passport.authenticate('jwt', {session:false}), AlertaController.ObtenerTodas);
 router.post('/alertas/vista', passport.authenticate('jwt', {session:false}), AlertaController.AlertaVista);
 
-router.post('/alertas/se', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaSubestacion);
+router.post('/operacion/se', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaSubestacion);
 
 module.exports = router;
