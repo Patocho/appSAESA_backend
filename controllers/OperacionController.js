@@ -12,21 +12,16 @@ const ObtenerParaSubestacion = async function(req, res){
     let err, operaciones;
     id = body.id;
 
-    [err, operaciones] = await to(Alerta.findAll({
+    [err, operaciones] = await to(Operacion.findAll({
         include:[{
-            model:Operacion,
+            model:Ot,
             paranoid:true,
             required:true,
             include:[{
-                model:Ot,
+                model:Subestacion,
                 paranoid:true,
                 required:true,
-                include:[{
-                    model:Subestacion,
-                    paranoid:true,
-                    required:true,
-                    where:{id:id}
-                }]
+                where:{id:id}
             }]
         }],
     }));
