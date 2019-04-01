@@ -194,10 +194,17 @@ const test = async function(req, res){
         }],
         attributes:{exclude:['recurso']}
     }));
-
     if(err) ReE(res, err, 422);
 
-    return ReS(res, {imagenes: imgs}, 201);
+    let imgs_id= []
+    for(i in imgs){
+        let img = imgs[i];
+        let ids ={
+            id:img.id
+        };
+        imgs_id.push(ids);
+    }
+    return ReS(res, {imagenes: imgs_id}, 201);
 
 }
 
