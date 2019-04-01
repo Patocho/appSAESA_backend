@@ -206,7 +206,8 @@ const test = async function(req, res){
                         include:[{
                             model:Img_control,
                             paranoid:true,
-                            required:true
+                            required:true,
+                            attributes:{exclude:['recurso']}
                         }]
                     }]
                 }]
