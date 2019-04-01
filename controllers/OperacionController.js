@@ -208,7 +208,8 @@ const test = async function(req, res){
                             paranoid:true,
                             required:true,
                             attributes:{exclude:['recurso']}
-                        }]
+                        }],
+                        where:{OperacionId:id}
                     }]
                 }]
             }]
