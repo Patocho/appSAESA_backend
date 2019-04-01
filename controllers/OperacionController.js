@@ -190,7 +190,8 @@ const test = async function(req, res){
             model:Registro_estado,
             paranoid:true,
             required:true,
-            where:{OperacionId:id}
+            where:{OperacionId:id},
+            attributes:{exclude:['recurso']}
         }]
     }));
 
