@@ -182,43 +182,21 @@ const test = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
 
-    let err, operacion, ot, subestacion, trampas;
+    let err, operacion, ot, subestacion, trampas, imgs;
     id = body.id;
 
-    [err, operacion] = await to (Operacion.findOne({
-        where:{id:id},
+    [err, imgs] = await to (Img_control.findAll({
         include:[{
-            model:Ot,
+            model:Registro_estado,
             paranoid:true,
             required:true,
-            include:[{
-                model:Subestacion,
-                paranoid:true,
-                required:true,
-                include:[{
-                    model:Trampa,
-                    paranoid:true,
-                    required:true,
-                    include:[{
-                        model:Registro_estado,
-                        paranoid:true,
-                        required:true,
-                        include:[{
-                            model:Img_control,
-                            paranoid:true,
-                            required:true,
-                            attributes:{exclude:['recurso']}
-                        }],
-                        where:{OperacionId:id}
-                    }]
-                }]
-            }]
+            where:{OperacionId:id}
         }]
     }));
 
     if(err) ReE(res, err, 422);
 
-    return ReS(res, {operacion: operacion}, 201);
+    return ReS(res, {imagenes: imgs}, 201);
 
 }
 
