@@ -10,7 +10,7 @@ const getOt = async function(req, res){
 
     console.log(ots);
     if (err) return ReE(res, err, 422);
-    if(!ots) return ReE(res, "OT no encontrada: "+numero_ot);
+    if(!ots) return ReE(res, "OT no encontrada: "+numero_ot, 422);
 
     return ReS(res, {numero_ot: ots.numero_ot, trabajo:ots.trabajo, id_se:ots.SubestacionId});
 
