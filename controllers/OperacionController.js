@@ -190,9 +190,9 @@ const test = async function(req, res){
             model:Registro_estado,
             paranoid:true,
             required:true,
-            where:{OperacionId:id},
-            attributes:{exclude:['recurso']}
-        }]
+            where:{OperacionId:id}
+        }],
+        attributes:{exclude:['recurso']}
     }));
 
     if(err) ReE(res, err, 422);
