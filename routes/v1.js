@@ -68,7 +68,8 @@ router.post('/alertas/vista', passport.authenticate('jwt', {session:false}), Ale
 
 router.post('/operacion/se', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaSubestacion);
 router.post('/operacion/todas', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaTodas);
+router.post('/operacion/todas', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaTodas);
 
-router.post('/test', passport.authenticate('jwt', {session:false}), OperacionController.test);
+router.post('/controlplagas/reporte', passport.authenticate('jwt', {session:false}), OperacionController.ReporteControlPlagas);
 
 module.exports = router;
