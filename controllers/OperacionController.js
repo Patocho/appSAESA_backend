@@ -225,7 +225,7 @@ const ReporteControlPlagas = async function(req, res){
     otra_tarea_info ={
         id:otra_tarea.id,
         desmalezado:otra_tarea.desmalezado,
-        corte_pasto:otra_tarea.corte_pasto,
+        corte_pasto:otra_tarea.corte_pasto_,
         nebulizacion:otra_tarea.nebulizacion,
         obs_tarea:otra_tarea.obs_tarea
     };
