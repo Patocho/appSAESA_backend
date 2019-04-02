@@ -111,7 +111,7 @@ const ReporteControlPlagas = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
 
-    let err, operacion, ot, subestacion, trampas;
+    let err, operacion, ot, subestacion, trampas, imgs, img_ot, alerta, otra_tarea;
     id = body.id;
 
     [err, operacion] = await to(Operacion.findOne({
@@ -170,7 +170,67 @@ const ReporteControlPlagas = async function(req, res){
         trampas_json.push(trampas_info);
     }
     
-    //return ReS(res,{operaciones:operaciones_json}, 201);
+    [err, imgs] = await to (Img_control.findAll({
+        include:[{
+            model:Registro_estado,
+            paranoid:true,
+            required:true,
+            where:{OperacionId:id}
+        }],
+        attributes:{exclude:['recurso']}
+    }));
+    if(err) ReE(res, err, 422);
+
+    let imgs_id= []
+    for(i in imgs){
+        let img = imgs[i];
+        let ids ={
+            id:img.id
+        };
+        imgs_id.push(ids);
+    }
+
+    [err, img_ot] = await to(Img_tareas.findAll({
+        where: {OperacionId: id}
+    }));
+    if(err) ReE(res, err, 422);
+
+    let img_ot_id =[];
+
+    for(i in img_ot){
+        let imgOt = img_ot[i];
+        let ids_ot ={
+            id:imgOt.id
+        }
+        img_ot_id.push(ids_ot);
+    }
+
+    [err, alerta] = await to (Alerta.findOne({
+        where:{OperacionId:id}
+    }));
+    if(err) ReE(res, err, 422);
+
+    let alertas_info = {
+        id:alerta.id,
+        alerta:alerta.alerta,
+        hanta:alerta.hanta,
+        estado:alerta.estado
+    };
+
+    [err, otra_tarea] = await to(Otra_tarea.findOne({
+        where:{OperacionId:id}
+    }));
+    if(err) ReE(res, err, 422);
+
+    otra_tarea_info ={
+        id:otra_tarea.id,
+        desmalezado:otra_tarea.desmalezado,
+        corte_pasto:otra_tarea.corte_pasto,
+        nebulizacion:otra_tarea.nebulizacion,
+        obs_tarea:otra_tarea.obs_tarea
+    };
+
+    return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, trampas: trampas_json, img_id:imgs_id , img_ot_id: img_ot_id, alerta: alertas_info, otra_tarea: otra_tarea_info}, 201);
 }
 
 module.exports.ReporteControlPlagas = ReporteControlPlagas;
@@ -205,7 +265,6 @@ const test = async function(req, res){
         imgs_id.push(ids);
     }
     return ReS(res, {imagenes: imgs_id}, 201);
-
 }
 
 module.exports.test = test;
