@@ -111,7 +111,7 @@ const ReporteControlPlagas = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
 
-    let err, operacion, ot, subestacion, trampas, imgs, img_ot, alerta, otra_tarea;
+    let err, operacion, ot, subestacion, trampas, imgs, img_ot, alerta, otra_tarea, reg_estado;
     id = body.id;
 
     [err, operacion] = await to(Operacion.findOne({
@@ -230,9 +230,25 @@ const ReporteControlPlagas = async function(req, res){
         obs_tarea:otra_tarea.obs_tarea
     };
 
+    [err, reg_estado] = await to(Registro_estado.findOne({
+        where:{OperacionId:id}
+    }));
+    if(err) ReE(res, err, 422);
+
+    let registro_estados = [];
+    for(i in reg_estado){
+        let estado = reg_estado[i];
+        let registro_estado_info = {
+            id:estado.id,
+            cod_trampa:estado.cod_trampa,
+            estado_registro:estado.estado_registro,
+            obs_registro:estado.obs_registro
+        };
+        registro_estados.push(registro_estado_info);
+    }
 
 
-    return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, trampas: trampas_json, img_id:imgs_id , img_ot_id: img_ot_id, alerta: alertas_info, otra_tarea: otra_tarea_info}, 201);
+    return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, trampas: trampas_json, img_id:imgs_id , img_ot_id: img_ot_id, alerta: alertas_info, otra_tarea: otra_tarea_info, estados: registro_estados}, 201);
 }
 
 module.exports.ReporteControlPlagas = ReporteControlPlagas;
