@@ -230,6 +230,8 @@ const ReporteControlPlagas = async function(req, res){
         obs_tarea:otra_tarea.obs_tarea
     };
 
+
+
     return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, trampas: trampas_json, img_id:imgs_id , img_ot_id: img_ot_id, alerta: alertas_info, otra_tarea: otra_tarea_info}, 201);
 }
 
@@ -256,15 +258,7 @@ const test = async function(req, res){
     }));
     if(err) ReE(res, err, 422);
 
-    let imgs_id= []
-    for(i in imgs){
-        let img = imgs[i];
-        let ids ={
-            id:img.id
-        };
-        imgs_id.push(ids);
-    }
-    return ReS(res, {imagenes: imgs_id}, 201);
+    return ReS(res, {imagenes: imgs}, 201);
 }
 
 module.exports.test = test;

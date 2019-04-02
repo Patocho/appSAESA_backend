@@ -72,4 +72,6 @@ router.post('/operacion/todas', passport.authenticate('jwt', {session:false}), O
 
 router.post('/controlplagas/reporte', passport.authenticate('jwt', {session:false}), OperacionController.ReporteControlPlagas);
 
+router.post('/test', passport.authenticate('jwt', {session:false}), OperacionController.test);
+
 module.exports = router;
