@@ -236,8 +236,8 @@ const ReporteControlPlagas = async function(req, res){
     if(err) ReE(res, err, 422);
 
     let registro_estados = [];
-    for(i in reg_estado){
-        let estado = reg_estado[i];
+    for(a in reg_estado){
+        let estado = reg_estado[a];
         let registro_estado_info = {
             id:estado.id,
             cod_trampa:estado.cod_trampa,
