@@ -230,7 +230,7 @@ const ReporteControlPlagas = async function(req, res){
         obs_tarea:otra_tarea.obs_tarea
     };
 
-    [err, reg_estado] = await to(Registro_estado.findOne({
+    [err, reg_estado] = await to(Registro_estado.findAll({
         where:{OperacionId:id}
     }));
     if(err) ReE(res, err, 422);
@@ -248,9 +248,8 @@ const ReporteControlPlagas = async function(req, res){
     }
 
 
-    return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, trampas: trampas_json, img_id:imgs_id , img_ot_id: img_ot_id, alerta: alertas_info, otra_tarea: otra_tarea_info, estados: reg_estado}, 201);
+    return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, trampas: trampas_json, img_id:imgs_id , img_ot_id: img_ot_id, alerta: alertas_info, otra_tarea: otra_tarea_info, estados: registro_estados}, 201);
 }
-
 module.exports.ReporteControlPlagas = ReporteControlPlagas;
 
 
@@ -276,5 +275,4 @@ const test = async function(req, res){
 
     return ReS(res, {imagenes: imgs}, 201);
 }
-
 module.exports.test = test;
