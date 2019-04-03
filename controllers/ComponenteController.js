@@ -1,33 +1,29 @@
 const Componente = require('../models').Componente;
 const Equipo = require('../models').Equipo;
-const subestacion = require('../models').Subestacion;
+const Subestacion = require('../models').Subestacion;
 //get all for a unique ID
 const getAllForSe = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    let err, componentes1, equipo,dato;
+    let err, componentes, equipo,dato;
     se_id = req.params.se_id;
 
-    [err,equipo] = await to(Equipo.findAll({
-        where:{SubestacionId : se_id},
+    [err, componentes] = await to(Componente.findAll({
+        include:[{
+            model:Equipo, 
+            paranoid:true,
+            required:true,
+            include:[{
+                model:Subestacion,
+                paranoid:true, 
+                required:true,
+                where:{id:se_id}
+            }]
+        }]
     }));
-    if (err) return ReE(res, err, 422);
-    componentes1 = [];
-    let cons_comp;
-    for (let i in equipo){
-        [err,cons_comp]=await to(Componente.findAll({
-            where:{EquipoId:equipo[i].id},
-            include:[{model:Equipo}]
-        }));
-        componentes1.push({nombre:equipo[i].nombre_eq, componentes:cons_comp});
-    }
-    //let resultado =[];
+    if(err) return ReE(res, err, 422);
 
-/*    for(let i in componentes1){
-        for(let j in componentes1[i]){
-            resultado.push({id:componentes1[i][j].id, nombre:componentes1[i][j].nombre_comp,polo1:componentes1[i][j].poloa_comp,polo2:componentes1[i][j].polob_comp,polo3:componentes1[i][j].poloc_comp,equipo: componentes1[i][j].Equipo});
-        }
-    }*/
-    return ReS(res, {equipos: componentes1});
+
+    return ReS(res, {componentes});
 
 }
 module.exports.getAllForSe = getAllForSe;
