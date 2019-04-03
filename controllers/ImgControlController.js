@@ -8,16 +8,11 @@ const ObtenerImagenControl = async function(req, res){
 
     id = body.id;
 
-    console.log("ASDADAs");
-     console.log(id);
-      console.log("ASDADAs2222");
-
     [err, imagen] = await to(Img_control.findOne({
         where:{id:id}
     }));
     if(err) return ReE(res, err, 422);
 
-    console.log(imagen);
     return ReS(res, {recurso: imagen.recurso});
 }
 module.exports.ObtenerImagenControl = ObtenerImagenControl;
