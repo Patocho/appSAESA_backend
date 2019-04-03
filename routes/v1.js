@@ -77,4 +77,6 @@ router.post('/controlplagas/imagen', passport.authenticate('jwt', {session:false
 
 router.post('/test', passport.authenticate('jwt', {session:false}), OperacionController.test);
 
+router.post('/obtenerIdOperacion/:id_ot', passport.authenticate('jwt', {session:false}), OperacionController.obtenerIdOperacion);
+
 module.exports = router;

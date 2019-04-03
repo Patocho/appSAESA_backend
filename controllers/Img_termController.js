@@ -1,4 +1,6 @@
 const Img_term = require('../models').Img_term;
+const Componente = require('../models').Componente;
+const Operacion = require('../models').Operacion;
 
 const getImage = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
@@ -22,3 +24,17 @@ const getImage = async function(req, res){
 }
 module.exports.getImage = getImage;
 
+const obtenerIdOperacion = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    id_ot=req.params.id_ot;
+
+    let err, operacion;
+    [err, operacion] = await to (Operacion.findOne({
+        where:{OperacionId:id_ot}
+    }));
+    if (err) return ReE(res, err, 422);
+
+    return ReS(res, {id:operacion.id});
+
+}
+module.exports.registroImgterm = registroImgterm;
