@@ -49,11 +49,11 @@ const obtenerComponentes = async function(req, res){
 
     let componentes_json= [];
 
-    for(i in componente){
+    for(i in componentes){
         let componentes_info ={
-            id:componente[i].id,
-            nombre_comp:componente[i].nombre_comp,
-            nombre_equipo:componente[i].Equipo.nombre_eq
+            id:componentes[i].id,
+            nombre_comp:componentes[i].nombre_comp,
+            nombre_equipo:componentes[i].Equipo.nombre_eq
         }
         componentes_json.push(componentes_info);
     }
