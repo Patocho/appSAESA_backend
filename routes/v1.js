@@ -18,6 +18,7 @@ const Temp_TermController = require('./../controllers/Temp_TermController');
 const UserRolController = require('./../controllers/UserRolController');
 const AlertaController = require('./../controllers/AlertaController');
 const OperacionController = require('./../controllers/OperacionController');
+const ImgControlController = require('./../controllers/ImgControlController');
 
 require('./../middleware/passport')(passport)
 /* GET home page. */
