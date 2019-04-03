@@ -37,4 +37,4 @@ const obtenerIdOperacion = async function(req, res){
     return ReS(res, {id:operacion.id});
 
 }
-module.exports.registroImgterm = registroImgterm;
+module.exports.obtenerIdOperacion = obtenerIdOperacion;
