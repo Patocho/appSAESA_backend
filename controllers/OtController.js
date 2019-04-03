@@ -38,7 +38,7 @@ const crearOt = async function(req, res){
         return ReS(res, {message:'Ot creada satisfactoriamente'}, 201);
     }
     else{
-        return ReE(res, "OT número: " + body.numero_ot + " ya existe");
+        return ReE(res, "OT número: " + body.numero_ot + " ya existe", 422);
     }
     
 }
