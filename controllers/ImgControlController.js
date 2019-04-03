@@ -4,7 +4,7 @@ const Img_control = require('../models').Img_control;
 const ObtenerImagenControl = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, imagen;
-
+    const body = req.body;
     id = body.id;
 
     [err, imagen] = await to(Img_control.findOne({
