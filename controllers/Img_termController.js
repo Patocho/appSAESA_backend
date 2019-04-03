@@ -30,7 +30,7 @@ const obtenerIdOperacion = async function(req, res){
 
     let err, operacion;
     [err, operacion] = await to (Operacion.findOne({
-        where:{OperacionId:id_ot}
+        where:{OtId:id_ot}
     }));
     if (err) return ReE(res, err, 422);
 
