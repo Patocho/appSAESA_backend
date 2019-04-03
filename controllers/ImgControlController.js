@@ -5,7 +5,12 @@ const ObtenerImagenControl = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, imagen;
     const body = req.body;
+
     id = body.id;
+
+    console.log("ASDADAs");
+     console.log(id);
+      console.log("ASDADAs2222");
 
     [err, imagen] = await to(Img_control.findOne({
         where:{id:id}
