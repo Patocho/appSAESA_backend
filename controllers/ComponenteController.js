@@ -58,7 +58,7 @@ const obtenerComponentes = async function(req, res){
         componentes_json.push(componentes_info);
     }
 
-    return ReS(res, {componentes_json});
+    return ReS(res, {componentes: componentes_json});
 
 }
 module.exports.obtenerComponentes = obtenerComponentes;
