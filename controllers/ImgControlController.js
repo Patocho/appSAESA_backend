@@ -12,6 +12,7 @@ const ObtenerImagenControl = async function(req, res){
     }));
     if(err) return ReE(res, err, 422);
 
+    console.log(imagen);
     return ReS(res, {recurso: imagen.recurso});
 }
 module.exports.ObtenerImagenControl = ObtenerImagenControl;
