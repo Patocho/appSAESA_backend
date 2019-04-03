@@ -19,6 +19,7 @@ const UserRolController = require('./../controllers/UserRolController');
 const AlertaController = require('./../controllers/AlertaController');
 const OperacionController = require('./../controllers/OperacionController');
 const ImgControlController = require('./../controllers/ImgControlController');
+const ImgTareasController = require('./../controllers/ImgTareasController');
 
 require('./../middleware/passport')(passport)
 /* GET home page. */
@@ -74,6 +75,7 @@ router.post('/operacion/todas', passport.authenticate('jwt', {session:false}), O
 router.post('/controlplagas/reporte', passport.authenticate('jwt', {session:false}), OperacionController.ReporteControlPlagas);
 
 router.post('/controlplagas/imagen', passport.authenticate('jwt', {session:false}), ImgControlController.ObtenerImagenControl);
+router.post('/controlplagas/imagenTareas', passport.authenticate('jwt', {session:false}), ImgTareasController.ObtenerImagenTarea);
 
 router.post('/test', passport.authenticate('jwt', {session:false}), OperacionController.test);
 
