@@ -4,6 +4,31 @@ const Subestacion = require('../models').Subestacion;
 //get all for a unique ID
 const getAllForSe = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
+    let err, componentes1, equipo,dato;
+    se_id = req.params.se_id;
+
+    [err,equipo] = await to(Equipo.findAll({
+        where:{SubestacionId : se_id},
+    }));
+    if (err) return ReE(res, err, 422);
+    componentes1 = [];
+    let cons_comp;
+    for (let i in equipo){
+        [err,cons_comp]=await to(Componente.findAll({
+            where:{EquipoId:equipo[i].id},
+            include:[{model:Equipo}]
+        }));
+        componentes1.push({nombre:equipo[i].nombre_eq, componentes:cons_comp});
+    }
+
+    return ReS(res, {equipos: componentes1});
+
+}
+module.exports.getAllForSe = getAllForSe;
+
+
+const obtenerComponentes = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
     let err, componentes, equipo,dato;
     se_id = req.params.se_id;
 
@@ -22,8 +47,18 @@ const getAllForSe = async function(req, res){
     }));
     if(err) return ReE(res, err, 422);
 
+    let componentes_json= [];
 
-    return ReS(res, {componentes});
+    for(i in componente){
+        let componentes_info ={
+            id:componente[i].id,
+            nombre_comp:componente[i].nombre_comp,
+            nombre_equipo:componente[i].Equipo.nombre_eq
+        }
+        componentes_json.push(componentes_info);
+    }
+
+    return ReS(res, {componentes_json});
 
 }
-module.exports.getAllForSe = getAllForSe;
+module.exports.obtenerComponentes = obtenerComponentes;
