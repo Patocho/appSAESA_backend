@@ -85,3 +85,31 @@ const crearOtCodSe = async function(req, res){
     
 }
 module.exports.crearOtCodSe = crearOtCodSe;
+
+
+const obtenerTodas = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let err, ots
+
+    [err, ots] = await to(Ot.findAll({
+        include:[{
+            model:Subestacion,
+            paranoid:true,
+            requider:true,
+        }]
+    }));
+    if(err) return ReE(res, err, 422);
+
+    ots_json =[];
+    for(let i in ots){
+        let ot_info ={
+            numero_ot:ots[i].numero_ot,
+            fecha_ot:ots[i].fecha_ot,
+            trabajo:ots[i].trabajo,
+            subestacion:ots[i].Subestacion.nombre_se
+        }
+        ots_json.push(ot_info);
+    }
+    return ReS(res,{ots : ots_json}, 201); 
+}
+module.exports.obtenerTodas = obtenerTodas;
