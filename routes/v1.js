@@ -39,6 +39,7 @@ router.post('/subestacion/ver_datos',passport.authenticate('jwt', {session:false
 
 router.get('/ots/:numero_ot',passport.authenticate('jwt', {session:false}),  OtController.getOt);
 router.post('/nueva_ot',passport.authenticate('jwt', {session:false}),  OtController.crearOt);
+router.post('/nueva_ot_codSe',passport.authenticate('jwt', {session:false}),  OtController.crearOtCodSe);
 
 router.get('/trampas/:se_id',passport.authenticate('jwt', {session:false}),  TrampaController.getAllForSe);
 router.post('/creartrampas',passport.authenticate('jwt', {session:false}), TrampaController.create);
