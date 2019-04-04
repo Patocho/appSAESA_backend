@@ -56,28 +56,31 @@ const crearOtCodSe = async function(req, res){
         where:{cod_se:cod_se}
     }));
     if(err) return ReE(res, err, 422);
-    console.log(subestacion);
 
-    const ot = {
-        numero_ot: body.numero_ot,
-        fecha_ot: body.fecha_ot,
-        trabajo: body.trabajo,
-        SubestacionId: subestacion.id,
-    };
+    if(subestacion != null){
+        const ot = {
+            numero_ot: body.numero_ot,
+            fecha_ot: body.fecha_ot,
+            trabajo: body.trabajo,
+            SubestacionId: subestacion.id,
+        };
 
-    console.log(ot);
+        [err, ots] = await to(Ot.findOne({where:{numero_ot: body.numero_ot}}));
 
-    [err, ots] = await to(Ot.findOne({where:{numero_ot: body.numero_ot}}));
+        if (ots == null){
+            let nueva_ot;
+            [err, nueva_ot] = await to(Ot.create(ot));
+            if (err) return ReE(res, err, 422);
 
-    if (ots == null){
-        let nueva_ot;
-        [err, nueva_ot] = await to(Ot.create(ot));
-        if (err) return ReE(res, err, 422);
-
-        return ReS(res, {message:'Ot creada satisfactoriamente'}, 201);
+            return ReS(res, {message:'Ot creada satisfactoriamente'}, 201);
+        }
+        else{
+            return ReE(res, "OT número: " + body.numero_ot + " ya existe", 422);
+        }
     }
+
     else{
-        return ReE(res, "OT número: " + body.numero_ot + " ya existe", 422);
+        return ReE(res, "Subestacion no encontrada (Codigo " + cod_se +")", 422);
     }
     
 }
