@@ -56,7 +56,7 @@ const crearOtCodSe = async function(req, res){
         where:{cod_se:cod_se}
     }));
     if(err) return ReE(res, err, 422);
-
+    console.log(subestacion);
 
     const ot = {
         numero_ot: body.numero_ot,
