@@ -65,6 +65,8 @@ const crearOtCodSe = async function(req, res){
         SubestacionId: subestacion.id,
     };
 
+    console.log(ot);
+
     [err, ots] = await to(Ot.findOne({where:{numero_ot: body.numero_ot}}));
 
     if (ots == null){
