@@ -3,7 +3,6 @@ const Img_control = require('../models').Img_control;
 
 const ObtenerImagenControl = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');
     let err, imagen;
     const body = req.body;
 
@@ -21,7 +20,6 @@ module.exports.ObtenerImagenControl = ObtenerImagenControl;
 
 const ObtenerImagenTarea = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');
     let err, alertas;
 
     return ReS(res, {alertas: alertas_json});
