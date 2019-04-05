@@ -38,3 +38,28 @@ const obtenerIdOperacion = async function(req, res){
 
 }
 module.exports.obtenerIdOperacion = obtenerIdOperacion;
+
+const crearImagen = async function(req,res){
+    res.setHeader('Content-Type','application/json');
+    const body = req.body;
+    let err, image,nueva_img;
+    [err, image] = await to(Img_term.findOne({where:{nombre: body.imagenterm}));
+
+    if (image == null){
+        const img = {
+            nombre: body.imagenterm,
+            tipo: body.termografica,
+            situacion: body.pendiente,
+            ComponenteId: body.id_comp,
+            OperacionId: body.id_operacion,
+        };
+        [err,nueva_img] = await to(Img_term.create(img));
+        if (err) return ReE(res, err, 422);
+        return ReE(res, {message: 'Imagen creada satisfactoriamente'}, 201); 
+
+    }
+    else{
+        return ReE(res, "Imagen: " + body.imagenterm + " ya existe", 422);
+    }
+}
+module.exports.crearImagen = crearImagen;
