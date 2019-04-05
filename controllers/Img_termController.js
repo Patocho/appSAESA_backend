@@ -55,7 +55,7 @@ const crearImagen = async function(req,res){
         };
         [err,nueva_img] = await to(Img_term.create(img));
         if (err) return ReE(res, err, 422);
-        return ReS(res, {id:img.id,message: 'Imagen creada satisfactoriamente'}, 201); 
+        return ReS(res, {id:nueva_img.id,message: 'Imagen creada satisfactoriamente'}, 201); 
 
     }
     else{
