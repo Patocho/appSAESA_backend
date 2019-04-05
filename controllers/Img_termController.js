@@ -43,7 +43,7 @@ const crearImagen = async function(req,res){
     res.setHeader('Content-Type','application/json');
     const body = req.body;
     let err, image,nueva_img;
-    [err, image] = await to(Img_term.findOne({where:{nombre: body.imagenterm}));
+    [err, image] = await to(Img_term.findOne({where:{nombre: body.imagenterm}}));
 
     if (image == null){
         const img = {
