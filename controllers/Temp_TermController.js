@@ -25,6 +25,7 @@ module.exports.getAllForPtos = getAllForPtos;
 const crearPuntos = async function(req,res){
     res.setHeader('Content-Type','application/json');
     const body = req.body;
+    console.log(body);
     let err, puntos,nuevos_puntos;
     [err, puntos] = await to(Temp_term.findOne({where:{ImgTermId:body.id_img}}));
 
@@ -44,7 +45,7 @@ const crearPuntos = async function(req,res){
             y6:body.puntoy6,
             ImgTermId:body.id_img,
         };
-        [err,nuevos_puntos] = await to(Temp_term.create(puntos));
+        [err,nuevos_puntos] = await to(Temp_term.create(ptos));
         if (err) return ReE(res, err, 422);
         return ReS(res, {message: 'puntos creados satisfactoriamente'}, 201); 
 
