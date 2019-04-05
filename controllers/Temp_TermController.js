@@ -25,6 +25,7 @@ module.exports.getAllForPtos = getAllForPtos;
 const crearPuntos = async function(req,res){
     res.setHeader('Content-Type','application/json');
     const body = req.body;
+    console.log(body);
     let err, puntos,nuevos_puntos;
     [err, puntos] = await to(Temp_term.findOne({where:{ImgTermId:body.id_img}}));
 
