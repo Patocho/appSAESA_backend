@@ -83,5 +83,6 @@ router.post('/controlplagas/imagenTareas', passport.authenticate('jwt', {session
 router.post('/test', passport.authenticate('jwt', {session:false}), OperacionController.test);
 
 router.get('/obtenerIdOperacion/:id_ot', passport.authenticate('jwt', {session:false}), Img_termController.obtenerIdOperacion);
+router.post('/nuevos_puntos',passport.authenticate('jwt', {session:false}),  Temp_TermController.crearPuntos);
 
 module.exports = router;
