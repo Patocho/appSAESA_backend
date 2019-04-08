@@ -88,7 +88,7 @@ const obtenerUsuarios = async function(req, res){
         let usuario = usuarios[i];
         let usuarios_info = usuario.toWeb();
 
-        usuarios_json.push({id:usuarios_info.id, email:usuarios_info.email});
+        usuarios_json.push({id:usuarios_info.id, email:usuarios_info.email, nombre:usuarios_info.nombre});
     }
 
     return ReS(res, {usuarios: usuarios_json});
