@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   	var User = sequelize.define('User', {
     	email    : {type: DataTypes.STRING, allowNull: false, unique: true, validate: { isEmail: {msg: "Email invalid."} }},
     	password : {type: DataTypes.STRING, allowNull: false, unique: false},
+    	nombre: {type: DataTypes.STRING, allowNull: false, unique: false},
   	},{paranoid:true});
 
   	User.associate = function(models){
