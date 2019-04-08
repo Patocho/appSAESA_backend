@@ -6,6 +6,7 @@ const getImage = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, image;
     const body = req.body;
+    console.log("###############################################");
     console.log(body);
     nombre = body.nombre;
     [err, image] = await to(Img_term.findOne({
