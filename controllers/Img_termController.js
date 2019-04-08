@@ -55,3 +55,19 @@ const crearImagen = async function(req,res){
     }
 }
 module.exports.crearImagen = crearImagen;
+
+const updateImagen = async function(req,res){
+    res.setHeader('Content-Type','application/json');
+    const body = req.body;
+    id_img = body.id_img;
+    recurso = body.recurso;
+    let err, image;
+    [err, image] = await to(Img_term.update({recurso:recurso,},{
+        where:{id:id_img}
+        }));
+
+    if(err) return ReE(res,"no encontrado" );
+
+    return ReS(res, {msg:"Update exitoso"}, 201);
+}
+module.exports.updateImagen = updateImagen;
