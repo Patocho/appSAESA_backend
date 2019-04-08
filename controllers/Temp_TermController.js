@@ -12,7 +12,7 @@ const getAllForPtos = async function(req, res){
             paranoid:true,
             required:true,
         }],
-        where:{operacionId: img_id,}
+        where:{id: img_id,}
     }));
     if (err) return ReE(res, err, 422);
 
