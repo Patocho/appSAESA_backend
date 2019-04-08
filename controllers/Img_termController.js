@@ -13,7 +13,7 @@ const getImage = async function(req, res){
         where:{nombre: nombre}}));
     //console.log(image);
     if (err) return ReE(res, err, 422);
-
+    console.log(image);
     return ReS(res, {id: image.id, nombre: image.nombre});
 
 }
