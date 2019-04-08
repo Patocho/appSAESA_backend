@@ -137,6 +137,15 @@ const registrotermo = async function(req, res){
     };
 
     [err, reg] = await to(Operacion.create(op));
+    if (err) return ReE(res, err, 422);
+    IdRegisto = reg.id;
+
+    const alert = {
+        alerta:body.alerta,
+        hanta:body.hanta,
+        OperacionId: IdRegisto
+    };
+    [err,al] = await to(Alerta.create(alert));
     
     return ReS(res,201);
 }

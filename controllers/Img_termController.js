@@ -5,10 +5,10 @@ const Operacion = require('../models').Operacion;
 const getImage = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, image;
-    situacion = req.params.situacion;
+    nombre = req.params.nombre;
     [err, image] = await to(Img_term.findAll({
         //attributes: ['id'],
-        where:{situacion: situacion}}));
+        where:{nombre: nombre}}));
     //console.log(image);
     if (err) return ReE(res, err, 422);
 
