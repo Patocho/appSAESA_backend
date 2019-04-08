@@ -6,7 +6,7 @@ const getAllForPtos = async function(req, res){
     let err, puntos;
     img_id = req.params.img_id;
 
-    [err, puntos] = await to(Temp_term.findAll({
+    [err, puntos] = await to(Temp_term.findOne({
         include:[{
             model:Img_term,
             paranoid:true,
@@ -17,7 +17,7 @@ const getAllForPtos = async function(req, res){
     if (err) return ReE(res, err, 422);
 
 
-    return ReS(res,{x1:puntos.x1, y1:puntos.x1, x2:puntos.x2, y2:puntos.x2, x3:puntos.x3, y3:puntos.x3} );
+    return ReS(res,{x1:puntos.x1, y1:puntos.x1, x2:puntos.x2, y2:puntos.x2, x3:puntos.x3, y3:puntos.x3,x4:puntos.x4, y4:puntos.x4, x5:puntos.x5, y5:puntos.x5, x6:puntos.x6, y6:puntos.x6} );
 
 }
 module.exports.getAllForPtos = getAllForPtos;
