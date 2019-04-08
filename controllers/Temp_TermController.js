@@ -67,10 +67,10 @@ const updateTemp = async function(req,res){
     det2 = body.delta2
     det3 = body.delta3
     let err, temperaturas,nuevos_temp;
-    [err, temperaturas] = await to(Temp_term.Update({tem1:temp1, tem2:temp2, tem3:temp3, delta12:det1, delta23:det2, delta31:det3},{
+    [err, temperaturas] = await to(Temp_term.update({tem1:temp1, tem2:temp2, tem3:temp3, delta12:det1, delta23:det2, delta31:det3},{
         where:{id:id_temp}
         }));
-    
+
     if(err) return ReE(res,"no encontrado" );
 
     return ReS(res, {msg:"Update exitoso"}, 201);
