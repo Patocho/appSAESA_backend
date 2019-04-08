@@ -65,7 +65,7 @@ router.post('/registro/imgtrp',passport.authenticate('jwt', {session:false}), Re
 router.post('/registro/imgot',passport.authenticate('jwt', {session:false}), RegistroController.registroImgOt);
 router.post('/registro/termo',passport.authenticate('jwt', {session:false}), RegistroController.registrotermo);
 
-router.get('/imgterm/:situacion',passport.authenticate('jwt', {session:false}), Img_termController.getImage);
+router.post('/imgterm/',passport.authenticate('jwt', {session:false}), Img_termController.getImage);
 router.post('/nueva_img',passport.authenticate('jwt', {session:false}),  Img_termController.crearImagen);
 router.get('/tempterm/:img_id',passport.authenticate('jwt', {session:false}), Temp_TermController.getAllForPtos);
 
