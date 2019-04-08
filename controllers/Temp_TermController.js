@@ -17,7 +17,7 @@ const getAllForPtos = async function(req, res){
     if (err) return ReE(res, err, 422);
 
 
-    return ReS(res,{x1:puntos.x1, y1:puntos.x1, x2:puntos.x2, y2:puntos.x2, x3:puntos.x3, y3:puntos.x3,x4:puntos.x4, y4:puntos.x4, x5:puntos.x5, y5:puntos.x5, x6:puntos.x6, y6:puntos.x6} );
+    return ReS(res,{id:puntos.id, x1:puntos.x1, y1:puntos.x1, x2:puntos.x2, y2:puntos.x2, x3:puntos.x3, y3:puntos.x3,x4:puntos.x4, y4:puntos.x4, x5:puntos.x5, y5:puntos.x5, x6:puntos.x6, y6:puntos.x6});
 
 }
 module.exports.getAllForPtos = getAllForPtos;
@@ -25,7 +25,6 @@ module.exports.getAllForPtos = getAllForPtos;
 const crearPuntos = async function(req,res){
     res.setHeader('Content-Type','application/json');
     const body = req.body;
-    console.log(body);
     let err, puntos,nuevos_puntos;
     [err, puntos] = await to(Temp_term.findOne({where:{ImgTermId:body.id_img}}));
 
@@ -57,3 +56,21 @@ const crearPuntos = async function(req,res){
 }
 module.exports.crearPuntos = crearPuntos;
 
+const updateTemp = async function(req,res){
+    res.setHeader('Content-Type','application/json');
+    const body = req.body;
+    id_temp = body.id_temp;
+    temp1=body.temp1
+    temp2=body.temp2
+    temp3=body.temp3
+    det1 = body.delta1
+    det2 = body.delta2
+    det3 = body.delta3
+    let err, temperaturas,nuevos_temp;
+    [err, temperaturas] = await to(Temp_term.Update({tem1:temp1, tem2:temp2, tem3:temp3, delta12:det1, delta23:det2, delta31:det3},
+        where:{id:id_temp}));
+    if(err) return ReE(res,"no encontrado" );
+
+    return ReS(res, {msg:"Update exitoso"}, 201);
+}
+module.exports.updateTemp = updateTemp;
