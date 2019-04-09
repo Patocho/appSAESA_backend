@@ -2,8 +2,8 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Componentes',[
-    /*{
+    /*return queryInterface.bulkInsert('Componentes',[
+    {
       cod_comp: '11001',
       nombre_comp: 'entrada',
       poloa_comp: '3',
@@ -224,12 +224,12 @@ updatedAt: new Date()
 createdAt: new Date(),
 updatedAt: new Date()
 
-  },*/
+  },
 
-  ],{});
+  ],{});*/
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Componentes', null, {});
+    //return queryInterface.bulkDelete('Componentes', null, {});
 
   }
 };
