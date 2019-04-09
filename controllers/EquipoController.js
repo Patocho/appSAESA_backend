@@ -37,7 +37,7 @@ const crearEquipo = async function(req, res){
     [err, ots] = await to(Ot.findOne({where:{cod_eq: body.cod_eq}}));
 
     if (ots == null){
-        [err, nuevo_equipo] = await to(Ot.create(equip));
+        [err, nuevo_equipo] = await to(Equipo.create(equip));
         if (err) return ReE(res, err, 422);
 
         return ReS(res, {message:'Equipo creado satisfactoriamente'}, 201);
