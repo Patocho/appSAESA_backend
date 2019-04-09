@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Trampas',[
-    {
+    /*{
       codigo_trampa: '00001',
       SubestacionId: 1,
       tipo:'principal',
@@ -151,7 +151,7 @@ updatedAt: new Date()
       tipo:'suplementaria',
       createdAt: new Date(),
       updatedAt: new Date()
-    },
+    },*/
     ],{});
   },
 

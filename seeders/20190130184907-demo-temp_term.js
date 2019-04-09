@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Temp_terms',[
-    {
+    /*{
     x1: 63,
     y1: 49,
     x2: 161,
@@ -20,7 +20,7 @@ createdAt: new Date(),
 updatedAt: new Date(),
 ImgTermId:1
 
-    }
+    }*/
     ],{});
   },
 

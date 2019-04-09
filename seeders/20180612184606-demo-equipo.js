@@ -4,7 +4,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Equipos',[
-    {
+    /*{
       cod_eq: '100001',
       nombre_eq: '59bt1',
       ubic_tec_eq: 'TX-SE-021',
@@ -92,7 +92,7 @@ updatedAt: new Date()
 createdAt: new Date(),
 updatedAt: new Date()
 
-  },
+  },*/
 
   ],{});
   },

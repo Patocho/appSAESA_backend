@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Componentes',[
-    {
+    /*{
       cod_comp: '11001',
       nombre_comp: 'entrada',
       poloa_comp: '3',
@@ -224,7 +224,7 @@ updatedAt: new Date()
 createdAt: new Date(),
 updatedAt: new Date()
 
-  },
+  },*/
 
   ],{});
   },
