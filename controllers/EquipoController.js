@@ -21,3 +21,30 @@ const getAllForSe = async function(req, res){
 
 }
 module.exports.getAllForSe = getAllForSe;
+
+const crearEquipo = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    let err, equipo, nuevo_equipo;
+
+    const equip = {
+        cod_eq: body.cod_eq,
+        nombre_eq: body.nombre_eq,
+        ubic_tec_eq: body.ubic_tec_eq,
+        SubestacionId: body.SubestacionId,
+    };
+
+    [err, ots] = await to(Ot.findOne({where:{cod_eq: body.cod_eq}}));
+
+    if (ots == null){
+        [err, nuevo_equipo] = await to(Ot.create(equip));
+        if (err) return ReE(res, err, 422);
+
+        return ReS(res, {message:'Equipo creado satisfactoriamente'}, 201);
+    }
+    else{
+        return ReE(res, "Equipo: " + body.cod_eq + " ya existe", 422);
+    }
+    
+}
+module.exports.crearEquipo = crearEquipo;
