@@ -66,3 +66,20 @@ const AlertaVista = async function(req, res){
     return ReS(res, {msg:"Marcado como Visto exitosamente"}, 201);
 }
 module.exports.AlertaVista = AlertaVista;
+
+const alertaTermo = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    IdRegisto = body.id;
+
+    const alert = {
+        alerta:body.alerta,
+        hanta:body.hanta,
+        OperacionId: IdRegisto
+    };
+    [err,al] = await to(Alerta.create(alert));
+    
+    return ReS(res,201);
+
+}
+module.exports.alertaTermo = alertaTermo;

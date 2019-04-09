@@ -87,5 +87,6 @@ router.get('/obtenerIdOperacion/:id_ot', passport.authenticate('jwt', {session:f
 router.post('/nuevos_puntos',passport.authenticate('jwt', {session:false}),  Temp_TermController.crearPuntos);
 router.post('/updatetemp', passport.authenticate('jwt', {session:false}), Temp_TermController.updateTemp);
 router.post('/updateimagen', passport.authenticate('jwt', {session:false}), Img_termController.updateImagen);
+router.post('/alertatermo', passport.authenticate('jwt', {session:false}), AlertaController.alertaTermo);
 
 module.exports = router;
