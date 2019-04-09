@@ -11,7 +11,7 @@ const getImage = async function(req, res){
         //attributes: ['id'],
         where:{nombre: nombre}}));
     if (err) return ReE(res, err, 422);
-    return ReS(res, {id: image.id, nombre: image.nombre});
+    return ReS(res, {id: image.id, nombre: image.nombre, id_oper: image.OperacionId});
 
 }
 module.exports.getImage = getImage;
