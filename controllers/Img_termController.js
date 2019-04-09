@@ -7,6 +7,7 @@ const getImage = async function(req, res){
     let err, image;
     const body = req.body;
     nombre = body.nombre;
+    console.log(body);
     [err, image] = await to(Img_term.findOne({
         //attributes: ['id'],
         where:{nombre: nombre}}));
