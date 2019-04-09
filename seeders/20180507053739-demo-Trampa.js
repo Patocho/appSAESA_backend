@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Trampas',[
+    /*return queryInterface.bulkInsert('Trampas',[
     {
       codigo_trampa: '00001',
       SubestacionId: 1,
@@ -152,10 +152,10 @@ updatedAt: new Date()
       createdAt: new Date(),
       updatedAt: new Date()
     },
-    ],{});
+    ],{});*/
   },
 
   down: (queryInterface, Sequelize) => {
-      return queryInterface.bulkDelete('Trampas', null, {});
+      //return queryInterface.bulkDelete('Trampas', null, {});
   }
 };

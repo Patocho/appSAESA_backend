@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Componentes',[
+    /*return queryInterface.bulkInsert('Componentes',[
     {
       cod_comp: '11001',
       nombre_comp: 'entrada',
@@ -226,10 +226,10 @@ updatedAt: new Date()
 
   },
 
-  ],{});
+  ],{});*/
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Componentes', null, {});
+    //return queryInterface.bulkDelete('Componentes', null, {});
 
   }
 };

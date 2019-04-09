@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Temp_terms',[
+    /*return queryInterface.bulkInsert('Temp_terms',[
     {
     x1: 63,
     y1: 49,
@@ -21,10 +21,10 @@ updatedAt: new Date(),
 ImgTermId:1
 
     }
-    ],{});
+    ],{});*/
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Temp_terms', null, {});
+    //return queryInterface.bulkDelete('Temp_terms', null, {});
   }
 };

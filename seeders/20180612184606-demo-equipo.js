@@ -3,7 +3,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Equipos',[
+    /*return queryInterface.bulkInsert('Equipos',[
     {
       cod_eq: '100001',
       nombre_eq: '59bt1',
@@ -94,9 +94,9 @@ updatedAt: new Date()
 
   },
 
-  ],{});
+  ],{});*/
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Equipos', null, {});
+    //return queryInterface.bulkDelete('Equipos', null, {});
   }
 };
