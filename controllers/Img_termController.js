@@ -11,6 +11,7 @@ const getImage = async function(req, res){
     [err, image] = await to(Img_term.findOne({
         //attributes: ['id'],
         where:{nombre: nombre}}));
+    console.log(image);
     if (err) return ReE(res, err, 422);
     return ReS(res, {id: image.id, nombre: image.nombre, id_oper: image.OperacionId});
 
