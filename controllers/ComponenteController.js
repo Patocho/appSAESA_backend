@@ -63,3 +63,32 @@ const obtenerComponentes = async function(req, res){
 
 }
 module.exports.obtenerComponentes = obtenerComponentes;
+
+const crearComponente = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    let err, componente, nuevo_componente;
+
+    const comp = {
+        cod_comp: body.cod_comp,
+        nombre_comp: body.nombre_comp,
+        poloa_comp: body.poloa_comp,
+        polob_comp: body.polob_comp,
+        poloc_comp: body.poloc_comp,
+        EquipoId: body.EquipoId
+    };
+
+    [err, componente] = await to(Componente.findOne({where:{cod_comp: body.cod_comp}}));
+
+    if (componente == null){
+        [err, nuevo_componente] = await to(Componente.create(comp));
+        if (err) return ReE(res, err, 422);
+
+        return ReS(res, {message:'Componente creado satisfactoriamente'}, 201);
+    }
+    else{
+        return ReE(res, "Componente: " + body.cod_comp + " ya existe", 422);
+    }
+    
+}
+module.exports.crearComponente = crearComponente;
