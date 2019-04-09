@@ -34,7 +34,7 @@ const crearEquipo = async function(req, res){
         SubestacionId: body.SubestacionId,
     };
 
-    [err, ots] = await to(Ot.findOne({where:{cod_eq: body.cod_eq}}));
+    [err, equipo] = await to(Equipo.findOne({where:{cod_eq: body.cod_eq}}));
 
     if (ots == null){
         [err, nuevo_equipo] = await to(Equipo.create(equip));
