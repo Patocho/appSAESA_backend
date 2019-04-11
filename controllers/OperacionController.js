@@ -7,6 +7,7 @@ const Otra_tarea = require('../models').Otra_tarea;
 const Img_control = require('../models').Img_control;
 const Registro_estado = require('../models').Registro_estado;
 const Img_tareas = require('../models').Img_tareas;
+const User = require('../models').User;
 
 
 const ObtenerParaSubestacion = async function(req, res){
@@ -115,7 +116,12 @@ const ReporteControlPlagas = async function(req, res){
     id = body.id;
 
     [err, operacion] = await to(Operacion.findOne({
-        where:{id:id}
+        where:{id:id},
+        include:[{
+            model:User,
+            paranoid:true,
+            required:true
+        }]
     }));
     if(err) return ReE(res, err, 422);
     ot_id = operacion.OtId;
@@ -128,6 +134,7 @@ const ReporteControlPlagas = async function(req, res){
         obs_operacion:operacion.obs_operacion,
         tr_ret:operacion.tr_ret,
         tr_inst:operacion.tr_inst,
+        inspector:operacion.User.nombre
     };
 
     [err, ot] = await to (Ot.findOne({
