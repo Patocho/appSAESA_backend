@@ -150,12 +150,14 @@ const crearNuevaSE = async function(req, res){
     [err, sube] = await to(Subestacion.findOne({
         where:{cod_se:cod_se}
     }));
+    if(err) return ReE(res, 'Un error se ha producido al intentar verificar existencia de subestación');
 
+    console.log(sube);
     let se ={
         cod_se : cod_se,
         nombre_se: nombre_se
     }
-    if(err) return ReE(res, 'Un error se ha producido al intentar verificar existencia de subestación');
+    
 
     if (sube != null) {
        [err, subestacion] = await to(Subestación.create(se));
