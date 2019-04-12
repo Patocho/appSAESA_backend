@@ -72,6 +72,7 @@ router.post('/nueva_img',passport.authenticate('jwt', {session:false}),  Img_ter
 router.get('/tempterm/:img_id',passport.authenticate('jwt', {session:false}), Temp_TermController.getAllForPtos);
 
 router.get('/alertas/todas', passport.authenticate('jwt', {session:false}), AlertaController.ObtenerTodas);
+router.post('/alertas/se', passport.authenticate('jwt', {session:false}), AlertaController.ObtenerSe);
 router.post('/alertas/vista', passport.authenticate('jwt', {session:false}), AlertaController.AlertaVista);
 
 router.post('/operacion/se', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaSubestacion);
