@@ -57,7 +57,7 @@ const remove = async function(req, res){
     let idse = body.id;
 
     [err, trampa] = await to(Subestacion.destroy({where:{id:idse}}));
-    if(err) return ReE(res, 'Un error se ha producido al intentar eliminar una Subestacion');
+    if(err) return ReE(res, 'Un error se ha producido al intentar eliminar una Subestacion', 422);
 
     return ReS(res, {message:'Subestacion eliminada'}, 204); 
 }
@@ -116,7 +116,7 @@ const verDatos = async function(req, res){
                 SubestacionId:ot.SubestacionId
             });
         }
-    }).catch(err =>{if(err) return ReE(res, 'Subestación NO encontrada');})
+    }).catch(err =>{if(err) return ReE(res, 'Subestación NO encontrada', 422);})
      );
 
     dato = {
@@ -137,3 +137,37 @@ const verDatos = async function(req, res){
     return ReS(res, {dato}, 201);
 }
 module.exports.verDatos = verDatos;
+
+
+const crearNuevaSE = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let subestacion, err, sube;
+    body = req.body;
+
+    let cod_se = body.cod_se;
+    let nombre_se = body.nombre_se;
+
+    [err, sube] = await to(Subestacion.findOne({
+        where:{cod_se:cod_se}
+    }));
+
+    let se ={
+        cod_se : cod_se,
+        nombre_se: nombre_se
+    }
+    if(err) return ReE(res, 'Un error se ha producido al intentar verificar existencia de subestación');
+
+    if (sube != null) {
+       [err, subestacion] = await to(Subestación.create(se));
+       if (err) return ReE(res, "Ha ocurrido un error al intentar crear nueva subestación", 422);
+
+       return ReS(res, {message:"Se ha creado la subestación " + nombre_se + " satisfactoriamente"}, 204); 
+    }
+
+    else{
+        return ReE(res, "Ya existe subestación con código " + cod_se, 422);
+    }
+    
+}
+module.exports.crearNuevaSE = crearNuevaSE;
+

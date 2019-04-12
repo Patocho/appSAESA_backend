@@ -36,6 +36,8 @@ router.post('/users/ver_datos',passport.authenticate('jwt', {session:false}),  U
 router.get('/subestacions',passport.authenticate('jwt', {session:false}),  SubestacionController.getAll);
 router.post('/borrarSE',passport.authenticate('jwt', {session:false}),  SubestacionController.remove);
 router.post('/subestacion/ver_datos',passport.authenticate('jwt', {session:false}),  SubestacionController.verDatos);
+router.post('/subestacion/nueva',passport.authenticate('jwt', {session:false}),  SubestacionController.crearNuevaSE);
+
 
 router.get('/ots/:numero_ot',passport.authenticate('jwt', {session:false}),  OtController.getOt);
 router.post('/nueva_ot',passport.authenticate('jwt', {session:false}),  OtController.crearOt);
