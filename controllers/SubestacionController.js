@@ -159,7 +159,7 @@ const crearNuevaSE = async function(req, res){
     
     let subestacion
     if (sube == null) {
-       [err, subestacion] = await to(Subestación.create(se));
+       [err, subestacion] = await to(Subestacion.create(se));
        if (err) return ReE(res, "Ha ocurrido un error al intentar crear nueva subestación", 422);
 
        return ReS(res, {message:"Se ha creado la subestación " + nombre_se + " satisfactoriamente"}, 204); 
