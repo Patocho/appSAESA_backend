@@ -52,6 +52,7 @@ const getAll = async function(req, res){
 module.exports.getAll = getAll;
 
 const remove = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
     let subestacion, err;
     body = req.body;
     let idse = body.id;
@@ -59,7 +60,7 @@ const remove = async function(req, res){
     [err, trampa] = await to(Subestacion.destroy({where:{id:idse}}));
     if(err) return ReE(res, 'Un error se ha producido al intentar eliminar una Subestacion', 422);
 
-    return ReS(res, {message:'Subestacion eliminada'}, 204); 
+    return ReS(res, {message:'Subestacion eliminada'}, 201); 
 }
 module.exports.remove = remove;
 
