@@ -141,7 +141,7 @@ module.exports.verDatos = verDatos;
 
 const crearNuevaSE = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    let subestacion, err, sube;
+    let err, sube;
     body = req.body;
 
     let cod_se = body.cod_se;
@@ -157,7 +157,7 @@ const crearNuevaSE = async function(req, res){
         nombre_se: nombre_se
     }
     
-
+    let subestacion
     if (sube == null) {
        [err, subestacion] = await to(Subestación.create(se));
        if (err) return ReE(res, "Ha ocurrido un error al intentar crear nueva subestación", 422);
