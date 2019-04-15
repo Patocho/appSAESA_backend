@@ -124,7 +124,20 @@ const crearOtCodSeMasivo = async function(req, res){
 
     for(i in body){
         let arreglo = JSON.parse(body[i]);
-        ots.push(arreglo);
+
+        [err, subestacion] = await to (Subestacion.findOne({
+            where:{cod_se:arreglo.cod_se},
+            attributes: ['id']
+        }));
+        if (err) return ReE(res, "Subestacion no encontrada (Codigo " + arreglo.cod_se +")", 422);
+
+        let ot ={
+            numero_ot:arreglo.numero_ot,
+            fecha_ot:arreglo.fecha_ot,
+            trabajo:arreglo.trabajo,
+            SubestacionId:subestacion.id
+        }
+        ots.push(ot);
     }
 
     console.log(ots);
