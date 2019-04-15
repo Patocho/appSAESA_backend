@@ -11,6 +11,12 @@ module.exports = {
       alerta: {
         type: Sequelize.STRING
       },
+      alertaTermo: {
+        type: Sequelize.STRING
+      },
+      nombreImagen: {
+        type: Sequelize.STRING
+      },
       hanta: {
         type: Sequelize.STRING
       },
