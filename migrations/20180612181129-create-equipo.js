@@ -28,6 +28,10 @@ module.exports = {
       posicion: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      tempmax: {
+        allowNull: false,
+        type: Sequelize.FLOAT
       }
     });
   },
