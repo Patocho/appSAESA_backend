@@ -118,7 +118,7 @@ module.exports.obtenerTodas = obtenerTodas;
 const crearOtCodSeMasivo = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
-    let err, ots, subestacion;
+    let err, ots, subestacion, ots_reg;
     
     ots = [];
 
@@ -140,7 +140,8 @@ const crearOtCodSeMasivo = async function(req, res){
         ots.push(ot);
     }
 
-    console.log(ots);
+    [err, ots_reg] = await to (Ot.bulkCreate(ots));
+    if (err) console.log(err);
     
     
 }
