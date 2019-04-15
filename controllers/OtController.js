@@ -118,7 +118,7 @@ module.exports.obtenerTodas = obtenerTodas;
 const crearOtCodSeMasivo = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
-    let err, ots, subestacion, ots_reg;
+    let err, ots, subestacion, ots_reg, ot_exist;
     
     ots = [];
 
@@ -131,20 +131,29 @@ const crearOtCodSeMasivo = async function(req, res){
         }));
         if (err) return ReE(res, "Subestacion no encontrada (Codigo " + arreglo.cod_se +")", 422);
 
-        let ot ={
-            numero_ot:arreglo.numero_ot,
-            fecha_ot:arreglo.fecha_ot,
-            trabajo:arreglo.trabajo,
-            SubestacionId:subestacion.id
+        [err, ot_exist] = await to (Ot.findOne({
+            where:{numero_ot:arreglo.numero_ot},
+            attributes: ['id']
+        }));
+
+        if (ot_exist == null){
+            let ot ={
+                numero_ot:arreglo.numero_ot,
+                fecha_ot:arreglo.fecha_ot,
+                trabajo:arreglo.trabajo,
+                SubestacionId:subestacion.id
+            }
+            ots.push(ot);
         }
-        ots.push(ot);
+
+        else{
+            return ReE(res, "OT número: " + body.numero_ot + " ya existe", 422);
+        }
     }
 
     [err, ots_reg] = await to (Ot.bulkCreate(ots));
     if (err) console.log(err);
 
     return ReS(res, {message:'Ots creadas satisfactoriamente'}, 201);
-    
-    
 }
 module.exports.crearOtCodSeMasivo = crearOtCodSeMasivo;
