@@ -119,7 +119,7 @@ const crearOtCodSeMasivo = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
     let err, ots, subestacion;
-    console.log(body);
+    console.log(body.ots);
     for(i in ots){
         console.log("ASDSAD");
         let arreglo = JSON.parse(ots[i]);
