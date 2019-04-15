@@ -119,10 +119,13 @@ const crearOtCodSeMasivo = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
     let err, ots, subestacion;
+    ots = body.ots;
 
-    let arreglo = JSON.parse(body.ots);
-
-    console.log(arreglo);
+    for(i in ots){
+        let arreglo = JSON.parse(ots[i]);
+        console.log(arreglo);
+    }
+    
     
 }
 module.exports.crearOtCodSeMasivo = crearOtCodSeMasivo;
