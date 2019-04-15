@@ -147,7 +147,7 @@ const crearOtCodSeMasivo = async function(req, res){
         }
 
         else{
-            return ReE(res, "OT número: " + body.numero_ot + " ya existe", 422);
+            return ReE(res, "OT número: " + arreglo.numero_ot + " ya existe", 422);
         }
     }
 
