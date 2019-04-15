@@ -131,7 +131,7 @@ const crearOtCodSeMasivo = async function(req, res){
         }));
         if (err) return ReE(res, err, 422);
 
-        if(subestacion == null) return ReE(res, "Subestacion no encontrada (Codigo " + arreglo.cod_se +")", 422),
+        if(subestacion == null) return ReE(res, "Subestacion no encontrada (Codigo " + arreglo.cod_se +")", 422);
 
         [err, ot_exist] = await to (Ot.findOne({
             where:{numero_ot:arreglo.numero_ot},
