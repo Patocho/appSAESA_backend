@@ -118,10 +118,11 @@ module.exports.obtenerTodas = obtenerTodas;
 const crearOtCodSeMasivo = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
-    let cod_se = body.cod_se;
     let err, ots, subestacion;
 
-    console.log(body);
+    let arreglo = json_decode(body.ots);
+
+    console.log(arreglo);
     
 }
 module.exports.crearOtCodSeMasivo = crearOtCodSeMasivo;
