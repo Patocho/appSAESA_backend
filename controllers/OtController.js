@@ -142,6 +142,8 @@ const crearOtCodSeMasivo = async function(req, res){
 
     [err, ots_reg] = await to (Ot.bulkCreate(ots));
     if (err) console.log(err);
+
+    return ReS(res, {message:'Ots creadas satisfactoriamente'}, 201);
     
     
 }
