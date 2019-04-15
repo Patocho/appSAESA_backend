@@ -14,7 +14,7 @@ module.exports = {
           unique: true
       },
       password : {
-          type: DataTypes.STRING, 
+          type: Sequelize.STRING, 
           allowNull: false, 
           unique: false
       },
