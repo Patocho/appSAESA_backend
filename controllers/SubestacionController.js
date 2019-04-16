@@ -119,7 +119,7 @@ const verDatos = async function(req, res){
             }],
         }],
     }));
-    if(err) return ReE(res, 'Error Fatal', 422);
+    if(err) return ReE(res, 'Error Fatal2', 422);
 
     let cantImg2 = contador_img2.count;
 
