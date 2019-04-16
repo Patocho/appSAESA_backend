@@ -114,7 +114,7 @@ const verDatos = async function(req, res){
                     model:Subestacion,
                     paranoid:true,
                     required:true,
-                    where:{SubestacionId: ssee_id }
+                    where:{id: ssee_id }
                 }],
             }],
         }],
