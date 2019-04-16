@@ -66,16 +66,16 @@ module.exports.remove = remove;
 
 const verDatos = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    let err, usuario, rol, ots, ssee, subestacion, dato, algo, contador_img;
+    let err, usuario, rol, ots, ssee, subestacion, dato, algo, contador_img, contador_img2;
     const body = req.body;
     ssee_id = body.id;
 
     //datos SSEE solicitada
     [err, subestacion] = await to(Subestacion.findOne({where:{id:ssee_id}}));
-    if(err) return ReE(res, 'Subestación NO encontrada');
+    if(err) return ReE(res, 'Subestación NO encontrada', 422);
 
     if(subestacion == null){
-        return ReE(res, 'Subestación NO encontrada');
+        return ReE(res, 'Subestación NO encontrada', 422);
     }
 
     [err, contador_img] = await to (Img_control.findAndCountAll({
@@ -92,13 +92,36 @@ const verDatos = async function(req, res){
             }],
         }],
     }));
-    if(err) return ReE(res, 'Error Fatal');
+    if(err) return ReE(res, 'Error Fatal', 422);
 
-    if(contador_img == null){
+    /*if(contador_img == null){
         return ReE(res, '#####################NUUULOOOOOOOOOOO##############');
-    }
+    }*/
 
-    let cantImg1 = contador_img.count
+    let cantImg1 = contador_img.count;
+
+    [err, contador_img2] = await to (Img_tareas.findAndCountAll({
+        attributes: ['id'],
+        include:[{
+            model:Operacion,
+            paranoid: true,
+            required: true,
+            include:[{
+                model:Ot,
+                paranoid: true,
+                required: true,
+                include:[{
+                    model:Subestacion,
+                    paranoid:true,
+                    required:true,
+                    where:{SubestacionId: ssee_id }
+                }],
+            }],
+        }],
+    }));
+    if(err) return ReE(res, 'Error Fatal', 422);
+
+    let cantImg2 = contador_img2.count;
 
     let datos_ot =[];
     //let sql = 
@@ -127,7 +150,7 @@ const verDatos = async function(req, res){
             nombre_se: subestacion.nombre_se,
         },
         datos_ot,
-        cantImg: cantImg1,
+        cantImg: cantImg1 + cantImg2,
     }
 
     
