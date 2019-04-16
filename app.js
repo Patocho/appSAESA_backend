@@ -7,6 +7,7 @@ const express 		= require('express');
 const logger 	    = require('morgan');
 const bodyParser 	= require('body-parser');
 const passport      = require('passport');
+const cors          = require('cors');//*********************
 
 const v1 = require('./routes/v1');
 
@@ -20,6 +21,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 //Passport
 app.use(passport.initialize());
+
+//Cors ***************************
+app.use(cors());
 
 //DATABASE
 const models = require("./models");
