@@ -182,7 +182,12 @@ const ReporteControlPlagas = async function(req, res){
             model:Registro_estado,
             paranoid:true,
             required:true,
-            where:{OperacionId:id}
+            where:{OperacionId:id},
+            include:[{
+                model:Trampa,
+                paranoid:true,
+                required:true
+            }],
         }],
         attributes:{exclude:['recurso']}
     }));
@@ -192,7 +197,8 @@ const ReporteControlPlagas = async function(req, res){
     for(i in imgs){
         let img = imgs[i];
         let ids ={
-            id:img.id
+            id:img.id,
+            cod_trampa:img.Registro_estado.Trampa.codigo_trampa
         };
         imgs_id.push(ids);
     }
