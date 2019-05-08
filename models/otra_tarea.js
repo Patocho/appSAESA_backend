@@ -5,8 +5,6 @@ module.exports = (sequelize, DataTypes) => {
     corte_pasto_: DataTypes.STRING,
     nebulizacion: DataTypes.STRING,
     obs_tarea: DataTypes.STRING,
-    tareaNueva: DataTypes.STRING,
-    tarea: DataTypes.STRING,
   }, {paranoid:true});
   Otra_tarea.associate = function(models) {
     Otra_tarea.belongsTo(models.Operacion);
