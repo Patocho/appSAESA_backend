@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     nebulizacion: DataTypes.STRING,
     obs_tarea: DataTypes.STRING,
     tareaNueva: DataTypes.STRING,
+    tarea: DataTypes.STRING,
   }, {paranoid:true});
   Otra_tarea.associate = function(models) {
     Otra_tarea.belongsTo(models.Operacion);
