@@ -2,8 +2,9 @@
   "name": "backend_saesa",
   "version": "1.0.0",
   "scripts": {
-    "start": "forever start --minUptime 1000 --spinSleepTime 1000 -c nodemon ./bin/www",
-    "stop":  "forever stop ./bin/www"
+    "start": "nodemon ./bin/www",
+    //"start": "forever start --minUptime 1000 --spinSleepTime 1000 -c nodemon ./bin/www",
+    //"stop":  "forever stop ./bin/www"
   },
   "author": "Patricio Suazo",
   "license": "ISC",
