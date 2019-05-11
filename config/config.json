@@ -4,7 +4,10 @@
     "password": "patoxox132100",
     "database": "testsaesa",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "config": {
+      "operatorsAliases": false
+    }
   },
   "test": {
     "username": "root",
