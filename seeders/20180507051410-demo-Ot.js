@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Ots',[] ,{});
@@ -9,3 +9,4 @@ module.exports = {
       return queryInterface.bulkDelete('Ots',[], {});
   }
 };
+*/
