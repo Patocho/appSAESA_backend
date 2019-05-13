@@ -96,7 +96,8 @@ const obtenerTodas = async function(req, res){
             model:Subestacion,
             paranoid:true,
             requider:true,
-        }]
+        }],
+        order:[['fecha_ot','ASC']]
     }));
     if(err) return ReE(res, err, 422);
 
