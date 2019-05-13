@@ -2,10 +2,10 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return null;
+    return queryInterface.bulkInsert('Ots',null ,{});
   },
 
   down: (queryInterface, Sequelize) => {
-      return null;
+      return queryInterface.bulkDelete('Ots',null, {});
   }
 };
