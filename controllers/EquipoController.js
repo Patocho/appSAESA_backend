@@ -31,6 +31,8 @@ const crearEquipo = async function(req, res){
         cod_eq: body.cod_eq,
         nombre_eq: body.nombre_eq,
         ubic_tec_eq: body.ubic_tec_eq,
+        posicion:body.posicion,
+        tempmax:body.tempmax,
         SubestacionId: body.SubestacionId,
     };
 
