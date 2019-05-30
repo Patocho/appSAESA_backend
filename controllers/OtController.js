@@ -1,5 +1,6 @@
 const Ot = require('../models').Ot;
 const Subestacion = require('../models').Subestacion;
+const Operacion = require('../models').Operacion;
 
 //get all for a unique ID
 const getOt = async function(req, res){
@@ -8,10 +9,14 @@ const getOt = async function(req, res){
     numero_ot = req.params.numero_ot;
 
     [err, ots] = await to(Ot.findOne({where:{numero_ot: numero_ot}}));
-
-    console.log(ots);
     if (err) return ReE(res, err, 422);
     if(!ots) return ReE(res, "OT no encontrada: "+numero_ot, 422);
+
+    [err, operacion] = await to (Operacion.findOne({
+        where: {OtId: ots.id}
+    }));
+    if (err) return ReE(res, err, 422);
+    if(!operacion) return ReE(res, "No existe operación asociada a la Ot "+numero_ot, 422);
 
     return ReS(res, {id: ots.id, numero_ot: ots.numero_ot, trabajo:ots.trabajo, id_se:ots.SubestacionId});
 
