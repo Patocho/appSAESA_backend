@@ -16,7 +16,7 @@ const getAllForSe = async function(req, res){
 
         equipos_json.push(equipos_info);
     }
-    if (equipos_json == null){
+    if (equipos_json.length == 0){
         return ReE(res, "Subestación no posse equipos creados", 422);
     }
     else{
