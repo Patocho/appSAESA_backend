@@ -1,6 +1,6 @@
 const Equipo = require('../models').Equipo;
+const Subestacion = require('../models').Subestacion;
 
-//get all for a unique ID
 const getAllForSe = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, equipos;
@@ -16,10 +16,14 @@ const getAllForSe = async function(req, res){
 
         equipos_json.push(equipos_info);
     }
-
-    return ReS(res, {equipos: equipos_json});
-
+    if (equipos_json == null){
+        return ReE(res, "Subestación no posse equipos creados", 422);
+    }
+    else{
+        return ReS(res, {equipos: equipos_json});
+    }
 }
+
 module.exports.getAllForSe = getAllForSe;
 
 const crearEquipo = async function(req, res){
