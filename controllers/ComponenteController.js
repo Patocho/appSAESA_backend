@@ -72,9 +72,9 @@ const obtenerEqComp = async function(req, res){
     const body = req.body;
     equipoId = body.equipoId;
 
-    [err, componentes] = await to(Componente.findAll({where:{equipoId: equipoId}}));
+    [err, componentes] = await to(Componente.findAll({where:{EquipoId: equipoId}}));
     if (err) return ReE(res, err, 422);
-
+    console.log(componentes);
     let componentes_json = [];
     for (let i in componentes) {
         let componente = componentes[i];
@@ -102,7 +102,7 @@ const crearComponente = async function(req, res){
         poloa_comp: body.poloa_comp,
         polob_comp: body.polob_comp,
         poloc_comp: body.poloc_comp,
-        EquipoId: body.EquipoId
+        EquipoId: body.equipoId
     };
 
     [err, componente] = await to(Componente.findOne({where:{cod_comp: body.cod_comp}}));
