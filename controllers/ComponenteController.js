@@ -69,7 +69,8 @@ module.exports.obtenerComponentes = obtenerComponentes;
 const obtenerEqComp = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, componentes;
-    equipoId = req.params.equipoId;
+    const body = req.body;
+    equipoId = bopdy.equipoId;
 
     [err, componentes] = await to(Componente.findAll({where:{equipoId: equipoId}}));
     if (err) return ReE(res, err, 422);
