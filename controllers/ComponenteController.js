@@ -42,7 +42,7 @@ const obtenerComponentes = async function(req, res){
                 model:Subestacion,
                 paranoid:true, 
                 required:true,
-                where:{id:se_id}
+                where:{id:se_id},
                 order:[['posicion','ASC']],
             }]
         }]
