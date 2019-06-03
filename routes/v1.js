@@ -93,6 +93,9 @@ router.post('/updatetemp', passport.authenticate('jwt', {session:false}), Temp_T
 router.post('/updateimagen', passport.authenticate('jwt', {session:false}), Img_termController.updateImagen);
 router.post('/alertatermo', passport.authenticate('jwt', {session:false}), AlertaController.alertaTermo);
 router.post('/nuevoequipo',passport.authenticate('jwt', {session:false}),  EquipoController.crearEquipo);
+router.post('/updateequipo',passport.authenticate('jwt', {session:false}),  EquipoController.updateEquipo);
 router.post('/nuevocomponente',passport.authenticate('jwt', {session:false}),  ComponenteController.crearComponente);
+router.post('/componentes',passport.authenticate('jwt', {session:false}),  ComponenteController.obtenerEqComp);
+router.post('/updatecomponente',passport.authenticate('jwt', {session:false}),  ComponenteController.updateComponente);
 
 module.exports = router;
