@@ -9,6 +9,7 @@ const getAllForSe = async function(req, res){
 
     [err,equipo] = await to(Equipo.findAll({
         where:{SubestacionId : se_id},
+        order:[['posicion','ASC']],
     }));
     if (err) return ReE(res, err, 422);
     componentes1 = [];
@@ -42,6 +43,7 @@ const obtenerComponentes = async function(req, res){
                 paranoid:true, 
                 required:true,
                 where:{id:se_id}
+                order:[['posicion','ASC']],
             }]
         }]
     }));
@@ -63,6 +65,30 @@ const obtenerComponentes = async function(req, res){
 
 }
 module.exports.obtenerComponentes = obtenerComponentes;
+
+const obtenerEqComp = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let err, componentes;
+    equipoId = req.params.equipoId;
+
+    [err, componentes] = await to(Componente.findAll({where:{equipoId: equipoId}}));
+    if (err) return ReE(res, err, 422);
+
+    let componentes_json = [];
+    for (let i in componentes) {
+        let componente = componentes[i];
+        let componentes_info = componente.toWeb();
+
+        componentes_json.push(componentes_info);
+    }
+    if (componentes_json.length == 0){
+        return ReE(res, "Equipo no posee componentes creados", 422);
+    }
+    else{
+        return ReS(res, {componentes: componentes_json});
+    }
+}
+module.exports.obtenerEqComp = obtenerEqComp;
 
 const crearComponente = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
@@ -92,3 +118,23 @@ const crearComponente = async function(req, res){
     
 }
 module.exports.crearComponente = crearComponente;
+
+const updateComponente = async function(req,res){
+    res.setHeader('Content-Type','application/json');
+    const body = req.body;
+    id_comp = body.id_comp;
+    cod_comp = body.cod_comp;
+    nombre_comp = body.nombre_comp;
+    poloa_comp = body.poloa_comp;
+    polob_comp = body.polob_comp;
+    poloc_comp = body.poloc_comp;
+    let err, componente;
+    [err, componente] = await to(Componente.update({cod_comp:cod_comp,nombre_comp:nombre_comp,poloa_comp:poloa_comp,polob_comp:polob_comp,poloc_comp:poloc_comp},{
+        where:{id:id_comp}
+        }));
+
+    if(err) return ReE(res,"no encontrado" );
+
+    return ReS(res, {msg:"Update exitoso"}, 201);
+}
+module.exports.updateComponente = updateComponente;

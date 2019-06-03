@@ -17,7 +17,7 @@ const getAllForSe = async function(req, res){
         equipos_json.push(equipos_info);
     }
     if (equipos_json.length == 0){
-        return ReE(res, "Subestación no posse equipos creados", 422);
+        return ReE(res, "Subestación no posee equipos creados", 422);
     }
     else{
         return ReS(res, {equipos: equipos_json});
@@ -54,3 +54,23 @@ const crearEquipo = async function(req, res){
     
 }
 module.exports.crearEquipo = crearEquipo;
+
+const updateEquipo = async function(req,res){
+    res.setHeader('Content-Type','application/json');
+    const body = req.body;
+    id_eq = body.id_eq;
+    cod_eq = body.cod_eq;
+    nombre_eq = body.nombre_eq;
+    ubic_tec_eq = body.ubic_tec_eq;
+    posicion = body.posicion;
+    tempmax = body.tempmax;
+    let err, equipo;
+    [err, equipo] = await to(Equipo.update({cod_eq:cod_eq,nombre_eq:nombre_eq,ubic_tec_eq:ubic_tec_eq,posicion:posicion,tempmax:tempmax},{
+        where:{id:id_eq}
+        }));
+
+    if(err) return ReE(res,"no encontrado" );
+
+    return ReS(res, {msg:"Update exitoso"}, 201);
+}
+module.exports.updateEquipo = updateEquipo;
