@@ -102,7 +102,7 @@ const crearComponente = async function(req, res){
         poloa_comp: body.poloa_comp,
         polob_comp: body.polob_comp,
         poloc_comp: body.poloc_comp,
-        EquipoId: body.EquipoId
+        EquipoId: body.equipoId
     };
 
     [err, componente] = await to(Componente.findOne({where:{cod_comp: body.cod_comp}}));
