@@ -70,7 +70,7 @@ const obtenerEqComp = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, componentes;
     const body = req.body;
-    equipoId = bopdy.equipoId;
+    equipoId = body.equipoId;
 
     [err, componentes] = await to(Componente.findAll({where:{equipoId: equipoId}}));
     if (err) return ReE(res, err, 422);
