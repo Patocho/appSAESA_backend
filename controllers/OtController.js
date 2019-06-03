@@ -5,7 +5,8 @@ const Operacion = require('../models').Operacion;
 //get all for a unique ID
 const getOt = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    let err, ots;
+    let err, ots, operacion, validaOp;
+    validaOp = true;
     numero_ot = req.params.numero_ot;
 
     [err, ots] = await to(Ot.findOne({where:{numero_ot: numero_ot}}));
@@ -16,9 +17,9 @@ const getOt = async function(req, res){
         where: {OtId: ots.id}
     }));
     if (err) return ReE(res, err, 422);
-    if(!operacion) return ReE(res, "No existe operación asociada a la Ot "+numero_ot, 422);
+    if(!operacion) validaOp = false;
 
-    return ReS(res, {id: ots.id, numero_ot: ots.numero_ot, trabajo:ots.trabajo, id_se:ots.SubestacionId});
+    return ReS(res, {id: ots.id, numero_ot: ots.numero_ot, trabajo:ots.trabajo, id_se:ots.SubestacionId, operacion:validaOp});
 
 }
 module.exports.getOt = getOt;
