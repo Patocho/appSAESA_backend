@@ -11,8 +11,9 @@ const getAllForSe = async function(req, res){
             model:Subestacion,
             paranoid:true,
             required:true,
-        }],
-        where:{SubestacionId: se_id},
+            where:{id: se_id},
+        }]
+        
         
     }));
     if (err) return ReE(res, err, 422);
