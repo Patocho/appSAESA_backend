@@ -67,7 +67,7 @@ const crearEquipo = async function(req, res){
             }));
        if (err) return ReE(res, "Ha ocurrido un error al intentar crear el nuevo equipo", 422);
 
-       return ReS(res, {message:"Se ha creado el equipo " + nombre_eq + " satisfactoriamente"}, 201); 
+       return ReS(res, {message:"Se ha creado el equipo satisfactoriamente"}, 201); 
     }
     else{
         return ReE(res, "Equipo: " + body.cod_eq + " ya existe", 422);
