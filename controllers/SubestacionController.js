@@ -183,8 +183,18 @@ const crearNuevaSE = async function(req, res){
     }
     
     let subestacion
-    if (sube.deletedAt != null) {
+    if (sube == null) {
        [err, subestacion] = await to(Subestacion.create(se));
+       if (err) return ReE(res, "Ha ocurrido un error al intentar crear nueva subestación", 422);
+
+       return ReS(res, {message:"Se ha creado la subestación " + nombre_se + " satisfactoriamente"}, 201); 
+    }
+    if (sube.deletedAt != null){
+        [err, subestacion] = await to(Subestacion.update({deletedAt :null},
+            {
+                where:{cod_se:cod_se},
+                paranoid:false
+            }));
        if (err) return ReE(res, "Ha ocurrido un error al intentar crear nueva subestación", 422);
 
        return ReS(res, {message:"Se ha creado la subestación " + nombre_se + " satisfactoriamente"}, 201); 
