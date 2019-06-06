@@ -130,6 +130,7 @@ const verDatos = async function(req, res){
             model:Operacion,
             paranoid: true,
             required:false,
+            where:{OtId:null}
         }],
         where:{SubestacionId:ssee_id}
     }));
