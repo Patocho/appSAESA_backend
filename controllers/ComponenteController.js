@@ -8,6 +8,11 @@ const getAllForSe = async function(req, res){
     se_id = req.params.se_id;
 
     [err,equipo] = await to(Equipo.findAll({
+        include:[{
+            model:Subestacion,
+            paranoid:true,
+            required:true,
+        }]
         where:{SubestacionId : se_id},
         order:[['posicion','ASC']],
     }));
