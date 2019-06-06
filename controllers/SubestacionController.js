@@ -133,6 +133,8 @@ const verDatos = async function(req, res){
         }],
         where:{SubestacionId:ssee_id, OtId : null}
     }));
+    console.log("/////////////////////ERROR///////////////////");
+    console.log(err)
     if(err) return ReE(res, 'Error Fatal3', 422);
     console.log("//////////////////TEST/////////////");
     for (let x in test){
