@@ -139,7 +139,7 @@ const crearComponente = async function(req, res){
             }));
        if (err) return ReE(res, "Ha ocurrido un error al intentar crear el nuevo componente", 422);
 
-       return ReS(res, {message:"Se ha creado el componente " + nombre_comp + " satisfactoriamente"}, 201); 
+       return ReS(res, {message:"Se ha creado el componente satisfactoriamente"}, 201); 
     }
     else{
         return ReE(res, "Componente: " + body.cod_comp + " ya existe", 422);
