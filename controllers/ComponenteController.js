@@ -12,7 +12,7 @@ const getAllForSe = async function(req, res){
             model:Subestacion,
             paranoid:true,
             required:true,
-        }]
+        }],
         where:{SubestacionId : se_id},
         order:[['posicion','ASC']],
     }));
