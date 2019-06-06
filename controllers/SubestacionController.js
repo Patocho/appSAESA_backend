@@ -130,18 +130,8 @@ const verDatos = async function(req, res){
             model:Operacion,
             paranoid: true,
             required:false,
-            include:[{
-                model:Ot,
-                paranoid:true,
-                required:true,
-                include:[{
-                    model:Subestacion,
-                    paranoid:true,
-                    required:true,
-                    where:{id:ssee_id}
-                }]
-            }]
-        }]
+        }],
+        where:{SubestacionId:ssee_id}
     }));
     if(err) return ReE(res, 'Error Fatal3', 422);
     console.log("//////////////////TEST/////////////");
