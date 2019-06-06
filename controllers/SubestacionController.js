@@ -172,7 +172,8 @@ const crearNuevaSE = async function(req, res){
     let nombre_se = body.nombre_se;
 
     [err, sube] = await to(Subestacion.findOne({
-        where:{cod_se:cod_se}
+        where:{cod_se:cod_se},
+        paranoid : false
     }));
     if(err) return ReE(res, 'Un error se ha producido al intentar verificar existencia de subestación');
 
@@ -182,7 +183,7 @@ const crearNuevaSE = async function(req, res){
     }
     
     let subestacion
-    if (sube == null) {
+    if (sube == null || sube.deletedAt != null) {
        [err, subestacion] = await to(Subestacion.create(se));
        if (err) return ReE(res, "Ha ocurrido un error al intentar crear nueva subestación", 422);
 
