@@ -144,11 +144,13 @@ const verDatos = async function(req, res){
             }]
         }]
     }));
-    console.log(err);
     if(err) return ReE(res, 'Error Fatal3', 422);
     console.log("//////////////////TEST/////////////");
-    console.log(test);
+    for (let x in test){
+        console.log(test[x].numero_ot);
+    }
     console.log("///////////////////////TEST/////////////////");
+
 
     [err, algo] = await to (sequelize.query("SELECT Ots.* FROM Ots LEFT OUTER JOIN Operacions ON Ots.id = Operacions.OtId WHERE Operacions.OtId is null AND Ots.deletedAt is null AND Ots.SubestacionId = ?",
      {replacements: [ssee_id], type: sequelize.QueryTypes.SELECT}).then(function(ots){
