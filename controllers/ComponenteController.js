@@ -122,11 +122,8 @@ const crearComponente = async function(req, res){
     };
 
     [err, componente] = await to(Componente.findOne({
-        where:{
-            cod_comp: body.cod_comp
-        },
-        paranoid:true,
-        required:true,
+        where:{cod_comp: body.cod_comp},
+        paranoid : false
     }));
 
     if (componente == null){
@@ -134,6 +131,15 @@ const crearComponente = async function(req, res){
         if (err) return ReE(res, err, 422);
 
         return ReS(res, {message:'Componente creado satisfactoriamente'}, 201);
+    }else if(componente.deletedAt != null){
+        [err, nuevo_componente] = await to(Componente.update({deletedAt :null},
+            {
+                where:{cod_comp: body.cod_comp},
+                paranoid:false
+            }));
+       if (err) return ReE(res, "Ha ocurrido un error al intentar crear el nuevo componente", 422);
+
+       return ReS(res, {message:"Se ha creado el componente " + nombre_comp + " satisfactoriamente"}, 201); 
     }
     else{
         return ReE(res, "Componente: " + body.cod_comp + " ya existe", 422);
