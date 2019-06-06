@@ -139,7 +139,9 @@ const verDatos = async function(req, res){
     if(err) return ReE(res, 'Error Fatal3', 422);
     console.log("//////////////////TEST/////////////");
     for (let x in test){
-        console.log(test[x].numero_ot);
+        if(test[x].OtId != null){
+            console.log(test[x].numero_ot);
+        }
     }
     console.log("///////////////////////TEST/////////////////");
 
