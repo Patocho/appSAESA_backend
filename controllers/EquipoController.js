@@ -51,8 +51,7 @@ const crearEquipo = async function(req, res){
 
     [err, equipo] = await to(Equipo.findOne({
         where:{cod_eq: body.cod_eq},
-        paranoid:true,
-        required:true,
+        paranoid:false,
     }));
 
     if (equipo == null){
@@ -60,6 +59,15 @@ const crearEquipo = async function(req, res){
         if (err) return ReE(res, err, 422);
 
         return ReS(res, {message:'Equipo creado satisfactoriamente'}, 201);
+    }else if(equipo.deletedAt != null){
+        [err, nuevo_equipo] = await to(Equipo.update({deletedAt :null},
+            {
+                where:{cod_eq: body.cod_eq},
+                paranoid:false
+            }));
+       if (err) return ReE(res, "Ha ocurrido un error al intentar crear el nuevo equipo", 422);
+
+       return ReS(res, {message:"Se ha creado el equipo " + nombre_eq + " satisfactoriamente"}, 201); 
     }
     else{
         return ReE(res, "Equipo: " + body.cod_eq + " ya existe", 422);
