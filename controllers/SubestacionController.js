@@ -132,7 +132,7 @@ const verDatos = async function(req, res){
             required:false,
             where:{OtId:null},
             include:[{
-                model:Ot
+                model:Ot,
                 paranoid:true,
                 required:true,
                 include:[{
