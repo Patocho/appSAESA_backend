@@ -181,6 +181,7 @@ const crearNuevaSE = async function(req, res){
         cod_se : cod_se,
         nombre_se: nombre_se
     }
+    console.log(sube);
     
     let subestacion
     if (sube == null) {
