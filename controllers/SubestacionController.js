@@ -130,7 +130,6 @@ const verDatos = async function(req, res){
             model:Operacion,
             paranoid: true,
             required:false,
-            where:{OtId:null},
             include:[{
                 model:Ot,
                 paranoid:true,
