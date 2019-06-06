@@ -66,7 +66,7 @@ module.exports.remove = remove;
 
 const verDatos = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
-    let err, usuario, rol, ots, ssee, subestacion, dato, algo, contador_img, contador_img2;
+    let err, usuario, rol, ots, ssee, subestacion, dato, algo, contador_img, contador_img2, test;
     const body = req.body;
     ssee_id = body.id;
 
@@ -125,7 +125,23 @@ const verDatos = async function(req, res){
 
     let datos_ot =[];
     //let sql = 
-    
+    [err, test] = await to (Ot.findAll({
+        include :[{
+            model:Operacion,
+            paranoid: true,
+            required:false,
+            where:{OtId:null},
+            include:[{
+                model:Subestacion,
+                paranoid:true,
+                required:true,
+                where:{id:ssee_id}
+            }]
+        }]
+    }));
+
+    console.log(test);
+
     [err, algo] = await to (sequelize.query("SELECT Ots.* FROM Ots LEFT OUTER JOIN Operacions ON Ots.id = Operacions.OtId WHERE Operacions.OtId is null AND Ots.deletedAt is null AND Ots.SubestacionId = ?",
      {replacements: [ssee_id], type: sequelize.QueryTypes.SELECT}).then(function(ots){
         for(let a in ots){
