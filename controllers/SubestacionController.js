@@ -139,6 +139,7 @@ const verDatos = async function(req, res){
             }]
         }]
     }));
+    console.log(err);
     if(err) return ReE(res, 'Error Fatal3', 422);
     console.log("//////////////////TEST/////////////");
     console.log(test);
