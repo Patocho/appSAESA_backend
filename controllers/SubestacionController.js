@@ -189,7 +189,7 @@ const crearNuevaSE = async function(req, res){
 
        return ReS(res, {message:"Se ha creado la subestación " + nombre_se + " satisfactoriamente"}, 201); 
     }
-    if (sube.deletedAt != null){
+    if else(sube.deletedAt != null){
         [err, subestacion] = await to(Subestacion.update({deletedAt :null},
             {
                 where:{cod_se:cod_se},
