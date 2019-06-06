@@ -132,10 +132,15 @@ const verDatos = async function(req, res){
             required:false,
             where:{OtId:null},
             include:[{
-                model:Subestacion,
+                model:Ot
                 paranoid:true,
                 required:true,
-                where:{id:ssee_id}
+                include:[{
+                    model:Subestacion,
+                    paranoid:true,
+                    required:true,
+                    where:{id:ssee_id}
+                }]
             }]
         }]
     }));
