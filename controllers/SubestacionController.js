@@ -140,7 +140,7 @@ const verDatos = async function(req, res){
     console.log("//////////////////TEST/////////////");
     console.log(test);
     for (let x in test){
-        if(test[x].Operacions.OtId != null){
+        if(test[x].Operacions.length == 0){
             console.log(test[x].numero_ot);
         }
     }
