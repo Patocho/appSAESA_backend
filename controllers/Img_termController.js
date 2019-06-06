@@ -10,7 +10,10 @@ const getImage = async function(req, res){
     console.log(body);
     [err, image] = await to(Img_term.findOne({
         //attributes: ['id'],
-        where:{nombre: nombre}}));
+        where:{nombre: nombre},
+        paranoid:true,
+        required:true,
+    }));
     console.log(image);
     if (err) return ReE(res, err, 422);
     return ReS(res, {id: image.id, nombre: image.nombre, id_oper: image.OperacionId});
@@ -24,7 +27,9 @@ const obtenerIdOperacion = async function(req, res){
 
     let err, operacion;
     [err, operacion] = await to (Operacion.findOne({
-        where:{OtId:id_ot}
+        where:{OtId:id_ot},
+        paranoid:true,
+        required:true,
     }));
     if (err) return ReE(res, err, 422);
 
@@ -37,7 +42,11 @@ const crearImagen = async function(req,res){
     res.setHeader('Content-Type','application/json');
     const body = req.body;
     let err, image,nueva_img;
-    [err, image] = await to(Img_term.findOne({where:{nombre: body.imagenterm}}));
+    [err, image] = await to(Img_term.findOne({
+        where:{nombre: body.imagenterm},
+        paranoid:true,
+        required:true,
+    }));
 
     if (image == null){
         const img = {
@@ -64,8 +73,11 @@ const updateImagen = async function(req,res){
     id_img = body.id_img;
     recurso = body.recurso;
     let err, image;
-    [err, image] = await to(Img_term.update({recurso:recurso,},{
-        where:{id:id_img}
+    [err, image] = await to(Img_term.update({
+        recurso:recurso,},{
+        where:{id:id_img},
+        paranoid:true,
+        required:true,
         }));
 
     if(err) return ReE(res,"no encontrado" );

@@ -16,8 +16,11 @@ const getAllForSe = async function(req, res){
     let cons_comp;
     for (let i in equipo){
         [err,cons_comp]=await to(Componente.findAll({
-            where:{EquipoId:equipo[i].id},
-            include:[{model:Equipo}]
+            include:[{model:Equipo,
+                paranoid:true, 
+                required:true,
+                where:{EquipoId:equipo[i].id},
+            }]
         }));
         componentes1.push({nombre:equipo[i].nombre_eq, componentes:cons_comp});
     }
@@ -72,7 +75,15 @@ const obtenerEqComp = async function(req, res){
     const body = req.body;
     equipoId = body.equipoId;
 
-    [err, componentes] = await to(Componente.findAll({where:{EquipoId: equipoId}}));
+    [err, componentes] = await to(Componente.findAll({
+        include:[{
+            model:Equipo,
+            paranoid:true, 
+            required:true,
+            where:{EquipoId: equipoId},
+        }]
+    }));
+
     if (err) return ReE(res, err, 422);
     console.log(componentes);
     let componentes_json = [];
@@ -105,7 +116,13 @@ const crearComponente = async function(req, res){
         EquipoId: body.equipoId
     };
 
-    [err, componente] = await to(Componente.findOne({where:{cod_comp: body.cod_comp}}));
+    [err, componente] = await to(Componente.findOne({
+        where:{
+            cod_comp: body.cod_comp
+        },
+        paranoid:true,
+        required:true,
+    }));
 
     if (componente == null){
         [err, nuevo_componente] = await to(Componente.create(comp));
@@ -131,7 +148,9 @@ const updateComponente = async function(req,res){
     poloc_comp = body.poloc_comp;
     let err, componente;
     [err, componente] = await to(Componente.update({cod_comp:cod_comp,nombre_comp:nombre_comp,poloa_comp:poloa_comp,polob_comp:polob_comp,poloc_comp:poloc_comp},{
-        where:{id:id_comp}
+        where:{id:id_comp},
+        paranoid:true,
+        required:true,
         }));
 
     if(err) return ReE(res,"no encontrado" );
@@ -139,3 +158,16 @@ const updateComponente = async function(req,res){
     return ReS(res, {msg:"Update exitoso"}, 201);
 }
 module.exports.updateComponente = updateComponente;
+
+const eliminarComponente =async function(req,res){
+    res.setHeader('Content-Type', 'application/json');
+    let componente, err;
+    body = req.body;
+    let id_comp = body.id_comp;
+
+    [err, componente] = await to(Componente.destroy({where:{id:id_comp}}));
+    if(err) return ReE(res, 'Un error se ha producido al intentar eliminar el Componente', 422);
+
+    return ReS(res, {message:'SComponente eliminado'}, 201); 
+}
+module.exports.eliminarComponente = eliminarComponente;

@@ -97,5 +97,7 @@ router.post('/updateequipo',passport.authenticate('jwt', {session:false}),  Equi
 router.post('/nuevocomponente',passport.authenticate('jwt', {session:false}),  ComponenteController.crearComponente);
 router.post('/componentes',passport.authenticate('jwt', {session:false}),  ComponenteController.obtenerEqComp);
 router.post('/updatecomponente',passport.authenticate('jwt', {session:false}),  ComponenteController.updateComponente);
+router.post('/borrarcomponente',passport.authenticate('jwt', {session:false}),  ComponenteController.eliminarComponente);
+router.post('/borrarequipo',passport.authenticate('jwt', {session:false}),  EquipoController.eliminarEquipo);
 
 module.exports = router;

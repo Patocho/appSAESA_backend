@@ -6,7 +6,11 @@ const getAllForSe = async function(req, res){
     let err, equipos;
     se_id = req.params.se_id;
 
-    [err, equipos] = await to(Equipo.findAll({where:{SubestacionId: se_id}}));
+    [err, equipos] = await to(Equipo.findAll({
+        where:{SubestacionId: se_id},
+        paranoid:true,
+        required:true,
+    }));
     if (err) return ReE(res, err, 422);
 
     let equipos_json = [];
@@ -40,7 +44,11 @@ const crearEquipo = async function(req, res){
         SubestacionId: body.SubestacionId,
     };
 
-    [err, equipo] = await to(Equipo.findOne({where:{cod_eq: body.cod_eq}}));
+    [err, equipo] = await to(Equipo.findOne({
+        where:{cod_eq: body.cod_eq},
+        paranoid:true,
+        required:true,
+    }));
 
     if (equipo == null){
         [err, nuevo_equipo] = await to(Equipo.create(equip));
@@ -66,7 +74,9 @@ const updateEquipo = async function(req,res){
     tempmax = body.tempmax;
     let err, equipo;
     [err, equipo] = await to(Equipo.update({cod_eq:cod_eq,nombre_eq:nombre_eq,ubic_tec_eq:ubic_tec_eq,posicion:posicion,tempmax:tempmax},{
-        where:{id:id_eq}
+        where:{id:id_eq},
+        paranoid:true,
+        required:true,
         }));
 
     if(err) return ReE(res,"no encontrado" );
@@ -74,3 +84,16 @@ const updateEquipo = async function(req,res){
     return ReS(res, {msg:"Update exitoso"}, 201);
 }
 module.exports.updateEquipo = updateEquipo;
+
+const eliminarEquipo =async function(req,res){
+    res.setHeader('Content-Type', 'application/json');
+    let equipo, err;
+    body = req.body;
+    let id_eq = body.id_eq;
+
+    [err, equipo] = await to(Equipo.destroy({where:{id:id_eq}}));
+    if(err) return ReE(res, 'Un error se ha producido al intentar eliminar el Equipo', 422);
+
+    return ReS(res, {message:'Equipo eliminado'}, 201); 
+}
+module.exports.eliminarEquipo = eliminarEquipo;

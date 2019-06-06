@@ -26,7 +26,11 @@ const crearPuntos = async function(req,res){
     res.setHeader('Content-Type','application/json');
     const body = req.body;
     let err, puntos,nuevos_puntos;
-    [err, puntos] = await to(Temp_term.findOne({where:{ImgTermId:body.id_img}}));
+    [err, puntos] = await to(Temp_term.findOne({
+        where:{ImgTermId:body.id_img},
+        paranoid:true,
+        required:true,
+    }));
 
     if (puntos == null){
         const ptos = {
@@ -68,7 +72,9 @@ const updateTemp = async function(req,res){
     det3 = body.delta3
     let err, temperaturas,nuevos_temp;
     [err, temperaturas] = await to(Temp_term.update({tem1:temp1, tem2:temp2, tem3:temp3, delta12:det1, delta23:det2, delta31:det3},{
-        where:{id:id_temp}
+        where:{id:id_temp},
+        paranoid:true,
+        required:true,
         }));
 
     if(err) return ReE(res,"no encontrado" );
