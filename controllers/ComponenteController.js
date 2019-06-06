@@ -80,7 +80,7 @@ const obtenerEqComp = async function(req, res){
             model:Equipo,
             paranoid:true, 
             required:true,
-            where:{EquipoId: equipoId},
+            where:{id: equipoId},
         }]
     }));
 
