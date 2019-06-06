@@ -127,11 +127,12 @@ const verDatos = async function(req, res){
     //let sql = 
     [err, test] = await to (Ot.findAll({
         include :[{
+            where:{OtId : null},
             model:Operacion,
             paranoid: true,
             required:false,
         }],
-        where:{SubestacionId:ssee_id, OtId : null}
+        where:{SubestacionId:ssee_id}
     }));
     console.log("/////////////////////ERROR///////////////////");
     console.log(err)
