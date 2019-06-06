@@ -7,9 +7,13 @@ const getAllForSe = async function(req, res){
     se_id = req.params.se_id;
 
     [err, equipos] = await to(Equipo.findAll({
+        include:[{
+            model:Subestacion,
+            paranoid:true,
+            required:true,
+        }],
         where:{SubestacionId: se_id},
-        paranoid:true,
-        required:true,
+        
     }));
     if (err) return ReE(res, err, 422);
 
