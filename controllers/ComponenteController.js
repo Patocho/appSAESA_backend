@@ -90,7 +90,6 @@ const obtenerEqComp = async function(req, res){
     }));
 
     if (err) return ReE(res, err, 422);
-    console.log(componentes);
     let componentes_json = [];
     for (let i in componentes) {
         let componente = componentes[i];
@@ -179,6 +178,6 @@ const eliminarComponente =async function(req,res){
     [err, componente] = await to(Componente.destroy({where:{id:id_comp}}));
     if(err) return ReE(res, 'Un error se ha producido al intentar eliminar el Componente', 422);
 
-    return ReS(res, {message:'SComponente eliminado'}, 201); 
+    return ReS(res, {message:'Componente eliminado'}, 201); 
 }
 module.exports.eliminarComponente = eliminarComponente;
