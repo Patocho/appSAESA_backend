@@ -131,7 +131,7 @@ const verDatos = async function(req, res){
             paranoid: true,
             required:false,
         }],
-        where:{SubestacionId:ssee_id, Operacion.OtId : null}
+        where:{SubestacionId:ssee_id, OtId : null}
     }));
     if(err) return ReE(res, 'Error Fatal3', 422);
     console.log("//////////////////TEST/////////////");
