@@ -16,8 +16,7 @@ const getAllForSe = async function(req, res){
     for (let i in equipo){
         [err,cons_comp]=await to(Componente.findAll({
             where:{EquipoId:equipo[i].id},
-            order:[['posicion','ASC']],
-            include:[{model:Equipo}],
+            include:[{model:Equipo}]
         }));
         componentes1.push({nombre:equipo[i].nombre_eq, componentes:cons_comp});
     }
