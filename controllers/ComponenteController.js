@@ -10,8 +10,6 @@ const getAllForSe = async function(req, res){
     [err,equipo] = await to(Equipo.findAll({
         include:[{
             model:Subestacion,
-            paranoid:true,
-            required:true,
         }],
         where:{SubestacionId : se_id},
     }));
