@@ -142,7 +142,7 @@ const registrotermo = async function(req, res){
 
     const alert = {
         alerta:body.alerta,
-        hanta:body.hanta,
+        alertaTermo:body.alertaTermo,
         OperacionId: IdRegisto
     };
     [err,al] = await to(Alerta.create(alert));
