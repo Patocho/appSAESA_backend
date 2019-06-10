@@ -99,5 +99,6 @@ router.post('/componentes',passport.authenticate('jwt', {session:false}),  Compo
 router.post('/updatecomponente',passport.authenticate('jwt', {session:false}),  ComponenteController.updateComponente);
 router.post('/borrarcomponente',passport.authenticate('jwt', {session:false}),  ComponenteController.eliminarComponente);
 router.post('/borrarequipo',passport.authenticate('jwt', {session:false}),  EquipoController.eliminarEquipo);
+router.post('/alertas/termo', passport.authenticate('jwt', {session:false}), AlertaController.ObtenerAlertTermo);
 
 module.exports = router;

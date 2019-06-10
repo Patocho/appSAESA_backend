@@ -11,7 +11,7 @@ const ObtenerTodas = async function(req, res){
     [err, alertas] = await to(Alerta.findAll({
         include:[{
             model:Operacion,
-            paranoid:true,
+            paranoid:true,      
             required:true,
             include:[{
                 model:Ot,
@@ -32,18 +32,32 @@ const ObtenerTodas = async function(req, res){
     for (let i in alertas) {
         let alerta = alertas[i];
         //let alertas_info = alerta.toJSON();
-        let alertas_info = {
-            id:alerta.id,
-            alerta:alerta.alerta,
-            hanta:alerta.hanta,
-            alertaTermo:alerta.alertaTermo,
-            nombreImagen:alerta.nombreImagen,
-            OperacionId:alerta.OperacionId,
-            fecha:alerta.Operacion.Ot.fecha_ot,
-            trabajo:alerta.Operacion.Ot.trabajo,
-            subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
+       
+        if (alerta[i].trabajo == "Control de Plagas"){ 
+            let alertas_info = {
+                id:alerta.id,
+                alerta:alerta.alerta,
+                hanta:alerta.hanta,
+                alertaTermo:alerta.alertaTermo,
+                nombreImagen:alerta.nombreImagen,
+                OperacionId:alerta.OperacionId,
+                fecha:alerta.Operacion.Ot.fecha_ot,
+                trabajo:alerta.Operacion.Ot.trabajo,
+                subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
+            }
+        }else if(alerta[i].trabajo == "Termografia" && alerta[i].OperacionId != alerta[i+1].OperacionId){
+            let alertas_info = {
+                id:alerta.id,
+                alerta:alerta.alerta,
+                hanta:alerta.hanta,
+                alertaTermo:alerta.alertaTermo,
+                nombreImagen:alerta.nombreImagen,
+                OperacionId:alerta.OperacionId,
+                fecha:alerta.Operacion.Ot.fecha_ot,
+                trabajo:alerta.Operacion.Ot.trabajo,
+                subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
+            }
         }
-
         alertas_json.push(alertas_info);
     }
 
@@ -137,3 +151,55 @@ const ObtenerSe = async function(req, res){
 
 }
 module.exports.ObtenerSe = ObtenerSe;
+
+const ObtenerAlertTermo = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let err, alertas;
+    const body = req.body;
+
+    id_se = body.id;
+
+    [err, alertas] = await to(Alerta.findAll({
+        include:[{
+            model:Operacion,
+            paranoid:true,
+            required:true,
+            include:[{
+                model:Ot,
+                paranoid:true,
+                required:true,
+                include:[{
+                    model:Subestacion,
+                    paranoid:true,
+                    required:true,
+                    where:{id:id_se}
+                }]
+            }]
+        }],
+        where:{estado: null},
+    }));
+    if (err) return ReE(res, err, 422);
+
+    let alertas_json = [];
+    for (let i in alertas) {
+        let alerta = alertas[i];
+        //let alertas_info = alerta.toJSON();
+        let alertas_info = {
+            id:alerta.id,
+            alerta:alerta.alerta,
+            hanta:alerta.hanta,
+            alertaTermo:alerta.alertaTermo,
+            nombreImagen:alerta.nombreImagen,
+            OperacionId:alerta.OperacionId,
+            fecha:alerta.Operacion.Ot.fecha_ot,
+            trabajo:alerta.Operacion.Ot.trabajo,
+            subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
+        }
+
+        alertas_json.push(alertas_info);
+    }
+
+    return ReS(res, {alertas: alertas_json});
+
+}
+module.exports.ObtenerAlertTermo = ObtenerAlertTermo;
