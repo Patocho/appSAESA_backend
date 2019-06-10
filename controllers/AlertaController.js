@@ -45,6 +45,7 @@ const ObtenerTodas = async function(req, res){
                 trabajo:alerta.Operacion.Ot.trabajo,
                 subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
             }
+            alertas_json.push(alertas_info);
         }else if(alerta[i].trabajo == "Termografia" && alerta[i].OperacionId != alerta[i+1].OperacionId){
             let alertas_info = {
                 id:alerta.id,
@@ -57,8 +58,9 @@ const ObtenerTodas = async function(req, res){
                 trabajo:alerta.Operacion.Ot.trabajo,
                 subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
             }
+            alertas_json.push(alertas_info);
         }
-        alertas_json.push(alertas_info);
+       
     }
 
     return ReS(res, {alertas: alertas_json});
@@ -155,14 +157,11 @@ module.exports.ObtenerSe = ObtenerSe;
 const ObtenerAlertTermo = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, alertas;
-    const body = req.body;
-
-    id_se = body.id;
 
     [err, alertas] = await to(Alerta.findAll({
         include:[{
             model:Operacion,
-            paranoid:true,
+            paranoid:true,      
             required:true,
             include:[{
                 model:Ot,
@@ -172,7 +171,6 @@ const ObtenerAlertTermo = async function(req, res){
                     model:Subestacion,
                     paranoid:true,
                     required:true,
-                    where:{id:id_se}
                 }]
             }]
         }],
@@ -184,19 +182,20 @@ const ObtenerAlertTermo = async function(req, res){
     for (let i in alertas) {
         let alerta = alertas[i];
         //let alertas_info = alerta.toJSON();
-        let alertas_info = {
-            id:alerta.id,
-            alerta:alerta.alerta,
-            hanta:alerta.hanta,
-            alertaTermo:alerta.alertaTermo,
-            nombreImagen:alerta.nombreImagen,
-            OperacionId:alerta.OperacionId,
-            fecha:alerta.Operacion.Ot.fecha_ot,
-            trabajo:alerta.Operacion.Ot.trabajo,
-            subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
+         if (alerta[i].trabajo == "Termografia"){ 
+            let alertas_info = {
+                id:alerta.id,
+                alerta:alerta.alerta,
+                hanta:alerta.hanta,
+                alertaTermo:alerta.alertaTermo,
+                nombreImagen:alerta.nombreImagen,
+                OperacionId:alerta.OperacionId,
+                fecha:alerta.Operacion.Ot.fecha_ot,
+                trabajo:alerta.Operacion.Ot.trabajo,
+                subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
+            }       
+            alertas_json.push(alertas_info);
         }
-
-        alertas_json.push(alertas_info);
     }
 
     return ReS(res, {alertas: alertas_json});
