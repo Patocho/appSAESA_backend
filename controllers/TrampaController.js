@@ -160,8 +160,8 @@ const consumoHistoricoSsee = async function(req, res){
     let arrayId = [];
     let subestacionId = body.subestacionId;
 
-    let err, operaciones;
-
+    let err, operaciones, operaciones_json;
+    operaciones_json = [];
     [err, operaciones] = await to (Operacion.findAll({
         include:[{
             model:Ot,
@@ -177,7 +177,14 @@ const consumoHistoricoSsee = async function(req, res){
     }));
     if(err) return ReE(res, err, 422);
 
-    return ReS(res, {datos:operaciones.toJSON()}, 201);
+    for(i in operaciones){
+        let operacion = operaciones[i];
+        let operacion_info = operacion.toWeb();
+
+        operaciones_json.push(operacion_info);
+    }
+
+    return ReS(res, {datos:operaciones_json}, 201);
     
 }
 module.exports.consumoHistoricoSsee=consumoHistoricoSsee;
