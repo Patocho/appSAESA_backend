@@ -85,7 +85,7 @@ router.post('/controlplagas/reporte', passport.authenticate('jwt', {session:fals
 router.post('/controlplagas/imagen', passport.authenticate('jwt', {session:false}), ImgControlController.ObtenerImagenControl);
 router.post('/controlplagas/imagenTareas', passport.authenticate('jwt', {session:false}), ImgTareasController.ObtenerImagenTarea);
 
-router.post('/test', passport.authenticate('jwt', {session:false}), OperacionController.test);
+router.post('/test', passport.authenticate('jwt', {session:false}), TrampaController.consumoHistoricoSsee);
 
 router.get('/obtenerIdOperacion/:id_ot', passport.authenticate('jwt', {session:false}), Img_termController.obtenerIdOperacion);
 router.post('/nuevos_puntos',passport.authenticate('jwt', {session:false}),  Temp_TermController.crearPuntos);
