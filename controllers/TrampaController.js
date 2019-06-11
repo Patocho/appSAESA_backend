@@ -175,8 +175,7 @@ const consumoHistoricoSsee = async function(req, res){
                 required:true,
                 where:{id:subestacionId}
             }]
-        }],
-        include:[{
+        },{
             model:Registro_estado,
             paranoid:true,
             required:true
