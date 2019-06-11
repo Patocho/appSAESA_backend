@@ -2,6 +2,7 @@ const Trampa = require('../models').Trampa;
 const Subestacion = require('../models').Subestacion;
 const Operacion = require('../models').Operacion;
 const Ot = require('../models').Ot;
+const Registro_estado = require('../models').Registro_estado;
 
 
 //
@@ -173,6 +174,11 @@ const consumoHistoricoSsee = async function(req, res){
                 paranoid:true,
                 required:true,
                 where:{id:subestacionId}
+            }],
+            include:[{
+                model:Registro_estado,
+                paranoid:true,
+                required:true
             }]
         }]
     }));
