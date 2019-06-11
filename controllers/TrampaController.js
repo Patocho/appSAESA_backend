@@ -174,12 +174,12 @@ const consumoHistoricoSsee = async function(req, res){
                 paranoid:true,
                 required:true,
                 where:{id:subestacionId}
-            }],
-            include:[{
-                model:Registro_estado,
-                paranoid:true,
-                required:true
             }]
+        }],
+        include:[{
+            model:Registro_estado,
+            paranoid:true,
+            required:true
         }]
     }));
     if(err) return ReE(res, err, 422);
