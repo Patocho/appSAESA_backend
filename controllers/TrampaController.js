@@ -186,12 +186,14 @@ const consumoHistoricoSsee = async function(req, res){
 
     for(i in operaciones){
         let operacion = operaciones[i];
+        contador = 0;
         let contC =0;
         let contNC =0;
         let contD =0;
         let contE =0;
 
         for (x in operacion.Registro_estado){
+            contador = contador +1;
             if(operacion.Registro_estado[x].estado_registro == "Consumida"){
                 contC = contC + 1;
             }
@@ -207,7 +209,7 @@ const consumoHistoricoSsee = async function(req, res){
 
         }
         let operacion_info = {
-            cantidad_trampas : operacion.Registro_estado.length,
+            cantidad_trampas : contador,
             cantidad_consumida : contC,
             cantidad_noconsumida : contNC,
             cantidad_dañada : contD,
