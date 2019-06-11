@@ -183,9 +183,36 @@ const consumoHistoricoSsee = async function(req, res){
     }));
     if(err) return ReE(res, err, 422);
 
+
     for(i in operaciones){
         let operacion = operaciones[i];
-        let operacion_info = operacion.toWeb();
+        let contC =0;
+        let contNC =0;
+        let contD =0;
+        let contE =0;
+
+        for (x in operacion.Registro_estado){
+            if(operacion.Registro_estado[x].estado_registro == "Consumida"){
+                contC = contC + 1;
+            }
+            if(operacion.Registro_estado[x].estado_registro == "No Consumida"){
+                contNC = contNC + 1;
+            }
+            if(operacion.Registro_estado[x].estado_registro == "Dañada"){
+                contD = contD + 1;
+            }
+            if(operacion.Registro_estado[x].estado_registro == "Extraida"){
+                contE = contE + 1;
+            }
+
+        }
+        let operacion_info = {
+            cantidad_trampas = operacion.Registro_estado.length,
+            cantidad_consumida = contC,
+            cantidad_noconsumida = contNC,
+            cantidad_dañada = contD,
+            cantidad_extraida = contE
+        }
 
         operaciones_json.push(operacion_info);
     }
