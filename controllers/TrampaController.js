@@ -196,18 +196,18 @@ const consumoHistoricoSsee = async function(req, res){
         let operacion_info2 = operacion.toWeb();
         operaciones_json2.push(operacion_info2);
 
-        for (x in operacion.Registro_estado){
+        for (x in operacion.Registro_estados){
             contador = contador +1;
-            if(operacion.Registro_estado[x].estado_registro == "Consumida"){
+            if(operacion.Registro_estados[x].estado_registro == "Consumida"){
                 contC = contC + 1;
             }
-            if(operacion.Registro_estado[x].estado_registro == "No Consumida"){
+            if(operacion.Registro_estados[x].estado_registro == "No Consumida"){
                 contNC = contNC + 1;
             }
-            if(operacion.Registro_estado[x].estado_registro == "Dañada"){
+            if(operacion.Registro_estados[x].estado_registro == "Dañada"){
                 contD = contD + 1;
             }
-            if(operacion.Registro_estado[x].estado_registro == "Extraida"){
+            if(operacion.Registro_estados[x].estado_registro == "Extraida"){
                 contE = contE + 1;
             }
 
