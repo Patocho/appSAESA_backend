@@ -1,5 +1,7 @@
 const Trampa = require('../models').Trampa;
 const Subestacion = require('../models').Subestacion;
+const Operacion = require('../models').Operacion;
+const Ot = require('../models').Ot;
 
 
 //
@@ -149,3 +151,33 @@ const nuevasTrampas = async function(req, res){
     }
 }
 module.exports.nuevasTrampas=nuevasTrampas;
+
+
+//metodo para obtener historico de consumo de trampas por subestacion.
+const consumoHistoricoSsee = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    let arrayId = [];
+    let subestacionId = body.subestacionId;
+
+    let err, operaciones;
+
+    [err, operaciones] = await to (Operacion.findAll({
+        include:[{
+            model:Ot,
+            paranoid:true,
+            required: true,
+            include:[{
+                model:Subestacion,
+                paranoid:true,
+                required:true,
+                where:{id:subestacionId}
+            }]
+        }]
+    }));
+    if(err) return ReE(res, err, 422);
+
+    return ReS(res, datos:operaciones.toWeb(), 201);
+    
+}
+module.exports.consumoHistoricoSsee=consumoHistoricoSsee;
