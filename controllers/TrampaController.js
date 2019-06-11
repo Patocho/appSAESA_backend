@@ -177,7 +177,7 @@ const consumoHistoricoSsee = async function(req, res){
     }));
     if(err) return ReE(res, err, 422);
 
-    return ReS(res, datos:operaciones.toWeb(), 201);
+    return ReS(res, {datos:operaciones.toWeb()}, 201);
     
 }
 module.exports.consumoHistoricoSsee=consumoHistoricoSsee;
