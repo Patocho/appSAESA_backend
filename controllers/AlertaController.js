@@ -32,35 +32,18 @@ const ObtenerTodas = async function(req, res){
     for (let i in alertas) {
         let alerta = alertas[i];
         //let alertas_info = alerta.toJSON();
-       
-        if (alerta[i].trabajo == "Control de Plagas"){ 
-            let alertas_info = {
-                id:alerta.id,
-                alerta:alerta.alerta,
-                hanta:alerta.hanta,
-                alertaTermo:alerta.alertaTermo,
-                nombreImagen:alerta.nombreImagen,
-                OperacionId:alerta.OperacionId,
-                fecha:alerta.Operacion.Ot.fecha_ot,
-                trabajo:alerta.Operacion.Ot.trabajo,
-                subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
-            }
-            alertas_json.push(alertas_info);
-        }else if(alerta[i].trabajo == "Termografia" && alerta[i].OperacionId != alerta[i+1].OperacionId){
-            let alertas_info = {
-                id:alerta.id,
-                alerta:alerta.alerta,
-                hanta:alerta.hanta,
-                alertaTermo:alerta.alertaTermo,
-                nombreImagen:alerta.nombreImagen,
-                OperacionId:alerta.OperacionId,
-                fecha:alerta.Operacion.Ot.fecha_ot,
-                trabajo:alerta.Operacion.Ot.trabajo,
-                subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
-            }
-            alertas_json.push(alertas_info);
+        let alertas_info = {
+            id:alerta.id,
+            alerta:alerta.alerta,
+            hanta:alerta.hanta,
+            alertaTermo:alerta.alertaTermo,
+            nombreImagen:alerta.nombreImagen,
+            OperacionId:alerta.OperacionId,
+            fecha:alerta.Operacion.Ot.fecha_ot,
+            trabajo:alerta.Operacion.Ot.trabajo,
+            subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
         }
-       
+        alertas_json.push(alertas_info);
     }
 
     return ReS(res, {alertas: alertas_json});
