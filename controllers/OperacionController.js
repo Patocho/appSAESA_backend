@@ -8,6 +8,10 @@ const Img_control = require('../models').Img_control;
 const Registro_estado = require('../models').Registro_estado;
 const Img_tareas = require('../models').Img_tareas;
 const User = require('../models').User;
+const Equipo = require('../models').Equipo;
+const Componente = require('../models').Componente;
+const Img_term = require('../models').Img_term;
+const Temp_term = require('../models').Temp_term;
 
 
 const ObtenerParaSubestacion = async function(req, res){
@@ -289,3 +293,150 @@ const test = async function(req, res){
     return ReS(res, {imagenes: imgs}, 201);
 }
 module.exports.test = test;
+
+
+const ReporteImagenTermica = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+
+    let err, operacion, ot, subestacion, equipo, componente, imagenterm, imagennormal, alertas, temperatura;
+
+    OperacionId = body.OperacionId;
+    nombreImagen = body.nombreImagen;
+
+    [err, operacion] = await to(Operacion.findOne({
+        where:{id:OperacionId},
+        include:[{
+            model:User,
+            paranoid:true,
+            required:true
+        }]
+    }));
+    if(err) return ReE(res, err, 422);
+    ot_id = operacion.OtId;
+    op_id = operacion.id;
+
+    let operacion_info = {
+        id:operacion.id,
+        pt_operacion:operacion.pt_operacion,
+        fechahora_inicio:operacion.fechahora_inicio,
+        fechahora_fin:operacion.fechahora_fin,
+        inspector:operacion.User.nombre
+    };
+
+    [err, ot] = await to (Ot.findOne({
+        where:{id:ot_id}
+    }));
+    if(err) return ReE(res, err, 422);
+    se_id = ot.SubestacionId;
+
+    let ot_info = {
+        id:ot.id,
+        numero_ot:ot.numero_ot,
+        fecha_ot:ot.fecha_ot,
+        trabajo:ot.trabajo
+    };
+
+    [err, subestacion] = await to (Subestacion.findOne({
+        where:{id:se_id}
+    }));
+    if(err) return ReE(res, err, 422);
+
+    let subestacion_info = {
+        id:subestacion.id,
+        cod_se:subestacion.cod_se,
+        nombre_se:subestacion.nombre_se
+    };
+
+    [err,imagenterm] = await to(Img_term.findOne({
+        where:{nombre:nombreImagen,OperacionId:op_id}
+
+    }));
+    if (err) return ReE(res, err, 422);
+    id_comp = imagenterm.ComponenteId;
+    id_img = imagenterm.id;
+
+    let imagenterm_info = {
+        id:imagenterm.id,
+        nombre:imagenterm.nombre,
+        ComponenteId:imagenterm.ComponenteId,
+        OperacionId:imagenterm.OperacionId
+    };
+
+    [err, componente] = await to(Componente.findOne({
+        where:{id:id_comp}
+    }));
+    if (err) return ReE(res, err, 422);
+    id_eq = componente.EquipoId;
+    id_co = componente.id;
+
+    let componente_info={
+        id:componente.id,
+        cod_comp:componente.cod_comp,
+        poloa_comp:componente.poloa_comp,
+        polob_comp:componente.polob_comp,
+        poloc_comp:componente.poloc_comp,
+        EquipoId:componente.EquipoId
+    };
+
+    [err, equipo] = await to(Equipo.findOne({
+        where:{id:id_eq, SubestacionId:se_id}
+    }));
+    if (err) return ReE(res, err, 422);
+
+    let equipo_info = {
+        id:equipo.id,
+        cod_eq:equipo.cod_eq,
+        nombre_eq:equipo.nombre_eq,
+        ubic_tec_eq:equipo.ubic_tec_eq,
+        tempmax:equipo.tempmax
+    };
+
+    [err, alertas] = await to(Alerta.findAll({
+        where:{OperacionId:op_id}
+    }));
+    if(err) ReE(res, err, 422);
+
+    let alertas_json = [];
+    for (let i in alertas) {
+        let alerta = alertas[i];
+        let alertas_info = {
+            id:alerta.id,
+            alerta:alerta.alerta,
+            nombreImagen:alerta.nombreImagen,
+            estado:alerta.estado
+        };
+        alertas_json.push(alertas_info);
+    }
+
+    [err, temperatura] = await to(Temp_term.findOne({
+        where:{Img_termId:id_img}
+    }));
+    if(err) ReE(res, err, 422);
+
+    let temperatura_info = {
+        id:temperatura.id,
+        tem1:temperatura.tem1,
+        tem2:temperatura.tem2,
+        tem3:temperatura.tem3,
+        delta12:temperatura.delta12,
+        delta23:temperatura.delta23,
+        delta31:temperatura.delta31
+    };
+
+    [err, imagennormal] = await to(Img_term.findOne({
+        where:{OperacionId:op_id, ComponenteId:id_co, tipo:'Normal'}
+    }));
+    if (err) ReE(res, err, 422);
+
+    let imagennormal_info ={
+        id:imagenterm.id,
+        nombre:imagenterm.nombre,
+        ComponenteId:imagenterm.ComponenteId,
+        OperacionId:imagenterm.OperacionId
+    };
+
+    return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, componente:componente_info, equipo:equipo_info, alerta:alertas_json, imagenterm:imagenterm_info, imagennormal:imagennormal_info, temperatura:temperatura_info}, 201);
+}
+module.exports.ReporteImagenTermica = ReporteImagenTermica;
+
