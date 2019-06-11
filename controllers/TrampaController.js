@@ -163,6 +163,7 @@ const consumoHistoricoSsee = async function(req, res){
 
     let err, operaciones, operaciones_json;
     operaciones_json = [];
+    operaciones_json2= [];
     [err, operaciones] = await to (Operacion.findAll({
         include:[{
             model:Ot,
@@ -192,6 +193,9 @@ const consumoHistoricoSsee = async function(req, res){
         let contD =0;
         let contE =0;
 
+        let operacion_info2 = operacion.toWeb();
+        operaciones_json2.push(operacion_info2);
+
         for (x in operacion.Registro_estado){
             contador = contador +1;
             if(operacion.Registro_estado[x].estado_registro == "Consumida"){
@@ -219,7 +223,7 @@ const consumoHistoricoSsee = async function(req, res){
         operaciones_json.push(operacion_info);
     }
 
-    return ReS(res, {datos:operaciones_json}, 201);
+    return ReS(res, {datos:operaciones_json, datos2:operaciones_json2}, 201);
     
 }
 module.exports.consumoHistoricoSsee=consumoHistoricoSsee;
