@@ -167,6 +167,7 @@ const consumoHistoricoSsee = async function(req, res){
             model:Ot,
             paranoid:true,
             required: true,
+            where:{trabajo:'Control de Plagas'},
             include:[{
                 model:Subestacion,
                 paranoid:true,
