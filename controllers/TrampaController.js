@@ -207,11 +207,11 @@ const consumoHistoricoSsee = async function(req, res){
 
         }
         let operacion_info = {
-            cantidad_trampas = operacion.Registro_estado.length,
-            cantidad_consumida = contC,
-            cantidad_noconsumida = contNC,
-            cantidad_dañada = contD,
-            cantidad_extraida = contE
+            cantidad_trampas : operacion.Registro_estado.length,
+            cantidad_consumida : contC,
+            cantidad_noconsumida : contNC,
+            cantidad_dañada : contD,
+            cantidad_extraida : contE
         }
 
         operaciones_json.push(operacion_info);
