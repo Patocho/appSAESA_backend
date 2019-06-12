@@ -104,6 +104,31 @@ const ObtenerParaTodas = async function(req, res){
 
         operaciones_json.push(operaciones_info);
     }
+    [err, operacionesControl] = await to(Operacion.findAndCountAll({
+        include:[{
+            model:Ot,
+            paranoid:true,
+            required:true,
+            where:{
+                trabajo:'Control de Plagas'
+            }
+        }],
+    }));
+    if(err) return ReE(res, err, 422);
+    let cantOperacionControl = operacionesControl.count;
+
+    [err, operacionesTermo] = await to(Operacion.findAndCountAll({
+        include:[{
+            model:Ot,
+            paranoid:true,
+            required:true,
+            where:{
+                trabajo:'Control de Plagas'
+            }
+        }],
+    }));
+    if(err) return ReE(res, err, 422);
+    let cantOperacionTermo = operacionesTermo.count;
 
     let cantidadOperaciones = operaciones_json.length;
 
@@ -122,7 +147,7 @@ const ObtenerParaTodas = async function(req, res){
     contTerm = OtT.count;
 
 
-    return ReS(res,{operaciones:operaciones_json, cantidadOperaciones:cantidadOperaciones, cantidadOt:contTerm+contControl, cantidadControl:contControl, cantidadTerm:contTerm}, 201);
+    return ReS(res,{operaciones:operaciones_json, cantidadOperaciones:cantidadOperaciones, cantOperacionControl:cantOperacionControl, cantOperacionTermo:cantOperacionTermo, cantidadOt:contTerm+contControl, cantidadControl:contControl, cantidadTerm:contTerm}, 201);
 }
 
 module.exports.ObtenerParaTodas = ObtenerParaTodas;
