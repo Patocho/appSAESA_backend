@@ -398,8 +398,16 @@ const ReporteImagenTermica = async function(req, res){
     id_comp = imagenterm.ComponenteId;
     id_img = imagenterm.id;
 
+    console.log("//////////////////////////1111111111111");
+    console.log(id_comp);
+    console.log("///////////////////////////////////1111111111111");
+    console.log(id_img);
+    console.log("//////////////////////////////////2222222222222222");
+
     let img_term = [];
     for(i in imagenterm){
+        console.log("///////FOR/////////////");
+        console.log(i);
         let img_termo = imagenterm[i];
         let imagenterm_info = {
             id:imagenterm.id,
