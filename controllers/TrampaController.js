@@ -163,6 +163,7 @@ const consumoHistoricoSsee = async function(req, res){
 
     let err, operaciones, operaciones_json;
     operaciones_json = [];
+    operaciones_json2= [];
     [err, operaciones] = await to (Operacion.findAll({
         include:[{
             model:Ot,
@@ -183,14 +184,46 @@ const consumoHistoricoSsee = async function(req, res){
     }));
     if(err) return ReE(res, err, 422);
 
+
     for(i in operaciones){
         let operacion = operaciones[i];
-        let operacion_info = operacion.toWeb();
+        contador = 0;
+        let contC =0;
+        let contNC =0;
+        let contD =0;
+        let contE =0;
+
+        let operacion_info2 = operacion.toWeb();
+        operaciones_json2.push(operacion_info2);
+
+        for (x in operacion.Registro_estados){
+            contador = contador +1;
+            if(operacion.Registro_estados[x].estado_registro == "Consumida"){
+                contC = contC + 1;
+            }
+            if(operacion.Registro_estados[x].estado_registro == "No Consumida"){
+                contNC = contNC + 1;
+            }
+            if(operacion.Registro_estados[x].estado_registro == "Dañada"){
+                contD = contD + 1;
+            }
+            if(operacion.Registro_estados[x].estado_registro == "Extraida"){
+                contE = contE + 1;
+            }
+
+        }
+        let operacion_info = {
+            cantidad_trampas : contador,
+            cantidad_consumida : contC,
+            cantidad_noconsumida : contNC,
+            cantidad_dañada : contD,
+            cantidad_extraida : contE
+        }
 
         operaciones_json.push(operacion_info);
     }
 
-    return ReS(res, {datos:operaciones_json}, 201);
+    return ReS(res, {datos:operaciones_json, datos2:operaciones_json2}, 201);
     
 }
 module.exports.consumoHistoricoSsee=consumoHistoricoSsee;
