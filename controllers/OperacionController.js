@@ -425,10 +425,10 @@ const ReporteImagenTermica = async function(req, res){
     if (err) ReE(res, err, 422);
 
     let imagennormal_info ={
-        id:imagenterm.id,
-        nombre:imagenterm.nombre,
-        ComponenteId:imagenterm.ComponenteId,
-        OperacionId:imagenterm.OperacionId
+        id:imagennormal.id,
+        nombre:imagennormal.nombre,
+        ComponenteId:imagennormal.ComponenteId,
+        OperacionId:imagennormal.OperacionId
     };
 
     return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, componente:componente_info, equipo:equipo_info, alertas:alertas_info, imagenterm:imagenterm_info, imagennormal:imagennormal_info, temperatura:temperatura_info}, 201);
