@@ -373,6 +373,7 @@ const ReporteImagenTermica = async function(req, res){
     let componente_info={
         id:componente.id,
         cod_comp:componente.cod_comp,
+        nombre_comp:componente.nombre_comp,
         poloa_comp:componente.poloa_comp,
         polob_comp:componente.polob_comp,
         poloc_comp:componente.poloc_comp,
