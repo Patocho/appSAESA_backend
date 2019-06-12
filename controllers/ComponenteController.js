@@ -72,13 +72,14 @@ const obtenerEqComp = async function(req, res){
     equipoId = body.equipoId;
 
     [err, componentes] = await to(Componente.findAll({
+        order:[['id','ASC']],
         include:[{
             model:Equipo,
             paranoid:true, 
             required:true,
             where:{id: equipoId},
-        }],
-        order:[['id','ASC']],
+        }]
+        
     }));
 
     if (err) return ReE(res, err, 422);
