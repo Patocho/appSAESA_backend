@@ -175,7 +175,8 @@ const consumoHistoricoSsee = async function(req, res){
     operaciones_json = [];
     operaciones_json2= [];
     let hoy = new Date();
-    hoy.setMonth(hoy.getMonth() – 12);
+    hoy.setFullYear(hoy.getFullYear()-1);
+
     [err, operaciones] = await to (Operacion.findAll({
         include:[{
             model:Ot,
