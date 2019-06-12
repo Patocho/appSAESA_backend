@@ -3,6 +3,16 @@ const Subestacion = require('../models').Subestacion;
 const Operacion = require('../models').Operacion;
 const Ot = require('../models').Ot;
 const Registro_estado = require('../models').Registro_estado;
+const Sequelize = require('../node_modules/sequelize');
+
+var sequelize = new Sequelize(process.env.LOCAL_DATABASE, process.env.LOCAL_USERNAME, process.env.LOCAL_PASSWORD,{
+  host: '127.0.0.1',
+  dialect: 'mysql',
+
+  // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
+  operatorsAliases: true
+});
+const Op = Sequelize.Op;
 
 
 //
@@ -164,6 +174,9 @@ const consumoHistoricoSsee = async function(req, res){
     let err, operaciones, operaciones_json;
     operaciones_json = [];
     operaciones_json2= [];
+    let hoy = new Date();
+    hoy.setFullYear(hoy.getFullYear()-1);
+
     [err, operaciones] = await to (Operacion.findAll({
         include:[{
             model:Ot,
@@ -180,7 +193,12 @@ const consumoHistoricoSsee = async function(req, res){
             model:Registro_estado,
             paranoid:true,
             required:true
-        }]
+        }],
+        where:{
+            fechahora_inicio:{
+                $gte : hoy
+            }
+        }
     }));
     if(err) return ReE(res, err, 422);
 
@@ -217,7 +235,8 @@ const consumoHistoricoSsee = async function(req, res){
             cantidad_consumida : contC,
             cantidad_noconsumida : contNC,
             cantidad_dañada : contD,
-            cantidad_extraida : contE
+            cantidad_extraida : contE,
+            fecha: operacion.fechahora_inicio
         }
 
         operaciones_json.push(operacion_info);
