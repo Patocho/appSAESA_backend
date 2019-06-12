@@ -122,7 +122,7 @@ const ObtenerParaTodas = async function(req, res){
     contTerm = OtT.count;
 
 
-    return ReS(res,{operaciones:operaciones_json, cantidadOperaciones:cantidadOperaciones, cantidadControl:contControl, cantidadTerm:contTerm}, 201);
+    return ReS(res,{operaciones:operaciones_json, cantidadOperaciones:cantidadOperaciones, cantidadOt:contTerm+contControl, cantidadControl:contControl, cantidadTerm:contTerm}, 201);
 }
 
 module.exports.ObtenerParaTodas = ObtenerParaTodas;
