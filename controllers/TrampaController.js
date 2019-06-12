@@ -8,7 +8,7 @@ const Sequelize = require('../node_modules/sequelize');
 var sequelize = new Sequelize(process.env.LOCAL_DATABASE, process.env.LOCAL_USERNAME, process.env.LOCAL_PASSWORD,{
   host: '127.0.0.1',
   dialect: 'mysql',
-  
+
   // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
   operatorsAliases: false
 });
@@ -190,10 +190,7 @@ const consumoHistoricoSsee = async function(req, res){
             model:Registro_estado,
             paranoid:true,
             required:true
-        }],
-        attributes:{
-            include:[[sequelize.fn('COUNT', sequelize.col('UserId')), 'Contador']]
-        }
+        }]
     }));
     if(err) return ReE(res, err, 422);
 
