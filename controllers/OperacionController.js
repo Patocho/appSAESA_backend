@@ -401,6 +401,7 @@ const ReporteImagenTermica = async function(req, res){
     let imagenterm_info = {
         id:imagenterm.id,
         nombre:imagenterm.nombre,
+        recurso:imagenterm.recurso,
         ComponenteId:imagenterm.ComponenteId,
         OperacionId:imagenterm.OperacionId
     };
@@ -466,10 +467,11 @@ const ReporteImagenTermica = async function(req, res){
         where:{OperacionId:op_id, ComponenteId:id_co, tipo:'Normal'}
     }));
     if (err) ReE(res, err, 422);
-    
+
     let imagennormal_info ={
         id:imagennormal.id,
         nombre:imagennormal.nombre,
+        recurso:imagennormal.recurso,
         ComponenteId:imagennormal.ComponenteId,
         OperacionId:imagennormal.OperacionId
     };
