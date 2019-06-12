@@ -3,6 +3,10 @@ const Subestacion = require('../models').Subestacion;
 const Operacion = require('../models').Operacion;
 const Ot = require('../models').Ot;
 const Registro_estado = require('../models').Registro_estado;
+const Sequelize = require('../node_modules/sequelize');
+
+var sequelize = new Sequelize(process.env.LOCAL_DATABASE, process.env.LOCAL_USERNAME, process.env.LOCAL_PASSWORD);
+const Op = Sequelize.Op;
 
 
 //
