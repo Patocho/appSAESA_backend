@@ -6,11 +6,10 @@ const getImage = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, image;
     const body = req.body;
-    nombre = body.nombre;
-    console.log(nombre);
+    id = body.id;
     [err, image] = await to(Img_term.findOne({
         //attributes: ['id'],
-        where:{nombre: nombre},
+        where:{id:id},
         paranoid:true,
         required:true,
     }));
