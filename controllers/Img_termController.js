@@ -16,7 +16,7 @@ const getImage = async function(req, res){
     }));
 
     imgcomplete = image.recurso;
-    largo = img.lenght;
+    largo = imgcomplete.lenght;
     //img_part = imgcomplete.substring()
     if (err) return ReE(res, err, 422);
     return ReS(res, {recurso:image.recurso},201);
