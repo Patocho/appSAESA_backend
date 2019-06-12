@@ -16,7 +16,7 @@ const getImage = async function(req, res){
     }));
 
     imgcomplete = image.recurso;
-    largo = imgcomplete.lenght;
+    largo = imgcomplete.length;
     console.log(largo);
     caracteresPart = largo/10;
     console.log(caracteresPart);
