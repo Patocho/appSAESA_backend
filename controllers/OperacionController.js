@@ -389,7 +389,7 @@ const ReporteImagenTermica = async function(req, res){
         cod_se:subestacion.cod_se,
         nombre_se:subestacion.nombre_se
     };
-
+    
     [err,imagenterm] = await to(Img_term.findOne({
         where:{nombre:nombreImagen,OperacionId:op_id}
 
@@ -398,13 +398,19 @@ const ReporteImagenTermica = async function(req, res){
     id_comp = imagenterm.ComponenteId;
     id_img = imagenterm.id;
 
-    let imagenterm_info = {
-        id:imagenterm.id,
-        nombre:imagenterm.nombre,
-        recurso:imagenterm.recurso,
-        ComponenteId:imagenterm.ComponenteId,
-        OperacionId:imagenterm.OperacionId
-    };
+    let img_term = [];
+    for(i in imagenterm){
+        let img_termo = imagenterm[i];
+        let imagenterm_info = {
+            id:imagenterm.id,
+            nombre:imagenterm.nombre,
+            recurso:imagenterm.recurso,
+            ComponenteId:imagenterm.ComponenteId,
+            OperacionId:imagenterm.OperacionId
+        };
+        img_term.push(imagenterm_info);
+    }
+   
 
     [err, componente] = await to(Componente.findOne({
         where:{id:id_comp}
@@ -476,7 +482,7 @@ const ReporteImagenTermica = async function(req, res){
         OperacionId:imagennormal.OperacionId
     };
 
-    return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, componente:componente_info, equipo:equipo_info, alertas:alertas_info, imagenterm:imagenterm_info, imagennormal:imagennormal_info, temperatura:temperatura_info}, 201);
+    return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, componente:componente_info, equipo:equipo_info, alertas:alertas_info, imagenterm:img_term, imagennormal:imagennormal_info, temperatura:temperatura_info}, 201);
 }
 module.exports.ReporteImagenTermica = ReporteImagenTermica;
 
