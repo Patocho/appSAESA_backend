@@ -105,7 +105,24 @@ const ObtenerParaTodas = async function(req, res){
         operaciones_json.push(operaciones_info);
     }
 
-    return ReS(res,{operaciones:operaciones_json}, 201);
+    let cantidadOperaciones = operaciones_json.length;
+
+    [err, OtCP] = await to (Ot.findAndCountAll({
+        where:{trabajo :'Control de Plagas'}
+    }));
+    if(err) return ReE(res, err, 422);
+
+    let contControl = OtCP.count;
+
+    [err, OtT] = await to (Ot.findAndCountAll({
+        where:{trabajo :'Termografia'}
+    }));
+    if(err) return ReE(res, err, 422);
+
+    contTerm = OtT.count;
+
+
+    return ReS(res,{operaciones:operaciones_json, cantidadOperaciones:cantidadOperaciones, cantidadOt:contTerm+contControl, cantidadControl:contControl, cantidadTerm:contTerm}, 201);
 }
 
 module.exports.ObtenerParaTodas = ObtenerParaTodas;
