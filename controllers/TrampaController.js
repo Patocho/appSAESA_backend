@@ -10,7 +10,7 @@ var sequelize = new Sequelize(process.env.LOCAL_DATABASE, process.env.LOCAL_USER
   dialect: 'mysql',
 
   // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
-  operatorsAliases: false
+  operatorsAliases: true
 });
 const Op = Sequelize.Op;
 
@@ -174,6 +174,8 @@ const consumoHistoricoSsee = async function(req, res){
     let err, operaciones, operaciones_json;
     operaciones_json = [];
     operaciones_json2= [];
+    let hoy = new Date();
+    hoy.setMonth(hoy.getMonth() – 12);
     [err, operaciones] = await to (Operacion.findAll({
         include:[{
             model:Ot,
@@ -190,7 +192,12 @@ const consumoHistoricoSsee = async function(req, res){
             model:Registro_estado,
             paranoid:true,
             required:true
-        }]
+        }],
+        where:{
+            fechahora_inicio:{
+                $gte : hoy
+            }
+        }
     }));
     if(err) return ReE(res, err, 422);
 
