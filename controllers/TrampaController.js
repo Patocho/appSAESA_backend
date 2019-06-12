@@ -177,6 +177,12 @@ const consumoHistoricoSsee = async function(req, res){
     let hoy = new Date();
     hoy.setFullYear(hoy.getFullYear()-1);
 
+    console.log("//////////////////FECHA///////////////////");
+
+    console.log(hoy);
+
+    console.log("/////////////FIN/////FECHA///////////////////");
+
     [err, operaciones] = await to (Operacion.findAll({
         include:[{
             model:Ot,
