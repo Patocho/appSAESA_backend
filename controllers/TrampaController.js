@@ -174,14 +174,11 @@ const consumoHistoricoSsee = async function(req, res){
     let err, operaciones, operaciones_json;
     operaciones_json = [];
     operaciones_json2= [];
+
+    //con esto se piden los datos desde hace un año
     let hoy = new Date();
     hoy.setFullYear(hoy.getFullYear()-1);
-
-    console.log("//////////////////FECHA///////////////////");
-
-    console.log(hoy);
-
-    console.log("/////////////FIN/////FECHA///////////////////");
+    hoy.setHours(0,0,0);
 
     [err, operaciones] = await to (Operacion.findAll({
         include:[{
@@ -202,7 +199,7 @@ const consumoHistoricoSsee = async function(req, res){
         }],
         where:{
             fechahora_inicio:{
-                $gte : hoy
+                [Op.gte] : hoy
             }
         }
     }));
