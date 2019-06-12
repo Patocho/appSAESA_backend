@@ -18,11 +18,13 @@ const getImage = async function(req, res){
     imgcomplete = image.recurso;
     largo = imgcomplete.length;
     console.log(largo);
-    caracteresPart = largo/10;
+    caracteresPart = Math.round(largo/10);
     console.log(caracteresPart);
+
+    img_part = imgcomplete.substring(part*caracteresPart-caracteresPart, part*caracteresPart);
     //img_part = imgcomplete.substring()
     if (err) return ReE(res, err, 422);
-    return ReS(res, {recurso:image.recurso},201);
+    return ReS(res, {recurso:img_part},201);
 
 }
 module.exports.getImage = getImage;
