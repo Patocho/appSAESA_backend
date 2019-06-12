@@ -405,7 +405,7 @@ const ReporteImagenTermica = async function(req, res){
     };
 
     [err, temperatura] = await to(Temp_term.findOne({
-        where:{Img_termId:id_img}
+        where:{ImgtermId:id_img}
     }));
     if(err) ReE(res, err, 422);
 
