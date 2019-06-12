@@ -178,7 +178,7 @@ const consumoHistoricoSsee = async function(req, res){
     //con esto se piden los datos desde hace un año
     let hoy = new Date();
     hoy.setFullYear(hoy.getFullYear()-1);
-    hoy.setHour(0,0,0);
+    hoy.setHours(0,0,0);
 
     [err, operaciones] = await to (Operacion.findAll({
         include:[{
