@@ -466,18 +466,13 @@ const ReporteImagenTermica = async function(req, res){
         where:{OperacionId:op_id, ComponenteId:id_co, tipo:'Normal'}
     }));
     if (err) ReE(res, err, 422);
-
-    if (imagennormal != null){
-        let imagennormal_info ={
-            id:imagennormal.id,
-            nombre:imagennormal.nombre,
-            ComponenteId:imagennormal.ComponenteId,
-            OperacionId:imagennormal.OperacionId
-        };    
-    }
-    else{
-        return ReE(res, "No posee una imagen normal", 422);
-    }
+    
+    let imagennormal_info ={
+        id:imagennormal.id,
+        nombre:imagennormal.nombre,
+        ComponenteId:imagennormal.ComponenteId,
+        OperacionId:imagennormal.OperacionId
+    };
 
     return ReS(res,{operacion:operacion_info, ot:ot_info, subestacion:subestacion_info, componente:componente_info, equipo:equipo_info, alertas:alertas_info, imagenterm:imagenterm_info, imagennormal:imagennormal_info, temperatura:temperatura_info}, 201);
 }
