@@ -5,7 +5,13 @@ const Ot = require('../models').Ot;
 const Registro_estado = require('../models').Registro_estado;
 const Sequelize = require('../node_modules/sequelize');
 
-var sequelize = new Sequelize(process.env.LOCAL_DATABASE, process.env.LOCAL_USERNAME, process.env.LOCAL_PASSWORD);
+var sequelize = new Sequelize(process.env.LOCAL_DATABASE, process.env.LOCAL_USERNAME, process.env.LOCAL_PASSWORD,{
+  host: '127.0.0.1',
+  dialect: 'mysql',
+  
+  // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
+  operatorsAliases: false
+});
 const Op = Sequelize.Op;
 
 
