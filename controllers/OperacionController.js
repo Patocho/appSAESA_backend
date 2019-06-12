@@ -123,7 +123,7 @@ const ObtenerParaTodas = async function(req, res){
             paranoid:true,
             required:true,
             where:{
-                trabajo:'Control de Plagas'
+                trabajo:'Termografia'
             }
         }],
     }));
