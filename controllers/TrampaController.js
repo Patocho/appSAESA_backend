@@ -180,7 +180,10 @@ const consumoHistoricoSsee = async function(req, res){
             model:Registro_estado,
             paranoid:true,
             required:true
-        }]
+        }],
+        attributes:{
+            include:[[sequelize.fn('COUNT', sequelize.col('UserId')), 'Contador']]
+        }
     }));
     if(err) return ReE(res, err, 422);
 
