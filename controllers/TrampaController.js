@@ -202,7 +202,7 @@ const consumoHistoricoSsee = async function(req, res){
         }],
         where:{
             fechahora_inicio:{
-                $gte : hoy
+                [Op.gte] : hoy
             }
         }
     }));
