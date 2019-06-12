@@ -77,7 +77,7 @@ const obtenerEqComp = async function(req, res){
             paranoid:true, 
             required:true,
             where:{id: equipoId},
-        }]
+        }],
         order:[['id','ASC']],
     }));
 
