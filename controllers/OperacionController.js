@@ -32,7 +32,8 @@ const ObtenerParaSubestacion = async function(req, res){
                 paranoid:true,
                 required:true,
                 where:{id:id}
-            }]
+            }],
+            where:{trabajo:'Control de Plagas'}
         }],
     }));
     if(err) return ReE(res, err, 422);
