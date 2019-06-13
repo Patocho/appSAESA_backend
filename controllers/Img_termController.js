@@ -6,23 +6,14 @@ const getImage = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, image;
     const body = req.body;
-    id = body.id;
-    part = body.part; 
+    nombre = body.nombre;
     [err, image] = await to(Img_term.findOne({
         //attributes: ['id'],
-        where:{id:id}
+        where:{nombre: nombre}
     }));
-
-    imgcomplete = image.recurso;
-    largo = imgcomplete.length;
-    console.log(largo);
-    caracteresPart = Math.round(largo/10);
-    console.log(caracteresPart);
-
-    img_part = imgcomplete.substring(part*caracteresPart-caracteresPart, part*caracteresPart);
-    //img_part = imgcomplete.substring()
+    
     if (err) return ReE(res, err, 422);
-    return ReS(res, {recurso:imgcomplete},201);
+    return ReS(res, {id: image.id, nombre: image.nombre, id_oper: image.OperacionId});
 
 }
 module.exports.getImage = getImage;
@@ -91,3 +82,39 @@ const updateImagen = async function(req,res){
     return ReS(res, {msg:"Update exitoso"}, 201);
 }
 module.exports.updateImagen = updateImagen;
+
+const getImageTermo = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let err, image;
+    const body = req.body;
+    id = body.id;
+    [err, image] = await to(Img_term.findOne({
+        //attributes: ['id'],
+        where:{id:id}
+    }));
+
+    imgcomplete = image.recurso;
+    
+    if (err) return ReE(res, err, 422);
+    return ReS(res, {recurso:imgcomplete},201);
+
+}
+module.exports.getImageTermo = getImageTermo;
+
+const getImageNormal = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let err, image;
+    const body = req.body;
+    id = body.id;
+    [err, image] = await to(Img_term.findOne({
+        //attributes: ['id'],
+        where:{id:id}
+    }));
+
+    imgcomplete = image.recurso;
+    
+    if (err) return ReE(res, err, 422);
+    return ReS(res, {recurso:imgcomplete},201);
+
+}
+module.exports.getImageNormal = getImageNormal;
