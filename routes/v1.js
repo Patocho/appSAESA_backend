@@ -76,7 +76,7 @@ router.get('/alertas/todas', passport.authenticate('jwt', {session:false}), Aler
 router.post('/alertas/se', passport.authenticate('jwt', {session:false}), AlertaController.ObtenerSe);
 router.post('/alertas/vista', passport.authenticate('jwt', {session:false}), AlertaController.AlertaVista);
 
-router.post('/operacion/se', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaSubestacion);
+router.post('/operacionControl/se', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaSubestacionControl);
 router.post('/operacion/todas', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaTodas);
 
 router.post('/controlplagas/reporte', passport.authenticate('jwt', {session:false}), OperacionController.ReporteControlPlagas);

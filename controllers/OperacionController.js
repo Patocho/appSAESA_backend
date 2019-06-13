@@ -14,7 +14,7 @@ const Img_term = require('../models').Img_term;
 const Temp_term = require('../models').Temp_term;
 
 
-const ObtenerParaSubestacion = async function(req, res){
+const ObtenerParaSubestacionControl = async function(req, res){
 
     res.setHeader('Content-Type', 'application/json');
     const body = req.body;
@@ -61,7 +61,7 @@ const ObtenerParaSubestacion = async function(req, res){
     return ReS(res,{operaciones:operaciones_json}, 201);
 }
 
-module.exports.ObtenerParaSubestacion = ObtenerParaSubestacion;
+module.exports.ObtenerParaSubestacionControl = ObtenerParaSubestacionControl;
 
 
 const ObtenerParaTodas = async function(req, res){
