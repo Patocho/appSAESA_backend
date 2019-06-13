@@ -24,7 +24,7 @@ const getImage = async function(req, res){
     img_part = imgcomplete.substring(part*caracteresPart-caracteresPart, part*caracteresPart);
     //img_part = imgcomplete.substring()
     if (err) return ReE(res, err, 422);
-    return ReS(res, {recurso:img_part},201);
+    return ReS(res, {recurso:imgcomplete},201);
 
 }
 module.exports.getImage = getImage;
