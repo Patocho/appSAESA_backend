@@ -10,9 +10,7 @@ const getImage = async function(req, res){
     part = body.part; 
     [err, image] = await to(Img_term.findOne({
         //attributes: ['id'],
-        where:{id:id},
-        paranoid:true,
-        required:true,
+        where:{id:id}
     }));
 
     imgcomplete = image.recurso;
