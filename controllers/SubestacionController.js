@@ -205,3 +205,25 @@ const crearNuevaSE = async function(req, res){
 }
 module.exports.crearNuevaSE = crearNuevaSE;
 
+const obtenerUnaSub = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+
+    let err, subestacion;
+
+    id = body.id;
+    
+    [err, subestacion] = await to (Subestacion.findOne({
+        where:{id:id}
+    }));
+    if(err) return ReE(res, err, 422);
+
+    let subestacion_info = {
+        id:subestacion.id,
+        cod_se:subestacion.cod_se,
+        nombre_se:subestacion.nombre_se
+    };
+
+    return ReS(res,{subestacion:subestacion_info}, 201);
+}
+module.exports.obtenerUnaSub = obtenerUnaSub;
