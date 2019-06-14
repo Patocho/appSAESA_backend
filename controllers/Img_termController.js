@@ -118,3 +118,20 @@ const getImageNormal = async function(req, res){
 
 }
 module.exports.getImageNormal = getImageNormal;
+
+const getUnaImageTermo = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    let err, image;
+    const body = req.body;
+    ComponenteId = body.ComponenteId;
+    OperacionId = body.OperacionId;
+    [err, image] = await to(Img_term.findOne({
+        //attributes: ['id'],
+        where:{OperacionId:OperacionId, ComponenteId:ComponenteId, tipo:'Termografica'}
+    }));
+
+    if (err) return ReE(res, err, 422);
+    return ReS(res, {id: image.id, nombre: image.nombre, id_oper: image.OperacionId});
+    
+}
+module.exports.getUnaImageTermo = getUnaImageTermo;
