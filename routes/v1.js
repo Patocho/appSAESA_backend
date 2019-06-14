@@ -101,5 +101,6 @@ router.post('/borrarequipo',passport.authenticate('jwt', {session:false}),  Equi
 router.post('/termografia/reporte', passport.authenticate('jwt', {session:false}), OperacionController.ReporteImagenTermica);
 router.post('/termografia/Imagen_termo', passport.authenticate('jwt', {session:false}), Img_termController.getImageTermo);
 router.post('/termografia/Imagen_normal', passport.authenticate('jwt', {session:false}), Img_termController.getImageNormal);
+router.post('/operacionTermo/se', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaSubestacionTermo);
 
 module.exports = router;
