@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
 	    [err, pass] = await to(bcrypt_p.compare(pw, this.password));
 	    if(err) TE(err);
 
-	    if(!pass) TE('invalid password');
+	    if(!pass) TE('Contraseña Incorrecta');
 
 	    return this;
 	};
