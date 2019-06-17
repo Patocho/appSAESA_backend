@@ -592,6 +592,7 @@ const ReporteImagenTermicoTotal = async function(req, res){
         where:{ComponenteId:id_comp, OperacionId:op_id, tipo:'Termografia'}
 
     }));
+    console.log(imagenterm);
     if (err) return ReE(res, err, 422);
     id_comp = imagenterm.ComponenteId;
     id_img = imagenterm.id;
