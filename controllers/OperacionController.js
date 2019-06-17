@@ -170,6 +170,8 @@ const ReporteControlPlagas = async function(req, res){
             required:true
         }]
     }));
+
+    console.log(operacion);
     if(err) return ReE(res, err, 422);
     ot_id = operacion.OtId;
 
