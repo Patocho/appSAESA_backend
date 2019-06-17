@@ -535,3 +535,150 @@ const ObtenerParaSubestacionTermo = async function(req, res){
 
 module.exports.ObtenerParaSubestacionTermo = ObtenerParaSubestacionTermo;
 
+const ReporteImagenTermicoTotal = async function(req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+
+    let err, operacion, ot, subestacion, equipo, componente, imagenterm, imagennormal, alertas, temperatura;
+
+    OperacionId = body.OperacionId;
+    id_comp = body.id_comp;
+
+    [err, operacion] = await to(Operacion.findOne({
+        where:{id:OperacionId},
+        include:[{
+            model:User,
+            paranoid:true,
+            required:true
+        }]
+    }));
+    if(err) return ReE(res, err, 422);
+    ot_id = operacion.OtId;
+    op_id = operacion.id;
+
+    let operacion_info = {
+        id:operacion.id,
+        pt_operacion:operacion.pt_operacion,
+        fechahora_inicio:operacion.fechahora_inicio,
+        fechahora_fin:operacion.fechahora_fin,
+        inspector:operacion.User.nombre
+    };
+
+    [err, ot] = await to (Ot.findOne({
+        where:{id:ot_id}
+    }));
+    if(err) return ReE(res, err, 422);
+    se_id = ot.SubestacionId;
+
+    let ot_info = {
+        id:ot.id,
+        numero_ot:ot.numero_ot,
+        fecha_ot:ot.fecha_ot,
+        trabajo:ot.trabajo
+    };
+
+    [err, subestacion] = await to (Subestacion.findOne({
+        where:{id:se_id}
+    }));
+    if(err) return ReE(res, err, 422);
+
+    let subestacion_info = {
+        id:subestacion.id,
+        cod_se:subestacion.cod_se,
+        nombre_se:subestacion.nombre_se
+    };
+
+    [err,imagenterm] = await to(Img_term.findOne({
+        where:{ComponenteId:id_comp, OperacionId:op_id, tipo:'Termografia'}
+
+    }));
+    if (err) return ReE(res, err, 422);
+    id_comp = imagenterm.ComponenteId;
+    id_img = imagenterm.id;
+    
+    let id_imgTerm = imagenterm.id;
+
+   
+
+    [err, componente] = await to(Componente.findOne({
+        where:{id:id_comp}
+    }));
+    if (err) return ReE(res, err, 422);
+    id_eq = componente.EquipoId;
+    id_co = componente.id;
+
+    let componente_info={
+        id:componente.id,
+        cod_comp:componente.cod_comp,
+        nombre_comp:componente.nombre_comp,
+        poloa_comp:componente.poloa_comp,
+        polob_comp:componente.polob_comp,
+        poloc_comp:componente.poloc_comp,
+        EquipoId:componente.EquipoId
+    };
+
+    [err, equipo] = await to(Equipo.findOne({
+        where:{id:id_eq, SubestacionId:se_id}
+    }));
+    if (err) return ReE(res, err, 422);
+
+    let equipo_info = {
+        id:equipo.id,
+        cod_eq:equipo.cod_eq,
+        nombre_eq:equipo.nombre_eq,
+        ubic_tec_eq:equipo.ubic_tec_eq,
+        tempmax:equipo.tempmax
+    };
+
+    [err, alertas] = await to(Alerta.findOne({
+        where:{OperacionId:op_id}
+    }));
+    if(err) ReE(res, err, 422);
+
+    let alertas_info = {
+        id:alertas.id,
+        alerta:alertas.alerta,
+        nombreImagen:alertas.nombreImagen,
+        estado:alertas.estado
+    };
+
+    [err, temperatura] = await to(Temp_term.findOne({
+        where:{ImgtermId:id_img}
+    }));
+    if(err) ReE(res, err, 422);
+
+    let temperatura_info = {
+        id:temperatura.id,
+        tem1:temperatura.tem1,
+        tem2:temperatura.tem2,
+        tem3:temperatura.tem3,
+        delta12:temperatura.delta12,
+        delta23:temperatura.delta23,
+        delta31:temperatura.delta31
+    };
+
+    [err, imagennormal] = await to(Img_term.findOne({
+        where:{OperacionId:op_id, ComponenteId:id_co, tipo:'Normal'}
+    }));
+    if (err) ReE(res, err, 422);
+
+    let imagennormal_info ={
+        id:imagennormal.id,
+        nombre:imagennormal.nombre,
+        recurso:imagennormal.recurso,
+        ComponenteId:imagennormal.ComponenteId,
+        OperacionId:imagennormal.OperacionId
+    };
+
+    return ReS(res,{
+        operacion:operacion_info, 
+        ot:ot_info, 
+        subestacion:subestacion_info, 
+        componente:componente_info, 
+        equipo:equipo_info, 
+        alertas:alertas_info, 
+        imagenterm:id_imgTerm, 
+        imagennormal:imagennormal_info, 
+        temperatura:temperatura_info}, 201);
+}
+module.exports.ReporteImagenTermicoTotal = ReporteImagenTermicoTotal;
