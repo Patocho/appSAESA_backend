@@ -13,6 +13,8 @@ module.exports = function(passport){
         console.log("//////////////TEST/////////////");
         if(err) return done(err, false);
         if(user) {
+            console.log("////////////USER//////////////");
+            console.log(user);
             return done(null, user);
         }else{
             return done(null, false);
