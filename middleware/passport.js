@@ -11,7 +11,10 @@ module.exports = function(passport){
         let err, user;
         [err, user] = await to(User.findById(jwt_payload.user_id));
         console.log("//////////////TEST/////////////");
-        if(err) return done(err, false);
+        if(err){
+            console.log(err);
+            return done(err, false);  
+        } 
         if(user) {
             console.log("////////////USER//////////////");
             console.log(user);
