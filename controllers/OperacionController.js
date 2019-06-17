@@ -591,7 +591,7 @@ const ReporteImagenTermicoTotal = async function(req, res){
     };
 
     [err,imagenterm] = await to(Img_term.findOne({
-        where:{ComponenteId:id_comp, OperacionId:op_id, tipo:'Termografia'}
+        where:{ComponenteId:id_comp, OperacionId:op_id, tipo:'Termografica'}
 
     }));
     console.log(imagenterm);
