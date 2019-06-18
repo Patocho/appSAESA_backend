@@ -2,6 +2,18 @@ const Componente = require('../models').Componente;
 const Equipo = require('../models').Equipo;
 const Subestacion = require('../models').Subestacion;
 const Img_term = require('../models').Img_term;
+const Sequelize = require('../node_modules/sequelize');
+
+var sequelize = new Sequelize(process.env.LOCAL_DATABASE, process.env.LOCAL_USERNAME, process.env.LOCAL_PASSWORD,{
+  host: '127.0.0.1',
+  dialect: 'mysql',
+
+  // http://docs.sequelizejs.com/manual/tutorial/querying.html#operators
+  operatorsAliases: true
+});
+const Op = Sequelize.Op;
+
+
 //get all for a unique ID
 const getAllForSe = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
@@ -50,7 +62,12 @@ const obtenerComponentes = async function(req, res){
             model:Img_term,
             paranoid:true,
             where:{
-                OperacionId:OperacionId
+                OperacionId:{
+                    [Op.or] : {
+                        [Op.eq] : OperacionId,
+                        [Op.eq] : null
+                    }
+                }
             }
         }],
         order:[[Equipo, 'posicion','ASC'],['id','ASC']],
