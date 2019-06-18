@@ -43,8 +43,8 @@ const obtenerComponentes = async function(req, res){
                 required:true,
                 where:{id:se_id},
             }],
-            order:[[{model:Equipo, as: 'Equipo'}, 'posicion','ASC']],
         }],
+        order:[[Equipo, 'posicion','ASC']],
     }));
 
     console.log(componentes);
