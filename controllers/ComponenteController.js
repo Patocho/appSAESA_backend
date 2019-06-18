@@ -47,7 +47,6 @@ const obtenerComponentes = async function(req, res){
         order:[[Equipo, 'posicion','ASC']],
     }));
 
-    console.log(componentes);
     if(err) return ReE(res, err, 422);
 
     let componentes_json= [];
