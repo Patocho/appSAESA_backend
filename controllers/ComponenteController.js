@@ -33,7 +33,6 @@ const obtenerComponentes = async function(req, res){
     se_id = req.params.se_id;
 
     [err, componentes] = await to(Componente.findAll({
-        order:[['id','ASC']],
         include:[{
             model:Equipo, 
             paranoid:true,
@@ -45,7 +44,7 @@ const obtenerComponentes = async function(req, res){
                 where:{id:se_id},
             }],
         }],
-        order:[[Equipo, 'posicion','ASC']],
+        order:[[Equipo, 'posicion','ASC'],['id','ASC']],
     }));
 
     if(err) return ReE(res, err, 422);
