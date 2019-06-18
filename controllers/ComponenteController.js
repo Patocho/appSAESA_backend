@@ -65,12 +65,11 @@ const obtenerComponentes = async function(req, res){
             paranoid:true,
             required:false,
             where:{
-                OperacionId:{
-                    [Op.or] : {
-                        [Op.eq] : OperacionId,
-                        [Op.eq] : null
-                    }
-                }
+                [Op.or] :[{
+                    OperacionId:OperacionId
+                },{
+                    OperacionId:null
+                }]
             }
         }],
         order:[[Equipo, 'posicion','ASC'],['id','ASC']],
