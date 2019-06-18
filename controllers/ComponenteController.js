@@ -37,14 +37,13 @@ const obtenerComponentes = async function(req, res){
             model:Equipo, 
             paranoid:true,
             required:true,
+            order:[['posicion','ASC']],
             include:[{
                 model:Subestacion,
                 paranoid:true, 
                 required:true,
                 where:{id:se_id},
             }],
-            
-            order:[['posicion','ASC']],
         }]
     }));
     if(err) return ReE(res, err, 422);
