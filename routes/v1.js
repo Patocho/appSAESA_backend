@@ -60,7 +60,7 @@ router.post('/users/asignar_rol',passport.authenticate('jwt', {session:false}), 
 router.get('/equipos/:se_id',passport.authenticate('jwt', {session:false}), EquipoController.getAllForSe);
 
 router.get('/componentes/:se_id',passport.authenticate('jwt', {session:false}), ComponenteController.getAllForSe);
-router.get('/obtener_componentes/:se_id',passport.authenticate('jwt', {session:false}), ComponenteController.obtenerComponentes);
+router.post('/termografia/obtener_componentes',passport.authenticate('jwt', {session:false}), ComponenteController.obtenerComponentes);
 
 router.post('/registro/operacion',passport.authenticate('jwt', {session:false}), RegistroController.registroOperacion);
 router.post('/registro/estado',passport.authenticate('jwt', {session:false}), RegistroController.registroEstado);

@@ -1,6 +1,7 @@
 const Componente = require('../models').Componente;
 const Equipo = require('../models').Equipo;
 const Subestacion = require('../models').Subestacion;
+const Img_term = require('../models').Img_term;
 //get all for a unique ID
 const getAllForSe = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
@@ -30,7 +31,9 @@ module.exports.getAllForSe = getAllForSe;
 const obtenerComponentes = async function(req, res){
     res.setHeader('Content-Type', 'application/json');
     let err, componentes, equipo,dato;
-    se_id = req.params.se_id;
+    let body = req.body;
+    se_id = body.se_id;
+    OperacionId = body.OperacionId;
 
     [err, componentes] = await to(Componente.findAll({
         include:[{
@@ -43,6 +46,13 @@ const obtenerComponentes = async function(req, res){
                 required:true,
                 where:{id:se_id},
             }],
+        },{
+            model:Img_term,
+            paranoid:true,
+            required:true,
+            where:{
+                OperacionId:OperacionId
+            }
         }],
         order:[[Equipo, 'posicion','ASC']],
     }));
@@ -58,7 +68,7 @@ const obtenerComponentes = async function(req, res){
             nombre_comp:componentes[i].nombre_comp,
             cod_comp:componentes[i].cod_comp,
             nombre_equipo:componentes[i].Equipo.nombre_eq,
-            id_se:componentes[i].Equipo.SubestacionId
+            id_se:componentes[i].Equipo.SubestacionId,
         }
         componentes_json.push(componentes_info);
     }
