@@ -75,7 +75,7 @@ const obtenerComponentes = async function(req, res){
                 }]
             }
         }],
-        order:[[Equipo, 'posicion','ASC'],['id','ASC']],
+        order:[[Equipo, 'posicion','ASC'],['id','ASC'],[Img_term, 'tipo','ASC']],
     }));
 
     if(err) return ReE(res, err, 422);
