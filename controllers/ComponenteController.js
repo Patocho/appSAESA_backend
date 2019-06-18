@@ -64,6 +64,9 @@ const obtenerComponentes = async function(req, res){
             model:Img_term,
             paranoid:true,
             required:false,
+            attributes:{
+                exclude:['recurso']
+            },
             where:{
                 [Op.or] :[{
                     OperacionId:OperacionId
@@ -78,7 +81,7 @@ const obtenerComponentes = async function(req, res){
     if(err) return ReE(res, err, 422);
 
     let componentes_json= [];
-    
+    let info_test = []
 
     for(i in componentes){
         let img_inf = [];
@@ -89,7 +92,6 @@ const obtenerComponentes = async function(req, res){
             nombre_equipo:componentes[i].Equipo.nombre_eq,
             id_se:componentes[i].Equipo.SubestacionId,
         }
-
         for (a in componentes[i].Img_term){
             let img={
                 nombre : componentes[i].Img_term[a],
@@ -100,9 +102,10 @@ const obtenerComponentes = async function(req, res){
         componentes_info.img = img_inf;
 
         componentes_json.push(componentes_info);
+        info_test.push(componentes[i].toWeb())
     }
 
-    return ReS(res, {componentes: componentes_json});
+    return ReS(res, {test:info_test ,componentes: componentes_json});
 
 }
 module.exports.obtenerComponentes = obtenerComponentes;
