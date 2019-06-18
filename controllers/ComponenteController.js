@@ -47,6 +47,8 @@ const obtenerComponentes = async function(req, res){
     se_id = body.se_id;
     OperacionId = body.OperacionId;
 
+    console.log(OperacionId);
+
     [err, componentes] = await to(Componente.findAll({
         include:[{
             model:Equipo, 
