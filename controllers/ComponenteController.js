@@ -54,10 +54,9 @@ const obtenerComponentes = async function(req, res){
                 OperacionId:OperacionId
             }
         }],
-        order:[[Equipo, 'posicion','ASC']],
+        order:[[Equipo, 'posicion','ASC'],['id','ASC']],
     }));
 
-    console.log(componentes);
     if(err) return ReE(res, err, 422);
 
     let componentes_json= [];
