@@ -34,10 +34,10 @@ const obtenerComponentes = async function(req, res){
 
     [err, componentes] = await to(Componente.findAll({
         include:[{
-            order:[['posicion','ASC']],
             model:Equipo, 
             paranoid:true,
             required:true,
+            order:[['posicion','ASC']],
             include:[{
                 model:Subestacion,
                 paranoid:true, 
