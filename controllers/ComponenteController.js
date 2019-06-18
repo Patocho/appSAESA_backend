@@ -33,6 +33,7 @@ const obtenerComponentes = async function(req, res){
     se_id = req.params.se_id;
 
     [err, componentes] = await to(Componente.findAll({
+        order:[['id','ASC']],
         include:[{
             model:Equipo, 
             paranoid:true,
