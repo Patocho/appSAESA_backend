@@ -31,6 +31,7 @@ router.post('/users',passport.authenticate('jwt', {session:false}),  UserControl
 router.post('/users/login',UserController.login);
 router.get('/inspectores/:rol',passport.authenticate('jwt', {session:false}),  UserController.inspectores);
 router.get('/users', passport.authenticate('jwt', {session:false}), UserController.obtenerUsuarios);
+router.post('/users/eliminar', passport.authenticate('jwt', {session:false}), UserController.eliminarUsuario);
 router.post('/users/ver_datos',passport.authenticate('jwt', {session:false}),  UserController.verDatos);
 
 router.get('/subestacions',passport.authenticate('jwt', {session:false}),  SubestacionController.getAll);

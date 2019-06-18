@@ -121,3 +121,17 @@ const verDatos = async function(req, res){
 
 }
 module.exports.verDatos = verDatos;
+
+const eliminarUsuario = async function (req, res){
+    res.setHeader('Content-Type', 'application/json');
+    const body = req.body;
+    let err, userrol, id_user, id_rol, ur;
+
+    id_user=body.id;
+    
+    [err, user] = await to(User.destroy({where:{id:id_user}}));
+    if(err) return ReE(res, 'Un error se ha producido al intentar eliminar un usuario', 422);
+
+    return ReS(res, {message:'Usuario eliminado'}, 204); 
+}
+module.exports.eliminarUsuario = eliminarUsuario;
