@@ -94,8 +94,8 @@ const obtenerComponentes = async function(req, res){
         }
         for (a in componentes[i].Img_term){
             let img={
-                nombre : componentes[i].Img_term[a],
-                tipo: componentes[i].Img_term[a]
+                nombre : componentes[i].Img_terms[a],
+                tipo: componentes[i].Img_terms[a]
             }
             img_inf.push(img);
         }
