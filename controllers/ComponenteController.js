@@ -34,6 +34,7 @@ const obtenerComponentes = async function(req, res){
 
     [err, componentes] = await to(Componente.findAll({
         include:[{
+            order:[['posicion','ASC']],
             model:Equipo, 
             paranoid:true,
             required:true,
@@ -42,7 +43,6 @@ const obtenerComponentes = async function(req, res){
                 paranoid:true, 
                 required:true,
                 where:{id:se_id},
-                order:[['posicion','ASC']],
             }]
         }]
     }));
