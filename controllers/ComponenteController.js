@@ -92,7 +92,7 @@ const obtenerComponentes = async function(req, res){
             nombre_equipo:componentes[i].Equipo.nombre_eq,
             id_se:componentes[i].Equipo.SubestacionId,
         }
-        for (a in componentes[i].Img_term){
+        for (a in componentes[i].Img_terms){
             let img={
                 nombre : componentes[i].Img_terms[a].nombre,
                 tipo: componentes[i].Img_terms[a].tipo
