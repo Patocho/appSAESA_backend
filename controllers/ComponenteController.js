@@ -61,7 +61,7 @@ const obtenerComponentes = async function(req, res){
         },{
             model:Img_term,
             paranoid:true,
-            required:true,
+            required:false,
             where:{
                 OperacionId:{
                     [Op.or] : {
