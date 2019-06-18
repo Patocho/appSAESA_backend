@@ -77,8 +77,10 @@ const obtenerComponentes = async function(req, res){
     if(err) return ReE(res, err, 422);
 
     let componentes_json= [];
+    
 
     for(i in componentes){
+        let img_inf = [];
         let componentes_info ={
             id:componentes[i].id,
             nombre_comp:componentes[i].nombre_comp,
@@ -86,6 +88,16 @@ const obtenerComponentes = async function(req, res){
             nombre_equipo:componentes[i].Equipo.nombre_eq,
             id_se:componentes[i].Equipo.SubestacionId,
         }
+
+        for (a in componentes[i].Img_term){
+            let img={
+                nombre : componentes[i].Img_term[a],
+                tipo: componentes[i].Img_term[a]
+            }
+            img_inf.push(img);
+        }
+        componentes_info.img = img_inf;
+
         componentes_json.push(componentes_info);
     }
 
