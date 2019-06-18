@@ -46,6 +46,8 @@ const obtenerComponentes = async function(req, res){
             }],
         }]
     }));
+
+    console.log(componentes);
     if(err) return ReE(res, err, 422);
 
     let componentes_json= [];
