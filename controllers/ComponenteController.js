@@ -54,6 +54,7 @@ const obtenerComponentes = async function(req, res){
         let componentes_info ={
             id:componentes[i].id,
             nombre_comp:componentes[i].nombre_comp,
+            cod_comp:componentes[i].cod_comp,
             nombre_equipo:componentes[i].Equipo.nombre_eq,
             id_se:componentes[i].Equipo.SubestacionId
         }
