@@ -81,7 +81,6 @@ const obtenerComponentes = async function(req, res){
     if(err) return ReE(res, err, 422);
 
     let componentes_json= [];
-    let info_test = []
 
     for(i in componentes){
         let img_inf = [];
@@ -102,10 +101,9 @@ const obtenerComponentes = async function(req, res){
         componentes_info.img = img_inf;
 
         componentes_json.push(componentes_info);
-        info_test.push(componentes[i].toWeb())
     }
 
-    return ReS(res, {test:info_test ,componentes: componentes_json});
+    return ReS(res, {componentes: componentes_json});
 
 }
 module.exports.obtenerComponentes = obtenerComponentes;
