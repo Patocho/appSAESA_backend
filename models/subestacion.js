@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   var Subestacion = sequelize.define('Subestacion', {
     cod_se: DataTypes.STRING,
     nombre_se: DataTypes.STRING,
+    zona_se:DataTypes.STRING,
     lat_se: DataTypes.FLOAT,
     long_se: DataTypes.FLOAT
   }, {paranoid:true});
