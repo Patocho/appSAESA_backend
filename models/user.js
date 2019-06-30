@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   	var User = sequelize.define('User', {
     	email    : {type: DataTypes.STRING, allowNull: false, unique: true, validate: { isEmail: {msg: "Email invalid."} }},
     	password : {type: DataTypes.STRING, allowNull: false, unique: false},
+    	passwordChange : {type: DataTypes.BOOLEAN},
     	nombre: {type: DataTypes.STRING, allowNull: false, unique: false},
   	},{paranoid:true});
 
