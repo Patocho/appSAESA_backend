@@ -14,6 +14,9 @@ module.exports = {
       nombre_se: {
         type: Sequelize.STRING
       },
+      zona_se: {
+        type: Sequelize.STRING
+      },
       lat_se: {
         type: Sequelize.FLOAT
       },

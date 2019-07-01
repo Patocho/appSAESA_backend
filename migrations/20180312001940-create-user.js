@@ -18,6 +18,9 @@ module.exports = {
           allowNull: false, 
           unique: false
       },
+      passwordChange : {
+        type: DataTypes.BOOLEAN
+      },
       nombre: {
           type: Sequelize.STRING,
           allowNull: false,
