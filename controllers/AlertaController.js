@@ -39,7 +39,7 @@ const ObtenerTodas = async function(req, res){
             alertaTermo:alerta.alertaTermo,
             nombreImagen:alerta.nombreImagen,
             OperacionId:alerta.OperacionId,
-            fecha:alerta.Operacion.Ot.fecha_ot,
+            fecha:alerta.Operacion.fechahora_fin,
             trabajo:alerta.Operacion.Ot.trabajo,
             subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
         }
