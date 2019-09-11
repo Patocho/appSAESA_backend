@@ -685,3 +685,46 @@ const ReporteImagenTermicoTotal = async function(req, res){
         temperatura:temperatura_info}, 201);
 }
 module.exports.ReporteImagenTermicoTotal = ReporteImagenTermicoTotal;
+
+
+const ObtenerParaTodasControl = async function(req, res){
+    //Metodo para obtener el listado de todos los reportes de todas las subestaciones.
+    res.setHeader('Content-Type', 'application/json');
+    let err, operaciones;
+
+    [err, operaciones] = await to(Operacion.findAll({
+        include:[{
+            model:Ot,
+            paranoid:true,
+            required:true,
+            include:[{
+                model:Subestacion,
+                paranoid:true,
+                required:true,
+            }],
+            where:{trabajo:'Control de Plagas'}
+        }],
+        order:[['id','DESC']],
+    }));
+    if(err) return ReE(res, err, 422);
+
+    let operaciones_json = [];
+    for (let i in operaciones) {
+        let operacion = operaciones[i];
+        //let alertas_info = alerta.toJSON();
+        let operaciones_info = {
+            id:operacion.id,
+            fechahora_inicio:operacion.fechahora_inicio,
+            fechahora_fin:operacion.fechahora_fin,
+            numero_ot:operacion.Ot.numero_ot,
+            cod_se:operacion.Ot.Subestacion.cod_se,
+            nombre_se:operacion.Ot.Subestacion.nombre_se,
+        }
+
+        operaciones_json.push(operaciones_info);
+    }
+
+    return ReS(res,{operaciones:operaciones_json}, 201);
+}
+
+module.exports.ObtenerParaTodasControl = ObtenerParaTodasControl;
