@@ -41,7 +41,8 @@ const ObtenerTodas = async function(req, res){
             OperacionId:alerta.OperacionId,
             fecha:alerta.Operacion.fechahora_fin,
             trabajo:alerta.Operacion.Ot.trabajo,
-            subestacion:alerta.Operacion.Ot.Subestacion.nombre_se
+            subestacion:alerta.Operacion.Ot.Subestacion.nombre_se,
+            ot:alerta.Operacion.Ot.numero_ot
         }
         alertas_json.push(alertas_info);
     }
