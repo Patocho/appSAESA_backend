@@ -79,6 +79,7 @@ router.post('/alertas/vista', passport.authenticate('jwt', {session:false}), Ale
 
 router.post('/operacionControl/se', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaSubestacionControl);
 router.post('/operacion/todas', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaTodas);
+router.get('/operacion/trabajos_realizados', passport.authenticate('jwt', {session:false}), OperacionController.ObtenerParaTodasControl);
 
 router.post('/controlplagas/reporte', passport.authenticate('jwt', {session:false}), OperacionController.ReporteControlPlagas);
 router.post('/controlplagas/imagen', passport.authenticate('jwt', {session:false}), ImgControlController.ObtenerImagenControl);
