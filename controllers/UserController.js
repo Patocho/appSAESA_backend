@@ -43,7 +43,7 @@ const login = async function(req, res){
         //let roles = rol[i];
         roles_json.push({id:rol[i].id,descripcion:rol[i].descripcion});
     }
-    let user1 ={id:user.id};
+    let user1 ={id:user.id, pswChange:user.passwordChange};
 
     if(err) TE(err.message);
 
