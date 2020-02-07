@@ -162,6 +162,9 @@ const ReporteControlPlagas = async function(req, res){
     let err, operacion, ot, subestacion, trampas, imgs, img_ot, alerta, otra_tarea, reg_estado;
     id = body.id;
 
+    console.log("ERROR HERE!!!!!!!!!!!!!!!!!!!!!");
+    console.log(id);
+
     [err, operacion] = await to(Operacion.findOne({
         where:{id:id},
         include:[{
